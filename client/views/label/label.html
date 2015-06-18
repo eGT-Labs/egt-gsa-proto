@@ -18,11 +18,19 @@
     <!-- TODO create a display for all openfda fields-->
 
 
-    <!-- TODO: we can't repeat the logic for all the sections ad-nausem. Let's create a directive?-->
+    <!-- TODO: we can't repeat the logic for all the sections ad-nausem. Let's create a directive? Somehow detect whether the "_table" variant of the field exists or not??-->
     <h2>Information for Patients</h2>
     <div ng-repeat="line in vm.label.information_for_patients">
       {{line}}
     </div>
+
+
+    <h2>Dosage and Administration (table)</h2>
+    <span ng-bind-html="vm.label.dosage_and_administration_table[0] | to_trusted"></span>
+
+
+    <h2>Dosage and Administration (text)</h2>
+    <span ng-bind-html="vm.label.dosage_and_administration[0]"></span>
 
 
     <hr>
