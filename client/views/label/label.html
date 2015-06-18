@@ -1,0 +1,24 @@
+<div ng-switch="vm.status">
+  <div ng-switch-when="loading">Loading...</div>
+  <div ng-switch-when="error">Not found!</div>
+  <div ng-switch-default>
+
+    <h1>{{vm.label.openfda.brand_name[0]}}</h1>
+
+    <h2>Information for Patients</h2>
+
+
+    <div ng-repeat="line in vm.label.information_for_patients">
+      {{line}}
+    </div>
+
+
+    <h3>Raw JSON from API</h3>
+    <pre>
+      {{vm.rawString}}
+    </pre>
+
+
+  </div>
+</div>
+
