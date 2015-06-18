@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('egtGsaProto', [
-  'ngRoute'
+  'ngRoute',
+  'ui.bootstrap'
 ])
   .config(function ($routeProvider, $locationProvider) {
 

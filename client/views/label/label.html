@@ -5,18 +5,34 @@
 
     <h1>{{vm.label.openfda.brand_name[0]}}</h1>
 
+
+    <alert type="danger" ng-if="vm.label.boxed_warning">
+      <h2>Boxed Warning:</h2>
+
+      <p ng-repeat="paragraph in vm.label.boxed_warning">
+        {{paragraph}}
+      </p>
+    </alert>
+
+
+    <!-- TODO create a display for all openfda fields-->
+
+
+    <!-- TODO: we can't repeat the logic for all the sections ad-nausem. Let's create a directive?-->
     <h2>Information for Patients</h2>
-
-
     <div ng-repeat="line in vm.label.information_for_patients">
       {{line}}
     </div>
 
 
-    <h3>Raw JSON from API</h3>
-    <pre>
-      {{vm.rawString}}
-    </pre>
+    <hr>
+
+    <button class="btn btn-default" ng-click="jsonHidden = !jsonHidden">Show raw JSON</button>
+    <div collapse="!jsonHidden">
+      <pre>
+{{vm.rawString}}
+      </pre>
+    </div>
 
 
   </div>

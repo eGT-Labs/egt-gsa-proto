@@ -25,3 +25,13 @@ Always run this on build server, becasue we don't know which commit might have c
 * Build the production artifacts `gulp build` (Build artifacts located in `dist` folder)
 * Launch client and server tests, using Karma and Mocha, both by default. `gulp test [--client || --server]`
 
+
+
+# Development resources
+
+
+Angular JS: https://angularjs.org/
+
+Bootstrap: http://getbootstrap.com/
+
+UI Bootstrap (directives to ease integration of angular and bootstrap): https://angular-ui.github.io/bootstrap/
