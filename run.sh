@@ -1,5 +1,5 @@
 # Launch script for AWS environment
 
-nohup npm start PORT=80 &
+nohup PORT=80 npm start  &
 
 echo $! > nohup.pid
