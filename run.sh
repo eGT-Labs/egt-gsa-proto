@@ -2,4 +2,4 @@
 
 nohup PORT=80 npm start  &
 
-echo $! > nohup.pid
+echo $! > ../../run.pid
