@@ -1,45 +1,93 @@
 'use strict';
 
 angular.module('egtGsaProto')
-  .controller('LabelSearchCtrl', function (LabelFactory) {
+  .controller('LabelSearchCtrl', function (LabelFactory, $location) {
 
     var vm = this;
     angular.extend(vm, {
+      search: {
+
+      },
       query: {
-        fulltext: '',
-        selectedFacets: { //data structure for which facets options are selected
-          generic_name: [],
-          brand_name: [],
-          manufacturer_name: [],
-          product_type: [],
-          route: [],
-          substance_name: [],
-          pharm_class_cs: [],
-          pharm_class_moa: [],
-          pharm_class_epc: []
-        },
+        ////fulltext: '',
+        //facets: { //data structure for which facets options are selected
+        //},
         pageSize: 10,
         pageNum: 1
       },
       resp: null,
       facets: { //data structure for which facets are available
-        generic_name: null,
-        brand_name: null,
-        manufacturer_name: null,
-        product_type: null,
-        route: null,
-        substance_name: null,
-        pharm_class_cs: null,
-        pharm_class_moa: null,
-        pharm_class_epc: null
-
+        generic_name: {
+          label: "Generic Name",
+          data: null
+        },
+        brand_name: {
+          label: "Brand Name",
+          data: null
+        },
+        manufacturer_name: {
+          label: "Manufacturer",
+          data: null
+        },
+        product_type: {
+          label: "Product Type",
+          data: null
+        },
+        route: {
+          label: "Route",
+          data: null
+        },
+        substance_name: {
+          label: "Substance",
+          data: null
+        },
+        pharm_class_cs: {
+          label: "Chemical structure",
+          data: null
+        },
+        pharm_class_moa: {
+          label: "Mechanism of action",
+          data: null
+        },
+        pharm_class_epc: {
+          label: "Established pharmacologic class",
+          data: null
+        }
       },
       respText: ''
     });
 
+    angular.extend(vm.search, $location.search());
+
+    vm.isFacetSelected = function(facetName, value) {
+      var field = ['facet', facetName].join('.');
+      return vm.search[field] === value;
+    };
+
+
+    vm.toggleFacet = function(facetName, value) {
+
+      var field = ['facet', facetName].join('.');
+
+
+      if (vm.search[field] === value) {
+        delete vm.search[field];
+      } else {
+        vm.search[field] = value;
+      }
+
+      vm.newSearch();
+    };
+
+
+
+
+    vm.newSearch = function() {
+      $location.search(vm.search);
+    };
+
 
     var latestQuery;
-
     vm.executeQuery = function (resetPageNum) {
 
       var thisQuery = Date.now();
@@ -50,9 +98,28 @@ angular.module('egtGsaProto')
       }
 
 
+      var searchString = (vm.search.fulltext || '""') + ' AND _exists_:openfda.spl_id'; //TODO this is a hack
+
+      angular.forEach(vm.search, function(value, key) {
+        var keyParts = key.split('.');
+        if (keyParts[0] === 'facet') {
+          var fieldName = keyParts[1];
+
+          searchString += ' AND openfda.' + fieldName + '.exact:"' + value + '"';
+
+        }
+
+        console.log(key);
+        console.log(value);
+      });
+
+
+
+
+
 
       LabelFactory.runQuery({
-        search: (vm.query.fulltext || '""') + ' AND _exists_:openfda.spl_id', //TODO this is a hack
+        search: searchString,
         limit: vm.query.pageSize,
         skip: (vm.query.pageNum - 1) * vm.query.pageSize
       }).then(
@@ -60,13 +127,34 @@ angular.module('egtGsaProto')
           if (latestQuery === thisQuery) {
             vm.resp = resp;
             vm.respText = angular.toJson(resp, true);
-          } else {
-            console.log('ignoring outdated query');
+
+            if (resetPageNum) { //we only need to recalcuate the facets when the page resets
+
+              angular.forEach(vm.facets, function (currentValue, facetName) {
+
+                vm.facets[facetName].data = null; //wipe the old info
+
+                var countString = ['openfda', facetName, 'exact'].join('.');
+
+                LabelFactory.runQuery({
+                  search: searchString,
+                  count: countString
+                }).then(function(facetResp) {
+                  if (latestQuery === thisQuery) {
+                    vm.facets[facetName].data = facetResp.data.results;
+                  }
+                });
+              });
+            }
           }
         }
       )
     };
 
     vm.executeQuery(true);
+
+
+
+
 
   });

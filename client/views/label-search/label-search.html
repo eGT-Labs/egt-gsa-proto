@@ -1,7 +1,26 @@
 
 <form>
-<input ng-model="vm.query.fulltext"> <button class="btn btn-primary" ng-click="vm.executeQuery(true)">Search</button>
+<input ng-model="vm.search.fulltext"> <button class="btn btn-primary" ng-click="vm.newSearch()">Search</button>
 </form>
+
+
+
+
+<div ng-repeat="(facetKey, facet) in vm.facets">
+  <h3>{{facet.label}}</h3>
+  <div ng-repeat="facetInstance in facet.data">
+    <a ng-click="vm.toggleFacet(facetKey, facetInstance.term)">
+    <span class="badge">{{facetInstance.count | number}}</span>  {{facetInstance.term}}
+      <span ng-if="vm.isFacetSelected(facetKey, facetInstance.term)" class="glyphicon glyphicon-remove-circle" style="color: red"></span>
+    </a>
+  </div>
+</div>
+
+
+<pagination
+  boundary-links="true" class="pagination-sm" max-size="10"
+  total-items="vm.resp.data.meta.results.total" items-per-age="vm.query.pageSize" ng-model="vm.query.pageNum" ng-change="vm.executeQuery()"></pagination>
+
 
 <ul class="list-group">
 <a class="list-group-item" href="/label/{{row.openfda.spl_id[0]}}" class="list-group-item" ng-repeat="row in vm.resp.data.results">
@@ -19,11 +38,6 @@
 
 </a>
 </ul>
-
-<pagination
-  boundary-links="true" class="pagination-sm" max-size="10"
-  total-items="vm.resp.data.meta.results.total" items-per-age="vm.query.pageSize" ng-model="vm.query.pageNum" ng-change="vm.executeQuery()"></pagination>
-
 
 
 <div>
