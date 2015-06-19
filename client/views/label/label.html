@@ -89,7 +89,7 @@
     <alert type="danger" ng-if="vm.label.boxed_warning">
       <h4>Boxed Warning:</h4>
 
-      <p ng-repeat="paragraph in vm.label.boxed_warning">
+      <p ng-repeat="paragraph in vm.label.boxed_warning track by $index">
         {{paragraph}}
       </p>
     </alert>

@@ -1,0 +1,42 @@
+
+<form>
+<input ng-model="vm.query.fulltext"> <button class="btn btn-primary" ng-click="vm.executeQuery(true)">Search</button>
+</form>
+
+<ul class="list-group">
+<a class="list-group-item" href="/label/{{row.openfda.spl_id[0]}}" class="list-group-item" ng-repeat="row in vm.resp.data.results">
+  <p>Brand Name: {{row.openfda.brand_name[0]}} ({{row.openfda.manufacturer_name[0]}})</p>
+  <p>Generic Name: {{row.openfda.generic_name[0]}}</p>
+  <p>
+    Ingredients:
+    <span class="badge" ng-repeat="i in row.openfda.substance_name">
+      {{i}}
+    </span>
+  </p>
+  <p>
+
+  </p>
+
+</a>
+</ul>
+
+<pagination
+  boundary-links="true" class="pagination-sm" max-size="10"
+  total-items="vm.resp.data.meta.results.total" items-per-age="vm.query.pageSize" ng-model="vm.query.pageNum" ng-change="vm.executeQuery()"></pagination>
+
+
+
+<div>
+  {{ vm.query}}
+</div>
+
+
+
+<button class="btn btn-default" ng-click="jsonHidden = !jsonHidden">Show raw JSON</button>
+<div collapse="!jsonHidden">
+      <pre>
+  {{vm.respText}}
+      </pre>
+</div>
+
+

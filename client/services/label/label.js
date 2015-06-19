@@ -15,12 +15,15 @@ angular.module('egtGsaProto')
         var query = 'search=openfda.spl_id:"' + id + '"';
 
 
-        return $http.get('https://api.fda.gov/drug/label.json?' + query)
+        return $http.get('/api/proxy/drug/label.json?' + query)
           .then(function (resp) {
             return resp.data.results[0];
         });
+      },
 
-
+      runQuery: function(params) {
+        return $http.get('/api/proxy/drug/label.json', {params: params})
       }
+
     };
   });

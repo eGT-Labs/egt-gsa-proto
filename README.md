@@ -23,6 +23,8 @@ Always run this on build server, becasue we don't know which commit might have c
 
 * Run application locally `gulp`
 * Build the production artifacts `gulp build` (Build artifacts located in `dist` folder)
+    * The artifacts in the `dist` folder can either be run in place or copied to the production machine. The contents 
+      of the folder can be run using the `npm start` command
 * Launch client and server tests, using Karma and Mocha, both by default. `gulp test [--client || --server]`
 
 
@@ -35,3 +37,13 @@ Angular JS: https://angularjs.org/
 Bootstrap: http://getbootstrap.com/
 
 UI Bootstrap (directives to ease integration of angular and bootstrap): https://angular-ui.github.io/bootstrap/
+
+
+1. Item 1
+  1. A corollary to the above item.
+  2. Yet another point to consider.
+2. Item 2
+  * A corollary that does not need to be ordered.
+    * This is indented four spaces, because it's two spaces further than the item above.
+    * You might want to consider making a new list.
+3. Item 3
