@@ -47,4 +47,3 @@ UI Bootstrap (directives to ease integration of angular and bootstrap): https://
     * This is indented four spaces, because it's two spaces further than the item above.
     * You might want to consider making a new list.
 3. Item 3
-
