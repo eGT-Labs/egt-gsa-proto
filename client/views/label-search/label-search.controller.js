@@ -65,6 +65,9 @@ angular.module('egtGsaProto')
     };
 
 
+
+
+
     vm.toggleFacet = function(facetName, value) {
 
       var field = ['facet', facetName].join('.');
@@ -80,11 +83,11 @@ angular.module('egtGsaProto')
     };
 
 
-
-
     vm.newSearch = function() {
       $location.search(vm.search);
     };
+
+   
 
 
     var latestQuery;

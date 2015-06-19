@@ -1,48 +1,63 @@
-
-<form>
-<input ng-model="vm.search.fulltext"> <button class="btn btn-primary" ng-click="vm.newSearch()">Search</button>
-</form>
+<div class="row">
+  <div class="col-md-3">
 
 
+    <form>
+      <input ng-model="vm.search.fulltext"> <button class="btn btn-primary" ng-click="vm.newSearch()">Search</button>
+    </form>
 
 
-<div ng-repeat="(facetKey, facet) in vm.facets">
-  <h3>{{facet.label}}</h3>
-  <div ng-repeat="facetInstance in facet.data">
-    <a ng-click="vm.toggleFacet(facetKey, facetInstance.term)">
-    <span class="badge">{{facetInstance.count | number}}</span>  {{facetInstance.term}}
-      <span ng-if="vm.isFacetSelected(facetKey, facetInstance.term)" class="glyphicon glyphicon-remove-circle" style="color: red"></span>
-    </a>
+
+    <div ng-repeat="(facetKey, facet) in vm.facets" >
+      <h4>{{facet.label}}</h4>
+      <div style="max-height: 200px; overflow-y: scroll">
+      <div ng-repeat="facetInstance in facet.data">
+        <a ng-click="vm.toggleFacet(facetKey, facetInstance.term)">
+          <span class="badge">{{facetInstance.count | number}}</span>  {{facetInstance.term}}
+          <span ng-if="vm.isFacetSelected(facetKey, facetInstance.term)" class="glyphicon glyphicon-remove-circle" style="color: red"></span>
+        </a>
+      </div>
+      </div>
+    </div>
+
   </div>
-</div>
+  <div class="col-md-9">
 
 
-<pagination
-  boundary-links="true" class="pagination-sm" max-size="10"
-  total-items="vm.resp.data.meta.results.total" items-per-age="vm.query.pageSize" ng-model="vm.query.pageNum" ng-change="vm.executeQuery()"></pagination>
+    <pagination
+      boundary-links="true" class="pagination-sm" max-size="10"
+      total-items="vm.resp.data.meta.results.total" items-per-age="vm.query.pageSize" ng-model="vm.query.pageNum" ng-change="vm.executeQuery()"></pagination>
 
 
-<ul class="list-group">
-<a class="list-group-item" href="/label/{{row.openfda.spl_id[0]}}" class="list-group-item" ng-repeat="row in vm.resp.data.results">
-  <p>Brand Name: {{row.openfda.brand_name[0]}} ({{row.openfda.manufacturer_name[0]}})</p>
-  <p>Generic Name: {{row.openfda.generic_name[0]}}</p>
-  <p>
-    Ingredients:
+    <ul class="list-group">
+      <a class="list-group-item" href="/label/{{row.openfda.spl_id[0]}}" class="list-group-item" ng-repeat="row in vm.resp.data.results">
+        <p>Brand Name: {{row.openfda.brand_name[0]}} ({{row.openfda.manufacturer_name[0]}})</p>
+        <p>Generic Name: {{row.openfda.generic_name[0]}}</p>
+        <p>
+          Ingredients:
     <span class="badge" ng-repeat="i in row.openfda.substance_name">
       {{i}}
     </span>
-  </p>
-  <p>
+        </p>
+        <p>
 
-  </p>
+        </p>
 
-</a>
-</ul>
+      </a>
+    </ul>
+
+  </div>
 
 
-<div>
-  {{ vm.query}}
 </div>
+
+
+
+
+
+
+
+
 
 
 
