@@ -102,7 +102,7 @@ angular.module('egtGsaProto')
 	                }
 	 };
 	 
-		var findField = function(json, fieldName) {
+		var findLabelField = function(json, fieldName) {
 		var result = {};
 		
 		function getField(_json) {
@@ -128,7 +128,7 @@ angular.module('egtGsaProto')
 			$.each(labels, function(groupName, group) {
 				
 				$.each(group, function(value, groupField) {
-					var f = findField(json, value);
+					var f = findLabelField(json, value);
 					if(!$.isEmptyObject(f)){
 					if(angular.isUndefined(labelDetails[groupName])) { labelDetails[groupName] = {}; }
 					if(angular.isUndefined(labelDetails[groupName][f])) { labelDetails[groupName][f] = {};} 
