@@ -6,8 +6,88 @@
     <h1>{{vm.label.openfda.brand_name[0]}}</h1>
 
 
+		
+
+
+		<ul>
+    <li>
+   				<h4>ID and Version:</h4> <select ng-model="id">
+				<option value="drug_abuse_and_dependence" selected >drug_abuse_and_dependence</option>
+				<option value="controlled_substance">controlled_substance</option>
+				<option value="abuse">abuse</option>
+				<option value="dependence">dependence</option>
+				<option value="overdosage">overdosage</option>
+				<option value="version">version</option>
+			</select>
+            <p> 
+            <div ng-if = "id.indexOf('_table') > 0"><span ng-bind-html="vm.label.id | to_trusted"> table </span></div>
+			<div ng-if="isArray( vm.label[id]) && id.indexOf('_table') == -1">
+
+				<div ng-repeat="line in vm.label[id]">
+					<ul class="list-group">
+						<li class="list-group-item"> {{ line }}</li>
+					</ul>
+				</div>
+			</div>
+			<div ng-if="!isArray( vm.label[id]) && id.indexOf('_table') == -1">{{ vm.label[id] }}</div>
+            </p>
+    </li>
+    <li>
+    
+    <h4>Indications, Usage and Dosage</h4> <select ng-model="dosage">
+				<option value="indications_and_usage" selected >indications_and_usage</option>
+				<option value="contraindications">contraindications</option>
+				<option value="dosage_and_administration">dosage_and_administration</option>
+				<option value="dosage_and_administration_table">dosage_and_administration_table</option>
+				<option value="dosage_forms_and_strengths">dosage_forms_and_strengths</option>
+				<option value="purpose">purpose</option>
+				<option value="description">description</option>
+			</select>
+		 
+            <p> 
+ 
+            <div ng-if = "dosage.indexOf('_table') > 0"><span ng-bind-html="vm.label[dosage][0] | to_trusted"> </span></div>
+			<div ng-if="isArray( vm.label[dosage]) && dosage.indexOf('_table') == -1">
+
+				<div ng-repeat="line in vm.label[dosage]">
+					<ul class="list-group">
+						<li class="list-group-item"> {{ line }}</li>
+					</ul>
+				</div>
+			</div>
+			<div ng-if="!isArray( vm.label[dosage]) && dosage.indexOf('_table') == -1">{{ vm.label.dosage }}</div>
+            </p>
+    </li>
+    <!-- <li>
+    <h4>ID and Version:</h4> <select ng-model="model.id" convert-to-number>
+				<option value="drug_abuse_and_dependence" selected >drug_abuse_and_dependence</option>
+				<option value="controlled_substance">controlled_substance</option>
+				<option value="abuse">abuse</option>
+				<option value="dependence">dependence</option>
+				<option value="overdosage">overdosage</option>
+				<option value="version">version</option>
+			</select>
+		
+            <p> {{ vm.label[model.id] }}</p>
+    </li>
+    <li><h4>ID and Version:</h4> <select ng-model="model.id" convert-to-number>
+				<option value="drug_abuse_and_dependence" selected >drug_abuse_and_dependence</option>
+				<option value="controlled_substance">controlled_substance</option>
+				<option value="abuse">abuse</option>
+				<option value="dependence">dependence</option>
+				<option value="overdosage">overdosage</option>
+				<option value="version">version</option>
+			</select>
+		
+            <p> {{ vm.label[model.id] }}</p>
+            </li> -->
+	</ul>
+
+        
+
+
     <alert type="danger" ng-if="vm.label.boxed_warning">
-      <h2>Boxed Warning:</h2>
+      <h4>Boxed Warning:</h4>
 
       <p ng-repeat="paragraph in vm.label.boxed_warning">
         {{paragraph}}
@@ -17,20 +97,37 @@
 
     <!-- TODO create a display for all openfda fields-->
 
+		<div ng-repeat="(field, value) in vm.label">
+			<h4>{{ field }}</h4>
+			<div ng-if = "field.indexOf('_table') > 0"><span ng-bind-html="value[0] | to_trusted"> table </span></div>
+			<div ng-if="isArray(value) && field.indexOf('_table') == -1">
 
-    <!-- TODO: we can't repeat the logic for all the sections ad-nausem. Let's create a directive? Somehow detect whether the "_table" variant of the field exists or not??-->
-    <h2>Information for Patients</h2>
+				<div ng-repeat="line in value">
+					<ul class="list-group">
+						<li class="list-group-item"> {{ line }}</li>
+					</ul>
+				</div>
+			</div>
+			<div ng-if="!isArray(value) && field.indexOf('_table') == -1">{{ value }}</div>
+		</div>
+
+
+
+
+
+<!-- 		<!-- TODO: we can't repeat the logic for all the sections ad-nausem. Let's create a directive? Somehow detect whether the "_table" variant of the field exists or not??-->
+    <h4>Information for Patients</h4>
     <div ng-repeat="line in vm.label.information_for_patients">
       {{line}}
     </div>
 
 
-    <h2>Dosage and Administration (table)</h2>
+    <h4>Dosage and Administration (table)</h4>
     <span ng-bind-html="vm.label.dosage_and_administration_table[0] | to_trusted"></span>
 
 
-    <h2>Dosage and Administration (text)</h2>
-    <span ng-bind-html="vm.label.dosage_and_administration[0]"></span>
+    <h4>Dosage and Administration (text)</h4>
+    <span ng-bind-html="vm.label.dosage_and_administration[0]"></span> -->
 
 
     <hr>
@@ -44,5 +141,6 @@
 
 
   </div>
+
 </div>
 
