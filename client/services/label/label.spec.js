@@ -1,17 +1,24 @@
 'use strict';
 
-describe('Factory: Label', function () {
+describe('labelDataService tests', function () {
 
+  var labelDataService;
   beforeEach(module('egtGsaProto'));
 
-  var Label;
-
-  beforeEach(inject(function (_Label_) {
-    Label = _Label_;
+  beforeEach(inject(function (_labelDataService_) {
+	  labelDataService = _labelDataService_;
   }));
 
-  it('should ...', function () {
+  it('should have an findLabelField function', function () { 
+	    expect(angular.isFunction(_labelDataService_.findLabelField)).toBe(true);
+	  });
+  
+  it('should have an getData function', function () { 
+	    expect(angular.isFunction(_labelDataService_.getData)).toBe(true);
+	  });
+  
+/*  it('should ...', function () {
     expect(1).toBe(1);
-  });
+  });*/
 
 });
