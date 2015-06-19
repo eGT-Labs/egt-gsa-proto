@@ -1,0 +1,20 @@
+
+
+<input ng-model="vm.query.fulltext"> <button class="btn btn-primary" ng-click="vm.executeQuery()">Search</button>
+
+
+<div>
+  {{ vm.query}}
+</div>
+
+<div ng-repeat="row in vm.resp.data.results">
+  <a href="/label/{{row.openfda.spl_id[0]}}">link</a>
+  {{row.openfda.brand_name[0]}}
+</div>
+
+<pagination total-items="vm.pageCount()" ng-model="vm.query.pageNum" ng-change="vm.executeQuery()"></pagination>
+
+
+<pre>
+  {{vm.respText}}
+</pre>

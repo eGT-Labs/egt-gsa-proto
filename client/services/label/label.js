@@ -19,8 +19,11 @@ angular.module('egtGsaProto')
           .then(function (resp) {
             return resp.data.results[0];
         });
+      },
 
-
+      runQuery: function(params) {
+        return $http.get('/api/proxy/drug/label.json', {params: params})
       }
+
     };
   });
