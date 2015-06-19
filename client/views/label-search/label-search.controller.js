@@ -8,7 +8,7 @@ angular.module('egtGsaProto')
       query: {
         fulltext: '',
         selectedFacets: {},
-        pageSize: 50,
+        pageSize: 10,
         pageNum: 1
       },
       resp: null,
@@ -26,8 +26,10 @@ angular.module('egtGsaProto')
     };
 
 
-    vm.executeQuery = function () {
-      console.log('clicked!');
+    vm.executeQuery = function (resetPageNum) {
+      if (resetPageNum) {
+        vm.query.pageNum = 1;
+      }
 
       LabelFactory.runQuery({
         search: vm.query.fulltext,
@@ -35,13 +37,8 @@ angular.module('egtGsaProto')
         skip: (vm.query.pageNum - 1) * vm.query.pageSize
       }).then(
         function (resp) {
-
-          console.log('response')
-
           vm.resp = resp;
           vm.respText = angular.toJson(resp,true);
-
-
         }
       )
     };
