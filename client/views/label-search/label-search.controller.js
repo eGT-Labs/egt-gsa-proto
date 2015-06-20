@@ -64,10 +64,6 @@ angular.module('egtGsaProto')
       return vm.search[field] === value;
     };
 
-
-
-
-
     vm.toggleFacet = function(facetName, value) {
 
       var field = ['facet', facetName].join('.');
@@ -87,7 +83,6 @@ angular.module('egtGsaProto')
       $location.search(vm.search);
     };
 
-   
 
 
     var latestQuery;
@@ -107,7 +102,6 @@ angular.module('egtGsaProto')
         var keyParts = key.split('.');
         if (keyParts[0] === 'facet') {
           var fieldName = keyParts[1];
-
           searchString += ' AND openfda.' + fieldName + '.exact:"' + value + '"';
 
         }
@@ -115,10 +109,6 @@ angular.module('egtGsaProto')
         console.log(key);
         console.log(value);
       });
-
-
-
-
 
 
       LabelFactory.runQuery({

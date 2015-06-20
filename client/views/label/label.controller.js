@@ -1,14 +1,24 @@
 'use strict';
 
 angular.module('egtGsaProto')
-  .controller('LabelCtrl', function ($scope,$routeParams, LabelFactory,labelDataService) {
+  .controller('LabelCtrl', function ($scope,$routeParams, LabelFactory,labelDataService,$location) {
     var vm = this;
 
     vm.status = 'loading';
     vm.id = $routeParams.id;
-
+    
+    $scope.changeTab = function(tab) {
+    	console.log("Here")
+        $scope.view_tab = tab;
+    }
 
     $scope.isArray = angular.isArray;
+    
+    $scope.search = function(paragraph){
+    	var path = '/label-search?'+"fulltext="+paragraph;
+    	console.log(path)
+    	 $location.search(paragraph);
+    }
     $scope.statusAcc = {
     	    isFirstOpen: true,
     	    isFirstDisabled: false
