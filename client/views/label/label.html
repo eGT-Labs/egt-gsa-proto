@@ -21,10 +21,17 @@
 
       <p ng-repeat="paragraph in vm.label.openfda.product_ndc track by $index">
         {{paragraph}}</p>
-      <h4>Subsctance Name</h4>
+      <h4>Substance Name</h4>
 
-      <p ng-repeat="paragraph in vm.label.openfda.substance_name track by $index">
-        {{paragraph}}</p>
+      <p ng-repeat="substance in vm.label.openfda.substance_name track by $index">
+        {{substance}}
+        <a href="/label-search?facet.substance_name={{substance}}" class="btn btn-sm btn-info" aria-label="Left Align">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"
+                tooltip="Search for all labels containing the substance '{{substance}}'">
+
+          </span>
+        </a>
+      </p>
       <h4>Product Type</h4>
 
       <p ng-repeat="paragraph in vm.label.openfda.product_type track by $index">

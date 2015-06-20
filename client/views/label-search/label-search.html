@@ -15,18 +15,16 @@
     <div ng-repeat="facet in vm.selectedFacets">
       {{facet.label}}:
 
-      <a style="color:red" ng-click="vm.toggleFacet(facet.fieldName, facet.value)">
+      <a ng-click="vm.toggleFacet(facet.fieldName, facet.value)">
         <span class="label label-primary">
           {{facet.value}}
+        <span style="color:red" class="glyphicon glyphicon-remove"></span>
         </span>
-        <span class="glyphicon glyphicon-remove"></span>
       </a>
     </div>
 
 
-
     <h3>Available Facets</h3>
-
 
 
     <div>
@@ -36,16 +34,16 @@
 
     <div ng-repeat="(facetKey, facet) in vm.facets">
       <div ng-if="facet.data.length">
-      <h4>{{facet.label}}</h4>
+        <h4>{{facet.label}}</h4>
 
-      <ul class="list-group" style="max-height: 200px; overflow-y: scroll">
-        <a class="list-group-item"
-           ng-repeat="facetInstance in facet.data | orderBy : (isAlpha ? 'term' : 'count') : !isAlpha"
-           ng-click="vm.toggleFacet(facetKey, facetInstance.term)">
-          <span class="badge">{{facetInstance.count | number}}</span>
-          {{facetInstance.term}}
-        </a>
-      </ul>
+        <ul class="list-group" style="max-height: 200px; overflow-y: scroll">
+          <a class="list-group-item"
+             ng-repeat="facetInstance in facet.data | orderBy : (isAlpha ? 'term' : 'count') : !isAlpha"
+             ng-click="vm.toggleFacet(facetKey, facetInstance.term)">
+            <span class="badge">{{facetInstance.count | number}}</span>
+            {{facetInstance.term}}
+          </a>
+        </ul>
       </div>
     </div>
 
@@ -53,7 +51,7 @@
   <div class="col-md-8">
     <div>
 
-    Total Results: {{vm.resp.data.meta.results.total | number}}
+      Total Results: {{vm.resp.data.meta.results.total | number}}
 
     </div>
 
