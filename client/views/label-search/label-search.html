@@ -82,6 +82,12 @@
       </a>
     </ul>
 
+    <pagination
+      boundary-links="true" class="pagination-sm" max-size="10"
+      total-items="vm.resp.data.meta.results.total" items-per-age="vm.query.pageSize" ng-model="vm.query.pageNum"
+      ng-change="vm.executeQuery()"></pagination>
+
+
   </div>
 
 

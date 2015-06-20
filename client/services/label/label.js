@@ -4,7 +4,68 @@ angular.module('egtGsaProto')
   .factory('LabelFactory', function ($http) {
 
 
+
+    function buildQuery(search) {
+
+      var queryStringParts = [];
+
+      queryStringParts.push('_exists_:openfda.spl_id'); //We only want to use the records that have openfda sections
+
+      //add the raw fulltext if it exists
+      if (search.fulltext) {
+        queryStringParts.push(search.fulltext);
+      }
+
+      //find the keys that start with 'facet.'
+      angular.forEach(search, function (value, key) {
+        var keyParts = key.split('.');
+        if (keyParts[0] === 'facet') {
+          var field = keyParts[1];
+          queryStringParts.push(facetQuery(field,value));
+        }
+      });
+
+
+      return queryStringParts.join(' AND ');
+    }
+
+    var UNSUPPORTED_API_CHARS = new RegExp('[^0-9a-zA-Z\.\_\:\(\)\"\\[\\]\{\}\\-\\+\>\<\= ]+');
+
+
+    /**
+     * Some of that data we want to facet over contains characters that the API will reject.
+     * Attempt to look for an exact match for the value we request. If the value contains unsupported characters,
+     * split on those and just ensure that each section individually is present.
+     * @param name
+     * @param value
+     * @returns {string}
+     */
+    function facetQuery(name, value) {
+
+      var split = value.split(UNSUPPORTED_API_CHARS);
+
+      if (split.length === 1) {
+        return 'openfda.' + name + '.exact:"' + value + '"';
+      } else {
+
+        var sections  = [];
+
+        angular.forEach(split, function(valuePart) {
+          if (valuePart) {
+            sections.push('"' + valuePart + '"');
+          }
+        });
+
+        return 'openfda.' + name + ':(' + sections.join(" AND ") + ')';
+      }
+    }
+
+
+
+
     return {
+
+      buildQuery: buildQuery,
 
       /**
        * Returns (as a promise) the data object for a single label.
@@ -28,6 +89,8 @@ angular.module('egtGsaProto')
     };
   });
 
+
+//TODO follow the directory structure by moving this to its own file in /client/services/label-data-service/label-data-service.js
 angular.module('egtGsaProto')
 .service('labelDataService', function () {
 	 var labels = {
@@ -35,7 +98,7 @@ angular.module('egtGsaProto')
 	                    "drug_abuse_and_dependence": {
 	                        "fieldHeading": "Drug Abuse and Dependence",
 	                        "plainText": 'a;sdlfjdsak;fjasd;kfadj'
-	                        	
+
 	                    },
 	                    "controlled_substance": {
 	                    	"fieldHeading": "Controlled Substance"
@@ -60,7 +123,7 @@ angular.module('egtGsaProto')
 	                    "drug_and_or_laboratory_test_interactions": {
 	                    	"fieldHeading": "drug_and_or_laboratory_test_interactions"
 	                    },
-	                   
+
 	                },
 	                "Indications, usage, and dosage": {
 	                    "indications_and_usage": {
@@ -101,13 +164,13 @@ angular.module('egtGsaProto')
 	                    }
 	                }
 	 };
-	 
+
 		var findLabelField = function(json, fieldName) {
 		var result = {};
-		
+
 		function getField(_json) {
 			$.each(_json, function(value, key) {
-				
+
 				if (value === fieldName) {
 					result = value;
 					return false;
@@ -119,30 +182,30 @@ angular.module('egtGsaProto')
 		getField(json);
 		return result;
 	};
-     
+
 	var isTable = function(fieldName){
 		return fieldName.indexOf('_table') > 0
 	}
-	
+
 	var labelDetails = {};
 	return {
 
 		getData : function(json) {
-			
+
 			$.each(labels, function(groupName, group) {
-				
+
 				$.each(group, function(value, groupField) {
 					var f = findLabelField(json, value);
 					if(!$.isEmptyObject(f)){
 					if(angular.isUndefined(labelDetails[groupName])) { labelDetails[groupName] = {}; }
 					var field = f.replace("_table","").trim();
 					field.trim();
-					if(angular.isUndefined(labelDetails[groupName][field])) { labelDetails[groupName][field] = {};} 
-					
-					if(angular.isUndefined(labelDetails[groupName][field]['labelHeading'])) { 
+					if(angular.isUndefined(labelDetails[groupName][field])) { labelDetails[groupName][field] = {};}
+
+					if(angular.isUndefined(labelDetails[groupName][field]['labelHeading'])) {
 						labelDetails[groupName][field]['labelHeading'] = {};
 						}
-					if(angular.isUndefined(labelDetails[groupName][field]['data'])) { labelDetails[groupName][field]['data'] = []; } 
+					if(angular.isUndefined(labelDetails[groupName][field]['data'])) { labelDetails[groupName][field]['data'] = []; }
 					console.log(json[field]);
 					angular.forEach(json[f],function(data){
 					labelDetails[groupName][field]['data'].push(data);
@@ -154,13 +217,13 @@ angular.module('egtGsaProto')
 				console.log(labelDetails);
 			});
 		},
-		
+
 		getLabelDetails : function () {
 			return labelDetails;
 		}
 
 	};
-	 
+
 });
 
 
