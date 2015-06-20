@@ -30,12 +30,23 @@
 
     <h3>Available Facets</h3>
     <!-- TODO create better sorting UI, two radio buttons instead of a checkbocx?-->
-    <div>
-      Sort alphabetically <input type="checkbox" ng-model="isAlpha">
+
+    <div class="radio" ng-init="isAlpha=false">
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios1" ng-value="false" ng-model="isAlpha">
+        <em>Sorted by Frequency</em>
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios2" ng-value="true" ng-model="isAlpha">
+        <em>Sorted by Name</em>
+      </label>
     </div>
 
+
     <div ng-repeat="(facetKey, facet) in vm.facets">
-      <div ng-if="facet.data.length">
+      <div ng-if="facet.data.length > 1">
         <h4>{{facet.label}}</h4>
 
         <ul class="list-group" style="max-height: 200px; overflow-y: scroll">
