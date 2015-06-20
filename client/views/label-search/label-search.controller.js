@@ -11,6 +11,7 @@ angular.module('egtGsaProto')
         pageNum: 1
       },
       resp: null,
+      error: null,
       facets: { //data structure for which facets are available
         generic_name: {label: "Generic Name", data: null},
         brand_name: {label: "Brand Name", data: null},
@@ -108,6 +109,10 @@ angular.module('egtGsaProto')
               });
             }
           }
+        }, function (errorResponse) {
+          console.log("error!");
+          console.log(errorResponse);
+          vm.error = errorResponse.data;
         }
       )
     };
