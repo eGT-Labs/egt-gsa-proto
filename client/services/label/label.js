@@ -156,6 +156,10 @@ angular.module('egtGsaProto')
 		return result;
 	};
 
+	var isTable = function(fieldName){
+		return fieldName.indexOf('_table') > 0
+	}
+
 	var labelDetails = {};
 	return {
 
@@ -167,11 +171,20 @@ angular.module('egtGsaProto')
 					var f = findLabelField(json, value);
 					if(!$.isEmptyObject(f)){
 					if(angular.isUndefined(labelDetails[groupName])) { labelDetails[groupName] = {}; }
-					if(angular.isUndefined(labelDetails[groupName][f])) { labelDetails[groupName][f] = {};}
-					if(angular.isUndefined(labelDetails[groupName][f]['labelHeading'])) { labelDetails[groupName][f]['labelHeading'] = {}; }
-					if(angular.isUndefined(labelDetails[groupName][f]['data'])) { labelDetails[groupName][f]['data'] = {}; }
-					labelDetails[groupName][f]['data'] = json[f];
-					labelDetails[groupName][f]['labelHeading'] = groupField['fieldHeading'];
+					var field = f.replace("_table","").trim();
+					field.trim();
+					if(angular.isUndefined(labelDetails[groupName][field])) { labelDetails[groupName][field] = {};}
+
+					if(angular.isUndefined(labelDetails[groupName][field]['labelHeading'])) {
+						labelDetails[groupName][field]['labelHeading'] = {};
+						}
+					if(angular.isUndefined(labelDetails[groupName][field]['data'])) { labelDetails[groupName][field]['data'] = []; }
+					console.log(json[field]);
+					angular.forEach(json[f],function(data){
+					labelDetails[groupName][field]['data'].push(data);
+					});
+					console.log(groupField + " : " + field);
+					labelDetails[groupName][field]['labelHeading'] = group[field]['fieldHeading'];
 					}
 				});
 				console.log(labelDetails);
