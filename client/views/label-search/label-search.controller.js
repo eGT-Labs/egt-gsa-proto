@@ -5,13 +5,8 @@ angular.module('egtGsaProto')
 
     var vm = this;
     angular.extend(vm, {
-      search: {
-
-      },
+      search: {},
       query: {
-        ////fulltext: '',
-        //facets: { //data structure for which facets options are selected
-        //},
         pageSize: 10,
         pageNum: 1
       },
@@ -59,16 +54,28 @@ angular.module('egtGsaProto')
 
     angular.extend(vm.search, $location.search());
 
-    vm.isFacetSelected = function(facetName, value) {
+    vm.isFacetSelected = function (facetName, value) {
       var field = ['facet', facetName].join('.');
       return vm.search[field] === value;
     };
 
 
+    vm.selectedFacets = [];
+    angular.forEach(vm.search, function (value, key) {
+      var keyParts = key.split('.');
+      if (keyParts[0] === 'facet') {
+        var fieldName = keyParts[1];
+        vm.selectedFacets.push({
+          fieldName: fieldName,
+          value: value,
+          label: vm.facets[fieldName].label
+        });
+      }
+    });
 
 
 
-    vm.toggleFacet = function(facetName, value) {
+    vm.toggleFacet = function (facetName, value) {
 
       var field = ['facet', facetName].join('.');
 
@@ -83,11 +90,9 @@ angular.module('egtGsaProto')
     };
 
 
-    vm.newSearch = function() {
+    vm.newSearch = function () {
       $location.search(vm.search);
     };
-
-   
 
 
     var latestQuery;
@@ -103,7 +108,7 @@ angular.module('egtGsaProto')
 
       var searchString = (vm.search.fulltext || '""') + ' AND _exists_:openfda.spl_id'; //TODO this is a hack
 
-      angular.forEach(vm.search, function(value, key) {
+      angular.forEach(vm.search, function (value, key) {
         var keyParts = key.split('.');
         if (keyParts[0] === 'facet') {
           var fieldName = keyParts[1];
@@ -111,14 +116,7 @@ angular.module('egtGsaProto')
           searchString += ' AND openfda.' + fieldName + '.exact:"' + value + '"';
 
         }
-
-        console.log(key);
-        console.log(value);
       });
-
-
-
-
 
 
       LabelFactory.runQuery({
@@ -142,7 +140,7 @@ angular.module('egtGsaProto')
                 LabelFactory.runQuery({
                   search: searchString,
                   count: countString
-                }).then(function(facetResp) {
+                }).then(function (facetResp) {
                   if (latestQuery === thisQuery) {
                     vm.facets[facetName].data = facetResp.data.results;
                   }
@@ -155,9 +153,6 @@ angular.module('egtGsaProto')
     };
 
     vm.executeQuery(true);
-
-
-
 
 
   });
