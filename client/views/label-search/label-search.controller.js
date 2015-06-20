@@ -48,19 +48,20 @@ angular.module('egtGsaProto')
     });
 
 
-    vm.toggleFacet = function (facetName, value) {
 
+    vm.setFacet = function(facetName, value) {
       var field = ['facet', facetName].join('.');
-
-
-      if (vm.search[field] === value) {
-        delete vm.search[field];
-      } else {
-        vm.search[field] = value;
-      }
-
+      vm.search[field] = value;
       vm.newSearch();
     };
+
+    vm.removeFacet = function(facetName) {
+      var field = ['facet', facetName].join('.');
+      console.log('deleting ' + field);
+      delete vm.search[field];
+      vm.newSearch();
+    };
+
 
 
     vm.newSearch = function () {

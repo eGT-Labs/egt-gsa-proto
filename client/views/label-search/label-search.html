@@ -17,7 +17,7 @@
     <div ng-repeat="facet in vm.selectedFacets">
       {{facet.label}}:
 
-      <a ng-click="vm.toggleFacet(facet.fieldName, facet.value)">
+      <a ng-click="vm.removeFacet(facet.fieldName)">
         <span class="label label-primary">
           {{facet.value}}
         <span style="color:red" class="glyphicon glyphicon-remove"></span>
@@ -41,7 +41,7 @@
         <ul class="list-group" style="max-height: 200px; overflow-y: scroll">
           <a class="list-group-item"
              ng-repeat="facetInstance in facet.data | orderBy : (isAlpha ? 'term' : 'count') : !isAlpha"
-             ng-click="vm.toggleFacet(facetKey, facetInstance.term)">
+             ng-click="vm.setFacet(facetKey, facetInstance.term)">
             <span class="badge">{{facetInstance.count | number}}</span>
             {{facetInstance.term}}
           </a>
