@@ -5,6 +5,8 @@
 </form>
 
 
+
+
 <div class="row">
 
   <div class="col-md-4">
@@ -48,7 +50,21 @@
     </div>
 
   </div>
+
+
+
   <div class="col-md-8">
+
+    <section id="loading" ng-if="!(vm.resp || vm.error)">
+      <h1>Loading...</h1>
+    </section>
+
+    <section id="error" ng-if="vm.error">
+      <h1>Error</h1>
+      {{vm.error.error.message}}
+    </section>
+
+    <section id="mainResults" ng-if="vm.resp" >
     <div>
 
       Total Results: {{vm.resp.data.meta.results.total | number}}
@@ -87,7 +103,7 @@
       total-items="vm.resp.data.meta.results.total" items-per-age="vm.query.pageSize" ng-model="vm.query.pageNum"
       ng-change="vm.executeQuery()"></pagination>
 
-
+    </section>
   </div>
 
 
