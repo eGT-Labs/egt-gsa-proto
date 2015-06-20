@@ -31,6 +31,7 @@
     <div ng-view class="container"></div>
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.9.3/lodash.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <!-- build:js app.js -->
 
@@ -42,14 +43,16 @@
 
     <!-- inject:js -->
     <script src="app.js"></script>
-    <script src="views/label-search/label-search.js"></script>
-    <script src="views/label-search/label-search.controller.js"></script>
-    <script src="views/label/label.js"></script>
-    <script src="views/label/label.directive.js"></script>
-    <script src="views/label/label.controller.js"></script>
-    <script src="views/home/home.js"></script>
-    <script src="views/home/home.controller.js"></script>
+    <script src="services/event-service/event-service.js"></script>
     <script src="services/label/label.js"></script>
+    <script src="views/event-substance/event-substance.controller.js"></script>
+    <script src="views/event-substance/event-substance.js"></script>
+    <script src="views/home/home.controller.js"></script>
+    <script src="views/home/home.js"></script>
+    <script src="views/label/label.controller.js"></script>
+    <script src="views/label/label.js"></script>
+    <script src="views/label-search/label-search.controller.js"></script>
+    <script src="views/label-search/label-search.js"></script>
     <!-- endinject -->
 
     <!-- endbuild -->

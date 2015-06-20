@@ -34,9 +34,14 @@
 
 			<p ng-repeat="paragraph in vm.label.openfda.product_ndc track by $index">
 				{{paragraph}}  </p>
-			<h4>Subsctance Name</h4>
+			<h4>Substance Name</h4>
 			<p ng-repeat="paragraph in vm.label.openfda.substance_name track by $index">
-				{{paragraph}} <a ng-click="search('facet.substance_name',paragraph)"><i class="glyphicon glyphicon-search"></i></a> </p>
+				{{paragraph}} <a ng-click="search('facet.substance_name',paragraph)"><i class="glyphicon glyphicon-search"></i></a>
+
+        <a href="/event/substance/{{paragraph}}">Adverse Events</a>
+      </p>
+
+
 			<h4>Product Type</h4>
 			<p ng-repeat="paragraph in vm.label.openfda.product_type track by $index">
 				{{paragraph}} <a ng-click="search('facet.product_type',paragraph)"><i class="glyphicon glyphicon-search"></i></a></p>
@@ -66,7 +71,7 @@
 				{{paragraph}}  </p>
 				<h4 ng-if="vm.label.openfda.is_original_packager">Originical Packager <input ng-repeat="paragraph in vm.label.openfda.is_original_packager track by $index" type="checkbox" ng-checked={{paragraph}} ng-disabled=true aria-label="Slave input">
 				</h4>
-				
+
 			<hr>
 		</div>
 
