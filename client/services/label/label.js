@@ -29,8 +29,35 @@ angular.module('egtGsaProto')
       return queryStringParts.join(' AND ');
     }
 
+    var UNSUPPORTED_API_CHARS = new RegExp('[^0-9a-zA-Z\.\_\:\(\)\"\\[\\]\{\}\\-\\+\>\<\= ]+');
+
+
+    /**
+     * Some of that data we want to facet over contains characters that the API will reject.
+     * Attempt to look for an exact match for the value we request. If the value contains unsupported characters,
+     * split on those and just ensure that each section individually is present.
+     * @param name
+     * @param value
+     * @returns {string}
+     */
     function facetQuery(name, value) {
-      return 'openfda.' + name + '.exact:"' + value + '"';
+
+      var split = value.split(UNSUPPORTED_API_CHARS);
+
+      if (split.length === 1) {
+        return 'openfda.' + name + '.exact:"' + value + '"';
+      } else {
+
+        var sections  = [];
+
+        angular.forEach(split, function(valuePart) {
+          if (valuePart) {
+            sections.push('"' + valuePart + '"');
+          }
+        });
+
+        return 'openfda.' + name + ':(' + sections.join(" AND ") + ')';
+      }
     }
 
 
