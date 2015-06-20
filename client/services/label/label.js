@@ -4,7 +4,41 @@ angular.module('egtGsaProto')
   .factory('LabelFactory', function ($http) {
 
 
+
+    function buildQuery(search) {
+
+      var queryStringParts = [];
+
+      queryStringParts.push('_exists_:openfda.spl_id'); //We only want to use the records that have openfda sections
+
+      //add the raw fulltext if it exists
+      if (search.fulltext) {
+        queryStringParts.push(search.fulltext);
+      }
+
+      //find the keys that start with 'facet.'
+      angular.forEach(search, function (value, key) {
+        var keyParts = key.split('.');
+        if (keyParts[0] === 'facet') {
+          var field = keyParts[1];
+          queryStringParts.push(facetQuery(field,value));
+        }
+      });
+
+
+      return queryStringParts.join(' AND ');
+    }
+
+    function facetQuery(name, value) {
+      return 'openfda.' + name + '.exact:"' + value + '"';
+    }
+
+
+
+
     return {
+
+      buildQuery: buildQuery,
 
       /**
        * Returns (as a promise) the data object for a single label.
@@ -28,6 +62,8 @@ angular.module('egtGsaProto')
     };
   });
 
+
+//TODO follow the directory structure by moving this to its own file in /client/services/label-data-service/label-data-service.js
 angular.module('egtGsaProto')
 .service('labelDataService', function () {
 	 var labels = {
@@ -35,7 +71,7 @@ angular.module('egtGsaProto')
 	                    "drug_abuse_and_dependence": {
 	                        "fieldHeading": "Drug Abuse and Dependence",
 	                        "plainText": 'a;sdlfjdsak;fjasd;kfadj'
-	                        	
+
 	                    },
 	                    "controlled_substance": {
 	                    	"fieldHeading": "Controlled Substance"
@@ -60,7 +96,7 @@ angular.module('egtGsaProto')
 	                    "drug_and_or_laboratory_test_interactions": {
 	                    	"fieldHeading": "drug_and_or_laboratory_test_interactions"
 	                    },
-	                   
+
 	                },
 	                "Indications, usage, and dosage": {
 	                    "indications_and_usage": {
@@ -101,13 +137,13 @@ angular.module('egtGsaProto')
 	                    }
 	                }
 	 };
-	 
+
 		var findLabelField = function(json, fieldName) {
 		var result = {};
-		
+
 		function getField(_json) {
 			$.each(_json, function(value, key) {
-				
+
 				if (value === fieldName) {
 					result = value;
 					return false;
@@ -119,21 +155,21 @@ angular.module('egtGsaProto')
 		getField(json);
 		return result;
 	};
-     
+
 	var labelDetails = {};
 	return {
 
 		getData : function(json) {
-			
+
 			$.each(labels, function(groupName, group) {
-				
+
 				$.each(group, function(value, groupField) {
 					var f = findLabelField(json, value);
 					if(!$.isEmptyObject(f)){
 					if(angular.isUndefined(labelDetails[groupName])) { labelDetails[groupName] = {}; }
-					if(angular.isUndefined(labelDetails[groupName][f])) { labelDetails[groupName][f] = {};} 
-					if(angular.isUndefined(labelDetails[groupName][f]['labelHeading'])) { labelDetails[groupName][f]['labelHeading'] = {}; } 
-					if(angular.isUndefined(labelDetails[groupName][f]['data'])) { labelDetails[groupName][f]['data'] = {}; } 
+					if(angular.isUndefined(labelDetails[groupName][f])) { labelDetails[groupName][f] = {};}
+					if(angular.isUndefined(labelDetails[groupName][f]['labelHeading'])) { labelDetails[groupName][f]['labelHeading'] = {}; }
+					if(angular.isUndefined(labelDetails[groupName][f]['data'])) { labelDetails[groupName][f]['data'] = {}; }
 					labelDetails[groupName][f]['data'] = json[f];
 					labelDetails[groupName][f]['labelHeading'] = groupField['fieldHeading'];
 					}
@@ -141,13 +177,13 @@ angular.module('egtGsaProto')
 				console.log(labelDetails);
 			});
 		},
-		
+
 		getLabelDetails : function () {
 			return labelDetails;
 		}
 
 	};
-	 
+
 });
 
 
