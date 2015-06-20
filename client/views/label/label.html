@@ -55,16 +55,16 @@
 				<h4 ng-if="vm.label.openfda.package_ndc">Package NDC</h4>
 				<p ng-repeat="paragraph in vm.label.openfda.package_ndc track by $index">
 				{{paragraph}} </p>
-				<h4 ng-if="paragraph in vm.label.openfda.application_number">Application Number</h4>
+				<h4 ng-if="vm.label.openfda.application_number">Application Number</h4>
 				<p ng-repeat="paragraph in vm.label.openfda.application_number track by $index">
 				{{paragraph}}  </p>
-				<h4 ng-if="paragraph in vm.label.openfda.warnings">Warnings</h4>
+				<h4 ng-if="vm.label.openfda.warnings">Warnings</h4>
 				<p ng-repeat="paragraph in vm.label.openfda.warnings track by $index">
 				{{paragraph}}  </p>
-				<h4 ng-if="paragraph in vm.label.when_using ">When using</h4>
-				<p  ng-repeat="paragraph in vm.label.when_using track by $index">
+				<h4 ng-if="vm.label.when_using">When using</h4>
+				<p  ng-repeat=" paragraph in vm.label.when_using track by $index">
 				{{paragraph}}  </p>
-				<h4 ng-if="paragraph in vm.label.openfda.is_original_packager">Originical Packager <input ng-repeat="paragraph in vm.label.openfda.is_original_packager track by $index" type="checkbox" ng-checked={{paragraph}} ng-disabled=true aria-label="Slave input">
+				<h4 ng-if="vm.label.openfda.is_original_packager">Originical Packager <input ng-repeat="paragraph in vm.label.openfda.is_original_packager track by $index" type="checkbox" ng-checked={{paragraph}} ng-disabled=true aria-label="Slave input">
 				</h4>
 				
 			<hr>
