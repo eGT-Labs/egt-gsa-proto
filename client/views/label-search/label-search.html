@@ -1,20 +1,22 @@
 <form class="form">
   <input autofocus class="form-control input-lg col-md-6" ng-model="vm.search.fulltext"
          placeholder="Search fulltext drug labels...">
-  <button class="btn btn-primary btn-lg" ng-click="vm.newSearch()">Search</button>
+  <button class="btn btn-primary btn-lg" ng-click="vm.newSearch()">
+    Search
+  </button>
 </form>
 
 
 
 
 <div class="row">
-
   <div class="col-md-4">
 
-    <h3 ng-if="vm.selectedFacets.length">Selected Facets</h3>
-
-
+    <h3 ng-if="vm.selectedFacets.length">
+      Selected Facets
+    </h3>
     <div ng-repeat="facet in vm.selectedFacets">
+
       {{facet.label}}:
 
       <a ng-click="vm.removeFacet(facet.fieldName)">
@@ -27,12 +29,10 @@
 
 
     <h3>Available Facets</h3>
-
-
+    <!-- TODO create better sorting UI, two radio buttons instead of a checkbocx?-->
     <div>
       Sort alphabetically <input type="checkbox" ng-model="isAlpha">
     </div>
-
 
     <div ng-repeat="(facetKey, facet) in vm.facets">
       <div ng-if="facet.data.length">
@@ -48,13 +48,10 @@
         </ul>
       </div>
     </div>
-
   </div>
 
 
-
   <div class="col-md-8">
-
     <section id="loading" ng-if="!(vm.resp || vm.error)">
       <h1>Loading...</h1>
     </section>
@@ -65,44 +62,43 @@
     </section>
 
     <section id="mainResults" ng-if="vm.resp" >
-    <div>
+      <div>
+        Total Results: {{vm.resp.data.meta.results.total | number}}
+      </div>
 
-      Total Results: {{vm.resp.data.meta.results.total | number}}
-
-    </div>
-
-    <pagination
-      boundary-links="true" class="pagination-sm" max-size="10"
-      total-items="vm.resp.data.meta.results.total" items-per-age="vm.query.pageSize" ng-model="vm.query.pageNum"
-      ng-change="vm.executeQuery()"></pagination>
+      <pagination
+        boundary-links="true" class="pagination-sm" max-size="10"
+        total-items="vm.resp.data.meta.results.total" items-per-age="vm.query.pageSize" ng-model="vm.query.pageNum"
+        ng-change="vm.executeQuery()">
+      </pagination>
 
 
-    <ul class="list-group">
-      <a class="list-group-item" href="/label/{{row.openfda.spl_id[0]}}" class="list-group-item"
-         ng-repeat="row in vm.resp.data.results">
-        <p>Brand Name: {{row.openfda.brand_name[0]}} ({{row.openfda.manufacturer_name[0]}})</p>
+      <ul class="list-group">
+        <a class="list-group-item" href="/label/{{row.openfda.spl_id[0]}}" class="list-group-item"
+           ng-repeat="row in vm.resp.data.results">
+          <p>
+            Brand Name: {{row.openfda.brand_name[0]}} ({{row.openfda.manufacturer_name[0]}})
+          </p>
 
-        <p>Generic Name: {{row.openfda.generic_name[0]}}</p>
+          <p>
+            Generic Name: {{row.openfda.generic_name[0]}}
+          </p>
 
-        <p>
-          Ingredients:
-          <span class="label label-default" ng-repeat="i in row.openfda.substance_name">
-            {{i}}
-          </span>
-        </p>
+          <p>
+            Ingredients:
+            <span class="label label-default" ng-repeat="i in row.openfda.substance_name">
+              {{i}}
+            </span>
+          </p>
+        </a>
+      </ul>
 
-        <p>
+      <pagination
+        boundary-links="true" class="pagination-sm" max-size="10"
+        total-items="vm.resp.data.meta.results.total" items-per-age="vm.query.pageSize" ng-model="vm.query.pageNum"
+        ng-change="vm.executeQuery()">
 
-        </p>
-
-      </a>
-    </ul>
-
-    <pagination
-      boundary-links="true" class="pagination-sm" max-size="10"
-      total-items="vm.resp.data.meta.results.total" items-per-age="vm.query.pageSize" ng-model="vm.query.pageNum"
-      ng-change="vm.executeQuery()"></pagination>
-
+      </pagination>
     </section>
   </div>
 
