@@ -1,79 +1,73 @@
 <div ng-switch="vm.status">
-	<div ng-switch-when="loading">Loading...</div>
-	<div ng-switch-when="error">Not found!</div>
-	<div ng-switch-default>
+  <div ng-switch-when="loading">Loading...</div>
+  <div ng-switch-when="error">Not found!</div>
+  <div ng-switch-default>
 
-		<h1>{{vm.label.openfda.brand_name[0]}}</h1>
+    <h1>{{vm.label.openfda.brand_name[0]}}</h1>
+
 		<alert type="danger" ng-if="vm.label.boxed_warning">
 		<h4>Boxed Warning:</h4>
 
 		<p ng-repeat="paragraph in vm.label.boxed_warning track by $index">
 			{{paragraph}}</p>
 		</alert>
-
-
-		<!-- Label Field -->
-		<tabset> <tab
-			ng-repeat="(groupname, labelDetail) in labelDetails"
-			heading="{{groupname}}" active="tab.active" disable="tab.disabled">
-
-		<div ng-repeat="(fieldName, value) in labelDetail">
-
+	
+		
+	<!-- Label Field -->	  
+	<tabset>
+    <tab ng-repeat="(groupname, labelDetail) in labelDetails" heading="{{groupname}}" active="tab.active" disable="tab.disabled">
+      
+      <div ng-repeat="(fieldName, value) in labelDetail">
+				
 			<!-- 	<div ng-if="fieldName.indexOf('_table') > 0">
 					<span ng-bind-html="value['data'][0] | to_trusted"> table </span>
 				</div>
 			 -->
-			<!-- <div ng-if="isArray(value['data']) && fieldName.indexOf('_table') == -1"> -->
-
-			<!-- Label Detail fields -->
-			<div ng-repeat="(groupname, labelDetail) in labelDetails">
-				<h2>{{ groupname }}</h2>
-				<accordion close-others="false"> <accordion-group
-					is-open="false" ng-repeat="(fieldName, value) in labelDetail">
-				<accordion-heading> {{ value.labelHeading }} </accordion-heading>
-				<div ng-repeat="line in value['data']">
-					<span ng-bind-html="line | to_trusted"> {{ line }}</span>
-					<!-- <p> {{ line }} </p> -->
-				</div>
-				</accordion-group> </accordion>
+				<!-- <div ng-if="isArray(value['data']) && fieldName.indexOf('_table') == -1"> -->
+					
+					
+					<accordion close-others="false"> <accordion-group
+					is-open="false">
+				<accordion-heading> {{ value['labelHeading'] }} </accordion-heading>
+						<div ng-repeat="line in value['data']">
+						<span ng-bind-html="line | to_trusted"> {{ line }}</span>
+						<!-- <p> {{ line }} </p> -->
+						</div>
+						</accordion-group> </accordion>					
 				<!-- </div> -->
-
+				
 			</div>
 			<hr>
-		</tab> </tabset>
 
-		<!-- 	OpenFDA Fields -->
+    </tab>
+  </tabset>
+  
+  	<!-- 	OpenFDA Fields -->
 		<h2>OpenFDA fields</h2>
 		<div>
 			<h4>Product NDC</h4>
-
-			<p
-				ng-repeat="paragraph in vm.label.openfda.product_ndc track by $index">
-				{{paragraph}}</p>
+			
+			<p ng-repeat="paragraph in vm.label.openfda.product_ndc track by $index">
+				{{paragraph}} </p>
 			<h4>Subsctance Name</h4>
-			<p
-				ng-repeat="paragraph in vm.label.openfda.substance_name track by $index">
+			<p ng-repeat="paragraph in vm.label.openfda.substance_name track by $index">
 				{{paragraph}}</p>
 			<h4>Product Type</h4>
-			<p
-				ng-repeat="paragraph in vm.label.openfda.product_type track by $index">
+			<p ng-repeat="paragraph in vm.label.openfda.product_type track by $index">
 				{{paragraph}}</p>
 			<h4>Generic Name</h4>
-			<p
-				ng-repeat="paragraph in vm.label.openfda.generic_name track by $index">
+			<p ng-repeat="paragraph in vm.label.openfda.generic_name track by $index">
 				{{paragraph}}</p>
 			<h4>Manufacturer Name</h4>
-			<p
-				ng-repeat="paragraph in vm.label.openfda.manufacturer_name track by $index">
+			<p ng-repeat="paragraph in vm.label.openfda.manufacturer_name track by $index">
 				{{paragraph}}</p>
 			<h4>Brand Name</h4>
-			<p
-				ng-repeat="paragraph in vm.label.openfda.brand_name track by $index">
+			<p ng-repeat="paragraph in vm.label.openfda.brand_name track by $index">
 				{{paragraph}}</p>
 			<hr>
 		</div>
 
-		<!-- Label Detail fields -->
+		<!-- Label Detail fields -->	
 		<!-- <div ng-repeat="(groupname, labelDetail) in labelDetails">
 			<nav class="navbar"><h2>{{ groupname }}</h2></nav>
 			<div ng-repeat="(fieldName, value) in labelDetail">
@@ -102,45 +96,19 @@
 			<hr>
 		</div> -->
 
-		<hr>
-	</div>
-
-	<!-- TODO create a display for all openfda fields-->
-
-	<!-- 		<div ng-repeat="(field, value) in vm.label">
-        <h4>{{ field }}</h4>
-        <div ng-if = "field.indexOf('_table') > 0"><span ng-bind-html="value[0] | to_trusted"> table </span></div>
-        <div ng-if="isArray(value) && field.indexOf('_table') == -1">
-
-          <div ng-repeat="line in value">
-            <ul class="list-group">
-              <li class="list-group-item"> {{ line }}</li>
-            </ul>
-          </div>
-        </div>
-        <div ng-if="!isArray(value) && field.indexOf('_table') == -1">{{ value }}</div>
-      </div> -->
 
 
-	<!-- 		<!-- TODO: we can't repeat the logic for all the sections ad-nausem. Let's create a directive? Somehow detect whether the "_table" variant of the field exists or not??-->
-	<!--     <h4>Information for Patients</h4>
-      <div ng-repeat="line in vm.label.information_for_patients">
-        {{line}}
-      </div> -->
+    <hr>
 
-
-	<hr>
-
-	<button class="btn btn-default" ng-click="jsonHidden = !jsonHidden">Show
-		raw JSON</button>
-	<div collapse="!jsonHidden">
-		<pre>
+    <button class="btn btn-default" ng-click="jsonHidden = !jsonHidden">Show raw JSON</button>
+    <div collapse="!jsonHidden">
+      <pre>
 {{vm.rawString}}
       </pre>
-	</div>
+    </div>
 
 
-</div>
+  </div>
 
 </div>
 
