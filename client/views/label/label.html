@@ -30,7 +30,7 @@
   	<!-- 	OpenFDA Fields -->
 		<h2>OpenFDA fields</h2>
 		<div>
-			<h4 ng-if="vm.label.boxed_warning">Product NDC</h4>
+			<h4 ng-if="vm.label.openfda.product_ndc">Product NDC</h4>
 
 			<p ng-repeat="paragraph in vm.label.openfda.product_ndc track by $index">
 				{{paragraph}}  </p>
