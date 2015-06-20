@@ -10,15 +10,15 @@ angular.module('egtGsaProto')
     $scope.changeTab = function(tab) {
     	console.log("Here")
         $scope.view_tab = tab;
-    }
+    };
 
     $scope.isArray = angular.isArray;
     
-    $scope.search = function(paragraph){
-    	var path = '/label-search?'+"fulltext="+paragraph;
-    	console.log(path)
-    	 $location.search(paragraph);
-    }
+    $scope.search = function(facet, value){
+    	var searchItem = facet + "=" + value;
+    	 $location.path('/label-search').search(searchItem);
+    };
+    
     $scope.statusAcc = {
     	    isFirstOpen: true,
     	    isFirstDisabled: false

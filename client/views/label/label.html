@@ -13,19 +13,12 @@
 		</alert>
 	
 		
-	<!-- Label Field -->	  
+	<!-- Label Fields -->	  
 	<tabset>
     <tab ng-repeat="(groupname, labelDetail) in labelDetails" heading="{{groupname}}" active="tab.active" disable="tab.disabled">
       
       <div ng-repeat="(fieldName, value) in labelDetail">
-				
-			<!-- 	<div ng-if="fieldName.indexOf('_table') > 0">
-					<span ng-bind-html="value['data'][0] | to_trusted"> table </span>
-				</div>
-			 -->
-				<!-- <div ng-if="isArray(value['data']) && fieldName.indexOf('_table') == -1"> -->
-					
-					
+	
 					<accordion close-others="false"> <accordion-group
 					is-open="false">
 				<accordion-heading> {{ value['labelHeading'] }} </accordion-heading>
@@ -48,22 +41,40 @@
 			<h4>Product NDC</h4>
 			
 			<p ng-repeat="paragraph in vm.label.openfda.product_ndc track by $index">
-				{{paragraph}} </p>
+				{{paragraph}}  </p>
 			<h4>Subsctance Name</h4>
 			<p ng-repeat="paragraph in vm.label.openfda.substance_name track by $index">
-				{{paragraph}}</p>
+				{{paragraph}} <a ng-click="search('facet.substance_name',paragraph)"><i class="glyphicon glyphicon-search"></i></a> </p>
 			<h4>Product Type</h4>
 			<p ng-repeat="paragraph in vm.label.openfda.product_type track by $index">
-				{{paragraph}}</p>
+				{{paragraph}}<a ng-click="search('facet.product_type',paragraph)"><i class="glyphicon glyphicon-search"></i></a></p>
 			<h4>Generic Name</h4>
 			<p ng-repeat="paragraph in vm.label.openfda.generic_name track by $index">
-				{{paragraph}}</p>
+				{{paragraph}}<a ng-click="search('facet.generic_name',paragraph)"><i class="glyphicon glyphicon-search"></i></a></p>
 			<h4>Manufacturer Name</h4>
 			<p ng-repeat="paragraph in vm.label.openfda.manufacturer_name track by $index">
-				{{paragraph}}</p>
+				{{paragraph}}<a ng-click="search('facet.manufacturer_name',paragraph)"><i class="glyphicon glyphicon-search"></i></a></p>
 			<h4>Brand Name</h4>
 			<p ng-repeat="paragraph in vm.label.openfda.brand_name track by $index">
-				{{paragraph}}</p>
+				{{paragraph}} <a ng-click="search('facet.bbrand_name',paragraph)"><i class="glyphicon glyphicon-search"></i></a></p>
+			<h4> Route </h4>
+			<p ng-repeat="paragraph in vm.label.openfda.route track by $index">
+				{{paragraph}} <a ng-click="search('facet.route',paragraph)"><i class="glyphicon glyphicon-search"></i></a> </p>
+				<h4>Package NDC</h4>
+				<p ng-repeat="paragraph in vm.label.openfda.package_ndc track by $index">
+				{{paragraph}} </p>
+				<h4>Application Number</h4>
+				<p ng-repeat="paragraph in vm.label.openfda.application_number track by $index">
+				{{paragraph}}  </p>
+				<h4>Warnings</h4>
+				<p ng-repeat="paragraph in vm.label.openfda.warnings track by $index">
+				{{paragraph}}  </p>
+				<h4>When using</h4>
+				<p ng-repeat="paragraph in vm.label.when_using track by $index">
+				{{paragraph}}  </p>
+				<h4>Originical Packager <input ng-repeat="paragraph in vm.label.openfda.is_original_packager track by $index" type="checkbox" ng-checked={{paragraph}} ng-disabled=true aria-label="Slave input">
+				</h4>
+				
 			<hr>
 		</div>
 
