@@ -21,7 +21,8 @@ angular.module('egtGsaProto')
         substance_name: {label: "Substance", data: null},
         pharm_class_cs: {label: "Chemical structure", data: null},
         pharm_class_moa: {label: "Mechanism of action", data: null},
-        pharm_class_epc: {label: "Established pharmacologic class", data: null}
+        pharm_class_epc: {label: "Established pharmacologic class", data: null},
+        pharm_class_pe: {label: "Physiologic effect", data: null}
       },
       respText: ''
     });
@@ -48,19 +49,20 @@ angular.module('egtGsaProto')
     });
 
 
-    vm.toggleFacet = function (facetName, value) {
 
+    vm.setFacet = function(facetName, value) {
       var field = ['facet', facetName].join('.');
-
-
-      if (vm.search[field] === value) {
-        delete vm.search[field];
-      } else {
-        vm.search[field] = value;
-      }
-
+      vm.search[field] = value;
       vm.newSearch();
     };
+
+    vm.removeFacet = function(facetName) {
+      var field = ['facet', facetName].join('.');
+      console.log('deleting ' + field);
+      delete vm.search[field];
+      vm.newSearch();
+    };
+
 
 
     vm.newSearch = function () {

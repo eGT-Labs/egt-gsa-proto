@@ -1,0 +1,58 @@
+<h1>Substance: {{vm.name}}</h1>
+
+<a href="/label-search?facet.substance_name={{vm.name}}">Drugs Containing {{vm.name}}</a>
+
+<div class="row">
+  <div class="col-md-6 col-md-push-3" ng-if="vm.adverseEvents">
+    <h3>{{vm.adverseEvents.inputEventCount | number}} Adverse Events
+    </h3>
+
+    <table class="table table-condensed">
+      <thead>
+      <tr>
+        <th>
+        </th>
+        <th>
+          <a ng-click="vm.sortBy = 'term'; vm.sort()">
+            Symptom
+          </a>
+        </th>
+        <th>
+          <a ng-click="vm.sortBy = 'reportingRatio'; vm.sort()">
+            Proportional Reporting Ratio
+            <a href="https://en.wikipedia.org/wiki/Proportional_reporting_ratio" target="_blank">
+              <span class="glyphicon glyphicon-info-sign"></span>
+            </a>
+          </a>
+        </th>
+        <th>
+          <a ng-click="vm.sortBy = 'frequency'; vm.sort()">
+            Instances
+          </a>
+        </th>
+
+      </tr>
+      </thead>
+      <tr ng-repeat="row in vm.adverseEvents.leadingOutputs">
+        <td>
+          <a href="https://duckduckgo.com/?q=%22{{row.term}}%22" target="_blank">
+            <span class="glyphicon glyphicon-info-sign"></span>
+          </a>
+        </td>
+        <td>
+          <a href="/event/symptom/{{row.term}}">
+            {{row.term}}
+          </a>
+        </td>
+        <td>{{row.reportingRatio | number }} x</td>
+        <td>
+          {{row.count | number}}
+
+          <em>({{(100 * row.frequency) | number : 2 }}%)</em>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+</div>
+

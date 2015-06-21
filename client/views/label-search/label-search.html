@@ -1,23 +1,25 @@
 <form class="form">
   <input autofocus class="form-control input-lg col-md-6" ng-model="vm.search.fulltext"
          placeholder="Search fulltext drug labels...">
-  <button class="btn btn-primary btn-lg" ng-click="vm.newSearch()">Search</button>
+  <button class="btn btn-primary btn-lg" ng-click="vm.newSearch()">
+    Search
+  </button>
 </form>
 
 
 
 
 <div class="row">
-
   <div class="col-md-4">
 
-    <h3 ng-if="vm.selectedFacets.length">Selected Facets</h3>
-
-
+    <h3 ng-if="vm.selectedFacets.length">
+      Selected Facets
+    </h3>
     <div ng-repeat="facet in vm.selectedFacets">
+
       {{facet.label}}:
 
-      <a ng-click="vm.toggleFacet(facet.fieldName, facet.value)">
+      <a ng-click="vm.removeFacet(facet.fieldName)">
         <span class="label label-primary">
           {{facet.value}}
         <span style="color:red" class="glyphicon glyphicon-remove"></span>
@@ -27,34 +29,40 @@
 
 
     <h3>Available Facets</h3>
+    <!-- TODO create better sorting UI, two radio buttons instead of a checkbocx?-->
 
-
-    <div>
-      Sort alphabetically <input type="checkbox" ng-model="isAlpha">
+    <div class="radio" ng-init="isAlpha=false">
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios1" ng-value="false" ng-model="isAlpha">
+        <em>Sorted by Frequency</em>
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios2" ng-value="true" ng-model="isAlpha">
+        <em>Sorted by Name</em>
+      </label>
     </div>
 
 
     <div ng-repeat="(facetKey, facet) in vm.facets">
-      <div ng-if="facet.data.length">
+      <div ng-if="facet.data.length > 1">
         <h4>{{facet.label}}</h4>
 
         <ul class="list-group" style="max-height: 200px; overflow-y: scroll">
           <a class="list-group-item"
              ng-repeat="facetInstance in facet.data | orderBy : (isAlpha ? 'term' : 'count') : !isAlpha"
-             ng-click="vm.toggleFacet(facetKey, facetInstance.term)">
+             ng-click="vm.setFacet(facetKey, facetInstance.term)">
             <span class="badge">{{facetInstance.count | number}}</span>
             {{facetInstance.term}}
           </a>
         </ul>
       </div>
     </div>
-
   </div>
 
 
-
   <div class="col-md-8">
-
     <section id="loading" ng-if="!(vm.resp || vm.error)">
       <h1>Loading...</h1>
     </section>
@@ -65,44 +73,43 @@
     </section>
 
     <section id="mainResults" ng-if="vm.resp" >
-    <div>
+      <div>
+        Total Results: {{vm.resp.data.meta.results.total | number}}
+      </div>
 
-      Total Results: {{vm.resp.data.meta.results.total | number}}
-
-    </div>
-
-    <pagination
-      boundary-links="true" class="pagination-sm" max-size="10"
-      total-items="vm.resp.data.meta.results.total" items-per-age="vm.query.pageSize" ng-model="vm.query.pageNum"
-      ng-change="vm.executeQuery()"></pagination>
+      <pagination
+        boundary-links="true" class="pagination-sm" max-size="10"
+        total-items="vm.resp.data.meta.results.total" items-per-age="vm.query.pageSize" ng-model="vm.query.pageNum"
+        ng-change="vm.executeQuery()">
+      </pagination>
 
 
-    <ul class="list-group">
-      <a class="list-group-item" href="/label/{{row.openfda.spl_id[0]}}" class="list-group-item"
-         ng-repeat="row in vm.resp.data.results">
-        <p>Brand Name: {{row.openfda.brand_name[0]}} ({{row.openfda.manufacturer_name[0]}})</p>
+      <ul class="list-group">
+        <a class="list-group-item" href="/label/{{row.openfda.spl_id[0]}}" class="list-group-item"
+           ng-repeat="row in vm.resp.data.results">
+          <p>
+            Brand Name: {{row.openfda.brand_name[0]}} ({{row.openfda.manufacturer_name[0]}})
+          </p>
 
-        <p>Generic Name: {{row.openfda.generic_name[0]}}</p>
+          <p>
+            Generic Name: {{row.openfda.generic_name[0]}}
+          </p>
 
-        <p>
-          Ingredients:
-          <span class="label label-default" ng-repeat="i in row.openfda.substance_name">
-            {{i}}
-          </span>
-        </p>
+          <p>
+            Ingredients:
+            <span class="label label-default" ng-repeat="i in row.openfda.substance_name">
+              {{i}}
+            </span>
+          </p>
+        </a>
+      </ul>
 
-        <p>
+      <pagination
+        boundary-links="true" class="pagination-sm" max-size="10"
+        total-items="vm.resp.data.meta.results.total" items-per-age="vm.query.pageSize" ng-model="vm.query.pageNum"
+        ng-change="vm.executeQuery()">
 
-        </p>
-
-      </a>
-    </ul>
-
-    <pagination
-      boundary-links="true" class="pagination-sm" max-size="10"
-      total-items="vm.resp.data.meta.results.total" items-per-age="vm.query.pageSize" ng-model="vm.query.pageNum"
-      ng-change="vm.executeQuery()"></pagination>
-
+      </pagination>
     </section>
   </div>
 
