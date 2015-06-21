@@ -6,126 +6,226 @@
     <h1>{{vm.label.openfda.brand_name[0]}}</h1>
 
 
-    <div class="panel panel-default" ng-if="vm.label.package_label_principal_display_panel">
-      <div class="panel-heading">
-        <h3 class="panel-title">Package Label</h3>
+    <h2>OpenFDA fields</h2>
+
+    <div class="row">
+      <!-- Left Column-->
+      <div class="col-md-4">
+
+        <div>
+          <h4>Substance Name</h4>
+
+          <p ng-repeat="substance in vm.label.openfda.substance_name track by $index">
+            {{substance}}
+            <a href="/label-search?facet.substance_name={{substance}}">
+              <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a href="/event/substance/{{substance}}">Adverse Events</a>
+          </p>
+        </div>
+
+        <div>
+          <h4>Brand Name</h4>
+
+          <p ng-repeat="brand_name in vm.label.openfda.brand_name track by $index">
+            {{brand_name}}
+            <a href="/label-search?facet.brand_name={{brand_name}}">
+              <span class="glyphicon glyphicon-search"></span>
+            </a>
+          </p>
+        </div>
+
+        <div>
+          <h4>Generic Name</h4>
+
+          <p ng-repeat="generic_name in vm.label.openfda.generic_name track by $index">
+            {{generic_name}}
+            <a href="/label-search?facet.generic_name={{generic_name}}">
+              <span class="glyphicon glyphicon-search"></span>
+            </a>
+          </p>
+        </div>
+
+
+        <div ng-if="vm.label.openfda.warnings">
+          <h4>Warnings</h4>
+
+          <p ng-repeat="warnings in vm.label.openfda.warnings track by $index">
+            {{warnings}}
+          </p>
+        </div>
+
+        <div ng-if="vm.label.when_using">
+          <h4>When Using</h4>
+
+          <p ng-repeat=" when_using in vm.label.when_using track by $index">
+            {{when_using}}
+          </p>
+        </div>
+
+
+        <div>
+          <h4> Route </h4>
+
+          <p ng-repeat="route in vm.label.openfda.route track by $index">
+            {{route}}
+            <a href="/label-search?facet.route={{route}}">
+              <span class="glyphicon glyphicon-search"></span>
+            </a>
+          </p>
+        </div>
+
+
       </div>
-      <div class="panel-body">
-        {{vm.label.package_label_principal_display_panel.join('')}}
+      <!-- Middle Column-->
+      <div class="col-md-4">
+
+        <div>
+          <h4>Product Type</h4>
+
+          <p ng-repeat="product_type in vm.label.openfda.product_type track by $index">
+            {{product_type}}
+            <a href="/label-search?facet.product_type={{product_type}}">
+              <span class="glyphicon glyphicon-search"></span>
+            </a>
+          </p>
+        </div>
+
+
+        <div ng-if="vm.label.openfda.pharm_class_moa">
+          <h4>Method of Action</h4>
+
+          <p ng-repeat="pharm_class_moa in vm.label.openfda.pharm_class_moa track by $index">
+            {{pharm_class_moa}}
+            <a href="/label-search?facet.pharm_class_moa={{pharm_class_moa}}">
+              <span class="glyphicon glyphicon-search"></span>
+            </a>
+          </p>
+        </div>
+
+
+        <div ng-if="vm.label.openfda.pharm_class_cs">
+          <h4>Chemical Structure</h4>
+
+          <p ng-repeat="pharm_class_cs in vm.label.openfda.pharm_class_cs track by $index">
+            {{pharm_class_cs}}
+            <a href="/label-search?facet.pharm_class_cs={{pharm_class_cs}}">
+              <span class="glyphicon glyphicon-search"></span>
+            </a>
+          </p>
+        </div>
+
+
+        <div ng-if="vm.label.openfda.pharm_class_pe">
+          <h4>Physiologic effect</h4>
+
+          <p ng-repeat="pharm_class_pe in vm.label.openfda.pharm_class_pe track by $index">
+            {{pharm_class_pe}}
+            <a href="/label-search?facet.pharm_class_pe={{pharm_class_pe}}">
+              <span class="glyphicon glyphicon-search"></span>
+            </a>
+          </p>
+        </div>
+
+        <div ng-if="vm.label.openfda.pharm_class_epc">
+          <h4>Established pharmacologic class</h4>
+
+          <p ng-repeat="pharm_class_epc in vm.label.openfda.pharm_class_epc track by $index">
+            {{pharm_class_epc}}
+            <a href="/label-search?facet.pharm_class_epc={{pharm_class_epc}}">
+              <span class="glyphicon glyphicon-search"></span>
+            </a>
+          </p>
+        </div>
+
+
+        <div ng-if="vm.label.openfda.is_original_packager">
+          <p ng-repeat=" is_original_packager in vm.label.openfda.is_original_packager track by $index">
+            {{when_using}}
+          </p>
+        </div>
+
+
+      </div>
+      <!-- Right Column2-->
+      <div class="col-md-4">
+
+        <div>
+          <h4>Manufacturer Name</h4>
+
+          <p ng-repeat="manufacturer_name in vm.label.openfda.manufacturer_name track by $index">
+            {{manufacturer_name}}
+            <a href="/label-search?facet.manufacturer_name={{manufacturer_name}}">
+              <span class="glyphicon glyphicon-search"></span>
+            </a>
+          </p>
+        </div>
+
+        <div ng-if="vm.label.openfda.product_ndc">
+          <h4>Product NDC</h4>
+
+          <p ng-repeat="paragraph in vm.label.openfda.product_ndc track by $index">
+            {{paragraph}}
+          </p>
+        </div>
+
+        <div ng-if="vm.label.openfda.package_ndc">
+          <h4>Package NDC</h4>
+
+          <p ng-repeat="package_ndc in vm.label.openfda.package_ndc track by $index">
+            {{package_ndc}}
+          </p>
+        </div>
+
+
+        <div ng-if="vm.label.openfda.application_number">
+          <h4>Application Number</h4>
+
+          <p ng-repeat="application_number in vm.label.openfda.application_number track by $index">
+            {{application_number}}
+          </p>
+        </div>
+
       </div>
     </div>
-
-
-
-
-		<alert type="danger" ng-if="vm.label.boxed_warning">
-		<h4>Boxed Warning:</h4>
-
-		<p ng-repeat="paragraph in vm.label.boxed_warning track by $index">
-			{{paragraph}}</p>
-		</alert>
-
-
-
-	<!-- Label Field -->
-    <tabset>
-      <tab ng-repeat="(groupname, labelDetail) in labelDetails" heading="{{groupname}}" >
-        <accordion close-others="false">
-          <accordion-group is-open="false" ng-repeat="(fieldName, value) in labelDetail" heading="{{value.labelHeading}}">
-            <div ng-repeat="line in value['data']">
-              <span ng-bind-html="line | to_trusted"> {{ line }}</span>
-            </div>
-          </accordion-group>
-        </accordion>
-      </tab>
-    </tabset>
-
-  	<!-- 	OpenFDA Fields -->
-		<h2>OpenFDA fields</h2>
-		<div>
-			<h4 ng-if="vm.label.openfda.product_ndc">Product NDC</h4>
-
-			<p ng-repeat="paragraph in vm.label.openfda.product_ndc track by $index">
-				{{paragraph}}  </p>
-			<h4>Substance Name</h4>
-			<p ng-repeat="paragraph in vm.label.openfda.substance_name track by $index">
-				{{paragraph}} <a ng-click="search('facet.substance_name',paragraph)"><i class="glyphicon glyphicon-search"></i></a>
-
-        <a href="/event/substance/{{paragraph}}">Adverse Events</a>
-      </p>
-
-
-			<h4>Product Type</h4>
-			<p ng-repeat="paragraph in vm.label.openfda.product_type track by $index">
-				{{paragraph}} <a ng-click="search('facet.product_type',paragraph)"><i class="glyphicon glyphicon-search"></i></a></p>
-			<h4>Generic Name</h4>
-			<p ng-repeat="paragraph in vm.label.openfda.generic_name track by $index">
-				{{paragraph}} <a ng-click="search('facet.generic_name',paragraph)"><i class="glyphicon glyphicon-search"></i></a></p>
-			<h4>Manufacturer Name</h4>
-			<p ng-repeat="paragraph in vm.label.openfda.manufacturer_name track by $index">
-				{{paragraph}} <a ng-click="search('facet.manufacturer_name',paragraph)"><i class="glyphicon glyphicon-search"></i></a></p>
-			<h4>Brand Name</h4>
-			<p ng-repeat="paragraph in vm.label.openfda.brand_name track by $index">
-				{{paragraph}} <a ng-click="search('facet.bbrand_name',paragraph)"><i class="glyphicon glyphicon-search"></i></a></p>
-			<h4> Route </h4>
-			<p ng-repeat="paragraph in vm.label.openfda.route track by $index">
-				{{paragraph}} <a ng-click="search('facet.route',paragraph)"><i class="glyphicon glyphicon-search"></i></a> </p>
-				<h4 ng-if="vm.label.openfda.package_ndc">Package NDC</h4>
-				<p ng-repeat="paragraph in vm.label.openfda.package_ndc track by $index">
-				{{paragraph}} </p>
-				<h4 ng-if="vm.label.openfda.application_number">Application Number</h4>
-				<p ng-repeat="paragraph in vm.label.openfda.application_number track by $index">
-				{{paragraph}}  </p>
-				<h4 ng-if="vm.label.openfda.warnings">Warnings</h4>
-				<p ng-repeat="paragraph in vm.label.openfda.warnings track by $index">
-				{{paragraph}}  </p>
-				<h4 ng-if="vm.label.when_using">When using</h4>
-				<p  ng-repeat=" paragraph in vm.label.when_using track by $index">
-				{{paragraph}}  </p>
-				<h4 ng-if="vm.label.openfda.is_original_packager">Originical Packager <input ng-repeat="paragraph in vm.label.openfda.is_original_packager track by $index" type="checkbox" ng-checked={{paragraph}} ng-disabled=true aria-label="Slave input">
-				</h4>
-
-			<hr>
-		</div>
-
-		<!-- Label Detail fields -->
-		<!-- <div ng-repeat="(groupname, labelDetail) in labelDetails">
-			<nav class="navbar"><h2>{{ groupname }}</h2></nav>
-			<div ng-repeat="(fieldName, value) in labelDetail">
-
-				<div ng-if="fieldName.indexOf('_table') > 0">
-					<span ng-bind-html="value['data'][0] | to_trusted"> table </span>
-				</div>
-
-				<div ng-if="isArray(value['data']) && fieldName.indexOf('_table') == -1">
-
-					<div ng-repeat="line in value['data']">
-
-						<accordion> <accordion-group is-open="false">
-						<accordion-heading> {{ value['labelHeading'] }}<i
-							class="pull-right glyphicon"
-							ng-class="{'glyphicon-chevron-down': statusAcc.open, 'glyphicon-chevron-right': !statusAcc.open}"></i>
-						</accordion-heading>
-						<p> {{ line }} </p>
-						</accordion-group> </accordion>
-
-					</div>
-				</div>
-				<div ng-if="!isArray(value['data']) && fieldName.indexOf('_table') == -1">{{
-					value['data'] }}</div>
-			</div>
-			<hr>
-		</div> -->
-
-
 
     <hr>
 
     <button class="btn btn-default" ng-click="jsonHidden = !jsonHidden">Show raw JSON</button>
     <div collapse="!jsonHidden">
       <pre>
-{{vm.rawString}}
+{{vm.rawString()}}
       </pre>
+    </div>
+
+    <hr>
+
+    <h2>Full Label Text</h2>
+
+
+    <div ng-repeat="group in vm.textFields">
+
+      <h3>{{group.groupLabel}}</h3>
+
+      <accordion>
+        <accordion-group ng-repeat="field in group.children" is-open="field.isOpen">
+          <accordion-heading>
+            <div>
+              {{field.label}}
+              <span class="pull-right badge">{{::field.plainText[0].split(' ').length | number}} Words</span>
+            </div>
+
+          </accordion-heading>
+          <div ng-if="field.plainText">
+            <p ng-repeat="paragraph in field.plainText">
+              {{paragraph}}
+            </p>
+          </div>
+          <div ng-if="field.html">
+            <span ng-repeat="table in field.html" ng-bind-html="table | to_trusted"> </span>
+          </div>
+        </accordion-group>
+      </accordion>
     </div>
 
 
