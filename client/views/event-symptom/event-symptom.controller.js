@@ -1,19 +1,19 @@
 'use strict';
 
 angular.module('egtGsaProto')
-  .controller('EventSubstanceCtrl', function ($routeParams, EventService) {
+  .controller('EventSymptomCtrl', function ($routeParams, EventService) {
 
     var vm = this;
 
-    vm.name = $routeParams.name;
-
     angular.extend(vm, {
+      name: $routeParams.name,
       adverseEvents: null,
       sortBy: 'reportingRatio'
-      //name: 'EventSubstanceCtrl'
     });
 
-    EventService.computeReportingRatio('patient.drug.openfda.substance_name.exact', 'patient.reaction.reactionmeddrapt.exact', vm.name).then(function(result) {
+
+
+    EventService.computeReportingRatio('patient.reaction.reactionmeddrapt.exact', 'patient.drug.openfda.substance_name.exact', vm.name).then(function(result) {
       vm.adverseEvents = result;
       vm.sort();
     });
@@ -25,5 +25,9 @@ angular.module('egtGsaProto')
         vm.adverseEvents.leadingOutputs = _.sortByOrder(vm.adverseEvents.leadingOutputs, vm.sortBy, isAscending);
       }
     }
+
+
+
+
 
   });

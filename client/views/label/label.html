@@ -5,6 +5,19 @@
 
     <h1>{{vm.label.openfda.brand_name[0]}}</h1>
 
+
+    <div class="panel panel-default" ng-if="vm.label.package_label_principal_display_panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Package Label</h3>
+      </div>
+      <div class="panel-body">
+        {{vm.label.package_label_principal_display_panel.join('')}}
+      </div>
+    </div>
+
+
+
+
 		<alert type="danger" ng-if="vm.label.boxed_warning">
 		<h4>Boxed Warning:</h4>
 

@@ -4,6 +4,8 @@ angular.module('egtGsaProto')
   .factory('EventService', function ($http, $q) {
 
 
+    var ERROR_SENTINEL = "ERROR";
+
     function runQuery(params) {
 
       return $http.get('/api/proxy/drug/event.json', {params: params});
@@ -11,38 +13,44 @@ angular.module('egtGsaProto')
     }
 
 
-    function eventCountForDrug(type, name) {
+    function eventCountForInput(inputType, outputType, inputValue) {
       return runQuery({
-        search: '_exists_:(patient.reaction.reactionmeddrapt.exact) AND patient.drug.openfda.' + type + '.exact:("' + name + '")',
+        search: '_exists_:(' + outputType + ') AND ' + inputType + ':("' + inputValue + '")',
         limit: 1
       }).then(function (resp) {
         return resp.data.meta.results.total;
       });
     }
 
-    function totalEvents(type) {
+    function totalEvents(inputType, outputType) {
       return runQuery({
-        search: '_exists_:(patient.reaction.reactionmeddrapt.exact) AND _exists_:(patient.drug.openfda.' + type + '.exact)',
+        search: '_exists_:(' + outputType + ') AND _exists_:(' + inputType + ')',
         limit: 1
       }).then(function (resp) {
         return resp.data.meta.results.total;
       })
     }
 
-    function totalEventsWithSideEffect(type, effect) {
+    function totalEventsForOutput(inputType, outputType, outputValue) {
+
+
       return runQuery({
-        search: 'patient.reaction.reactionmeddrapt.exact:"' + effect + '" AND _exists_:(patient.drug.openfda.' + type + '.exact)',
+        search: outputType + ':"' + outputValue + '" AND _exists_:(' + inputType + ')',
         limit: 1
       }).then(function (resp) {
-        return resp.data.meta.results.total;
-      })
+          return resp.data.meta.results.total;
+        }, function (err) {
+          console.log('Could not process PRR request for value: ' + outputValue + '. (Most likely due to special characters');
+          return ERROR_SENTINEL;
+        }
+      )
     }
 
 
-    function leadingSideEffectsOfDrug(type, name) {
+    function leadingOutputs(inputType, outputType, inputValue) {
       return runQuery({
-        search: '_exists_:(patient.reaction.reactionmeddrapt.exact) AND patient.drug.openfda.' + type + '.exact:("' + name + '")',
-        count: 'patient.reaction.reactionmeddrapt.exact'
+        search: '_exists_:(' + outputType + ') AND ' + inputType + ':("' + inputValue + '")',
+        count: outputType
       }).then(function (resp) {
         return resp.data.results;
       })
@@ -50,58 +58,60 @@ angular.module('egtGsaProto')
 
 
     /**
-     * Computes the Proportional reporting ration for a given
-     * @param type which openfda field to use for the drug (substance_name seems to work best)
-     * @param name Name of the drug
+     * Computes the Proportional Reporting Ratio for a given set of fields using the adverse event dataset.
+     * Usage should be limited to fields that don't have special characters (and thus suffer from the API limitation)
+     *
+     * https://en.wikipedia.org/wiki/Proportional_reporting_ratio
+     *
+     * @param inputType which openfda field to use for the input
+     * @param outputType The field to build the PRR linkage for
+     * @param inputValue The value for the input filed
      * @returns {}
      */
-    function computeReportingRatio(type, name) {
+    function computeReportingRatio(inputType, outputType, inputValue) {
 
-      var drugEventCountPromise = eventCountForDrug(type, name);
-      var totalEventCountPromise = totalEvents(type);
 
-      var sideEffectListPromise = leadingSideEffectsOfDrug(type, name)
+      var inputEventCountPromise = eventCountForInput(inputType, outputType, inputValue);
+      var totalEventCountPromise = totalEvents(inputType, outputType);
+
+      var leadingOutputsPromise = leadingOutputs(inputType, outputType, inputValue)
         .then(function (leadingSideEffects) {
-          var promises = leadingSideEffects.slice(0, 50).map(function (effect) {
-            return totalEventsWithSideEffect(type, effect.term).then(function (totalCount) {
+          var promises = leadingSideEffects.slice(0, 50).map(function (output) {
+            return totalEventsForOutput(inputType, outputType, output.term).then(function (totalCount) {
               return {
-                term: effect.term,
-                count: effect.count,
+                term: output.term,
+                count: output.count,
                 totalCount: totalCount
               };
             })
           });
-          return $q.all(promises);
+          return $q.all(promises).then(function(list) {
+            return _.reject(list, {totalCount: ERROR_SENTINEL});
+          });
         });
 
-      var result = $q.all([drugEventCountPromise, totalEventCountPromise, sideEffectListPromise]).then(function (array) {
-        var drugEventCount = array[0], totalEventCount = array[1], symptoms = array[2];
+      var result = $q.all([inputEventCountPromise, totalEventCountPromise, leadingOutputsPromise]).then(function (array) {
+        var inputEventCount = array[0], totalEventCount = array[1], leadingOutputs = array[2];
 
-        angular.forEach(symptoms, function(symptom) {
-          var eventCausedByOtherDrug = symptom.totalCount - symptom.count;
-          var reportsForOtherDrugs = totalEventCount - drugEventCount;
-
-          symptom.freqThisDrug = (symptom.count / drugEventCount);
-          symptom.freqOtherDrugs = (eventCausedByOtherDrug / reportsForOtherDrugs);
+        angular.forEach(leadingOutputs, function (output) {
+          var eventsLinkedToDifferentInput = output.totalCount - output.count;
+          var countOtherInputs = totalEventCount - inputEventCount;
+          var freqOfOutputForDifferentInput = (eventsLinkedToDifferentInput / countOtherInputs);
 
 
-          symptom.reportingRatio =  symptom.freqThisDrug / symptom.freqOtherDrugs;
+          output.frequency = (output.count / inputEventCount);
+
+          output.reportingRatio = output.frequency / freqOfOutputForDifferentInput;
         });
 
         return {
-          drugEventCount: drugEventCount,
+          inputEventCount: inputEventCount,
           totalEventCount: totalEventCount,
-          symptoms: symptoms
+          leadingOutputs: leadingOutputs
         };
       });
 
-      result.then(function (x) {
-        console.log(x);
-      });
-
       return result;
-
-
     }
 
 

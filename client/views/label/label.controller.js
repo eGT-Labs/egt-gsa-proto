@@ -6,19 +6,19 @@ angular.module('egtGsaProto')
 
     vm.status = 'loading';
     vm.id = $routeParams.id;
-    
+
     $scope.changeTab = function(tab) {
     	console.log("Here")
         $scope.view_tab = tab;
     };
 
     $scope.isArray = angular.isArray;
-    
+
     $scope.search = function(facet, value){
     	var searchItem = facet + "=" + value;
     	 $location.path('/label-search').search(searchItem);
     };
-    
+
     $scope.statusAcc = {
     	    isFirstOpen: true,
     	    isFirstDisabled: false
