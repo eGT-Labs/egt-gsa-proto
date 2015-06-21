@@ -96,9 +96,7 @@ angular.module('egtGsaProto')
 	 var labels = {
 	            "Abuse and overdosage": {
 	                    "drug_abuse_and_dependence": {
-	                        "fieldHeading": "Drug Abuse and Dependence",
-	                        "plainText": 'a;sdlfjdsak;fjasd;kfadj'
-
+	                        "fieldHeading": "Drug Abuse and Dependence"
 	                    },
 	                    "controlled_substance": {
 	                    	"fieldHeading": "Controlled Substance"
@@ -191,26 +189,30 @@ angular.module('egtGsaProto')
 	return {
 
 		getData : function(json) {
-
+			labelDetails = {};
 			$.each(labels, function(groupName, group) {
 
 				$.each(group, function(value, groupField) {
+					console.log("value is:  " + value)
 					var f = findLabelField(json, value);
 					if(!$.isEmptyObject(f)){
 					if(angular.isUndefined(labelDetails[groupName])) { labelDetails[groupName] = {}; }
 					var field = f.replace("_table","").trim();
 					field.trim();
+					console.log(labelDetails);
 					if(angular.isUndefined(labelDetails[groupName][field])) { labelDetails[groupName][field] = {};}
 
 					if(angular.isUndefined(labelDetails[groupName][field]['labelHeading'])) {
 						labelDetails[groupName][field]['labelHeading'] = {};
 						}
 					if(angular.isUndefined(labelDetails[groupName][field]['data'])) { labelDetails[groupName][field]['data'] = []; }
-					console.log(json[field]);
+					
+					console.log(labelDetails);
 					angular.forEach(json[f],function(data){
+						console.log("here")
 					labelDetails[groupName][field]['data'].push(data);
 					});
-					console.log(groupField + " : " + field);
+					
 					labelDetails[groupName][field]['labelHeading'] = group[field]['fieldHeading'];
 					}
 				});
