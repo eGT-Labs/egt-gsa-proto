@@ -29,6 +29,20 @@ angular.module('egtGsaProto')
 
     angular.extend(vm.search, $location.search());
 
+
+    vm.shouldListInAvailableFacets = function(facetName) {
+      var field = ['facet', facetName].join('.');
+
+      if (vm.search[field]) {
+        console.log(facetName + ' is selected');
+        return false; //Don't show the facet as available if it's selected.
+      }
+
+      return vm.facets[facetName].data && vm.facets[facetName].data.length;
+
+
+    };
+
     vm.isFacetSelected = function (facetName, value) {
       var field = ['facet', facetName].join('.');
       return vm.search[field] === value;
@@ -105,7 +119,11 @@ angular.module('egtGsaProto')
                   count: countString
                 }).then(function (facetResp) {
                   if (latestQuery === thisQuery) {
-                    vm.facets[facetName].data = facetResp.data.results;
+                    var results = facetResp.data.results;
+                    vm.facets[facetName].data = results;
+                    vm.facets[facetName].isOpen = results.length < 10;
+
+
                   }
                 });
               });

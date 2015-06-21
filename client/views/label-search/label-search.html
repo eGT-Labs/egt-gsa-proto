@@ -10,11 +10,13 @@
 
 
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-sm-4">
 
     <h3 ng-if="vm.selectedFacets.length">
       Selected Facets
     </h3>
+
+
     <div ng-repeat="facet in vm.selectedFacets">
 
       {{facet.label}}:
@@ -29,40 +31,49 @@
 
 
     <h3>Available Facets</h3>
-    <!-- TODO create better sorting UI, two radio buttons instead of a checkbocx?-->
 
-    <div class="radio" ng-init="isAlpha=false">
-      <label>
-        <input type="radio" name="optionsRadios" id="optionsRadios1" ng-value="false" ng-model="isAlpha">
-        <em>Sorted by Frequency</em>
-      </label>
-    </div>
-    <div class="radio">
-      <label>
-        <input type="radio" name="optionsRadios" id="optionsRadios2" ng-value="true" ng-model="isAlpha">
-        <em>Sorted by Name</em>
-      </label>
-    </div>
-
-
-    <div ng-repeat="(facetKey, facet) in vm.facets">
-      <div ng-if="facet.data.length > 1">
-        <h4>{{facet.label}}</h4>
-
-        <ul class="list-group" style="max-height: 200px; overflow-y: scroll">
-          <a class="list-group-item"
-             ng-repeat="facetInstance in facet.data | orderBy : (isAlpha ? 'term' : 'count') : !isAlpha"
-             ng-click="vm.setFacet(facetKey, facetInstance.term)">
-            <span class="badge">{{facetInstance.count | number}}</span>
-            {{facetInstance.term}}
-          </a>
-        </ul>
+    <form class="form-inline" ng-init="isAlpha=false">
+      <div class="form-group">
+        <label for="sortToggle">Sort Facets by:</label>
+        <!--<input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">-->
+        <div class="btn-group" id="sortToggle">
+          <label class="btn btn-default btn-xs" ng-model="isAlpha" btn-radio="false">Count</label>
+          <label class="btn btn-default btn-xs" ng-model="isAlpha" btn-radio="true">Alphabetically</label>
+        </div>
       </div>
-    </div>
+    </form>
+
+    <accordion close-others="false">
+      <div ng-repeat="(facetKey, facet) in vm.facets">
+      <accordion-group ng-if="vm.shouldListInAvailableFacets(facetKey)" is-open="facet.isOpen">
+        <accordion-heading>
+          <div>
+            {{facet.label}}
+            <span class="glyphicon pull-right"
+                  ng-class="{'glyphicon-resize-full': !facet.isOpen, 'glyphicon-resize-small': facet.isOpen}"></span>
+          </div>
+        </accordion-heading>
+        <!--<ul class="list-group" >-->
+        <div style="max-height: 400px; overflow-y: auto">
+          <div  ng-repeat="facetInstance in facet.data | orderBy : (isAlpha ? 'term' : 'count') : !isAlpha" style="padding-bottom: 2px;">
+            <a ng-click="vm.setFacet(facetKey, facetInstance.term)" >
+              <span class="badge pull-right">{{facetInstance.count | number}}</span>
+              {{facetInstance.term}}
+            </a>
+          </div>
+        </div>
+        <!--</ul>-->
+
+      </accordion-group>
+      </div>
+    </accordion>
+
+
+
   </div>
 
 
-  <div class="col-md-8">
+  <div class="col-sm-8">
     <section id="loading" ng-if="!(vm.resp || vm.error)">
       <h1>Loading...</h1>
     </section>
