@@ -49,11 +49,16 @@ angular.module('egtGsaProto')
     }
 
 
+    /**
+     * Computes the Proportional reporting ration for a given
+     * @param type which openfda field to use for the drug (substance_name seems to work best)
+     * @param name Name of the drug
+     * @returns {}
+     */
     function computeReportingRatio(type, name) {
 
       var drugEventCountPromise = eventCountForDrug(type, name);
       var totalEventCountPromise = totalEvents(type);
-      ;
 
       var sideEffectListPromise = leadingSideEffectsOfDrug(type, name)
         .then(function (leadingSideEffects) {
@@ -70,20 +75,24 @@ angular.module('egtGsaProto')
         });
 
       var result = $q.all([drugEventCountPromise, totalEventCountPromise, sideEffectListPromise]).then(function (array) {
-        var drugEventCount = array[0], totalEventCount = array[1], sideEffectList = array[2];
+        var drugEventCount = array[0], totalEventCount = array[1], symptoms = array[2];
 
-        angular.forEach(sideEffectList, function(sideEffect) {
-          var eventCausedByOtherDrug = sideEffect.totalCount - sideEffect.count;
+        angular.forEach(symptoms, function(symptom) {
+          var eventCausedByOtherDrug = symptom.totalCount - symptom.count;
           var reportsForOtherDrugs = totalEventCount - drugEventCount;
 
-          sideEffect.freqThisDrug = (sideEffect.count / drugEventCount);
-          sideEffect.freqOtherDrugs = (eventCausedByOtherDrug / reportsForOtherDrugs);
+          symptom.freqThisDrug = (symptom.count / drugEventCount);
+          symptom.freqOtherDrugs = (eventCausedByOtherDrug / reportsForOtherDrugs);
 
 
-          sideEffect.reportingRatio =  sideEffect.freqThisDrug / sideEffect.freqOtherDrugs;
+          symptom.reportingRatio =  symptom.freqThisDrug / symptom.freqOtherDrugs;
         });
 
-        return sideEffectList;
+        return {
+          drugEventCount: drugEventCount,
+          totalEventCount: totalEventCount,
+          symptoms: symptoms
+        };
       });
 
       result.then(function (x) {

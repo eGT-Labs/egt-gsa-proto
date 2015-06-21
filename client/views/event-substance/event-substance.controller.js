@@ -8,21 +8,21 @@ angular.module('egtGsaProto')
     vm.name = $routeParams.name;
 
     angular.extend(vm, {
-      sideEffects: null,
+      adverseEvents: null,
       sortBy: 'reportingRatio'
       //name: 'EventSubstanceCtrl'
     });
 
     EventService.computeReportingRatio('substance_name', vm.name).then(function(result) {
-      vm.sideEffects = result;
+      vm.adverseEvents = result;
       vm.sort();
     });
 
 
     vm.sort = function() {
-      if (vm.sideEffects) {
+      if (vm.adverseEvents) {
         var isAscending = (vm.sortBy === 'term');
-        vm.sideEffects = _.sortByOrder(vm.sideEffects, vm.sortBy, isAscending);
+        vm.adverseEvents.symptoms = _.sortByOrder(vm.adverseEvents.symptoms, vm.sortBy, isAscending);
       }
     }
 
