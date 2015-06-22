@@ -3,11 +3,22 @@
 describe('event-substance route', function () {
 
   beforeEach(function () {
-    browser.get('/event/substance/:name');
   });
 
-  it('should have a basic content', function () {
-    expect(element.all(by.css('div')).first().getText()).toBe('EventSubstanceCtrl');
+  it('should display the correct #1 symptom', function () {
+
+    browser.get('/event/substance/NITROGLYCERIN');
+
+
+    var firstResult = element.all(by.css('tbody tr')).first().getText()
+
+    expect(firstResult).toContain('RENAL INJURY');
+    expect(firstResult).toContain('86.617');
+    expect(firstResult).toContain('600');
+
+
+
+
   });
 
 });
