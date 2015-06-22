@@ -1,4 +1,8 @@
-<h1>Substance: {{vm.name}}</h1>
+<h1>
+  {{vm.adverseEvents.inputEventCount | number}}
+  <small>Adverse Events Involving Substance</small>
+  {{vm.name}}
+</h1>
 
 <a href="/label-search?facet.substance_name={{vm.name}}">Drugs Containing {{vm.name}}</a>
 
@@ -6,12 +10,12 @@
 
 <div class="row">
   <div class="col-md-6">
-    <h3>Chart</h3>
+
 
     <reporting-ratio-chart reporting-ratio="vm.adverseEvents"/>
   </div>
   <div class="col-md-6" ng-if="vm.adverseEvents">
-    <h3>{{vm.adverseEvents.inputEventCount | number}} Adverse Events
+    <h3> Adverse Events
     </h3>
 
     <table class="table table-condensed">

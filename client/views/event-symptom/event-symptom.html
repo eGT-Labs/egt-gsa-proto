@@ -1,6 +1,10 @@
-<h1>
-  Symptom: {{vm.name}}
-</h1>
+<h2>
+  {{vm.adverseEvents.inputEventCount | number}}
+  <small>adverse events for symptom</small>
+  {{vm.name}}
+</h2>
+
+
 <a href="https://duckduckgo.com/?q=%22{{vm.name}}%22" target="_blank">
  Lookup Definition
 </a>
@@ -13,9 +17,6 @@
     <reporting-ratio-chart reporting-ratio="vm.adverseEvents"/>
   </div>
   <div class="col-md-6 " ng-if="vm.adverseEvents">
-    <h3>
-      {{vm.adverseEvents.inputEventCount | number}} Adverse Events
-    </h3>
 
     <table class="table table-condensed">
       <thead>

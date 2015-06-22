@@ -46,25 +46,13 @@ angular.module('egtGsaProto')
       )
     }
 
-    function genderCount(inputType, outputType, inputValue) {
+    function termFrequencyCount(inputType, outputType, inputValue, countType) {
       return runQuery({
         search: '_exists_:(' + outputType + ') AND ' + inputType + ':("' + inputValue + '")',
-        count: 'patient.patientsex'
+        count: countType
       }).then(function (resp) {
 
-        var result = {
-          male: 0,
-          female: 0
-        };
-        angular.forEach(resp.data.results, function (row) {
-          if (row.term == 1) {
-            result.male = row.count;
-          } else if (row.term == 2) {
-            result.female = row.count;
-          }
-        });
-
-        return result;
+        return resp.data.results;
       })
     }
 
@@ -95,7 +83,8 @@ angular.module('egtGsaProto')
 
       var inputEventCountPromise = eventCountForInput(inputType, outputType, inputValue);
       var totalEventCountPromise = totalEvents(inputType, outputType);
-      var genderCountPromise = genderCount(inputType, outputType, inputValue);
+      var genderCountPromise = termFrequencyCount(inputType, outputType, inputValue, 'patient.patientsex');
+      var ageCountPromise = termFrequencyCount(inputType, outputType, inputValue, 'patient.patientonsetage');
 
       var leadingOutputsPromise = leadingOutputs(inputType, outputType, inputValue)
         .then(function (leadingSideEffects) {
@@ -114,11 +103,11 @@ angular.module('egtGsaProto')
         });
 
       var result = $q.all(
-        [inputEventCountPromise, totalEventCountPromise, leadingOutputsPromise, genderCountPromise]
-      ).then(function (array) {
-          var inputEventCount = array[0];
-          var totalEventCount = array[1];
-          var leadingOutputs = array[2];
+        [inputEventCountPromise, totalEventCountPromise, leadingOutputsPromise, genderCountPromise, ageCountPromise]
+      ).then(function (resolvedPromises) {
+          var inputEventCount = resolvedPromises[0];
+          var totalEventCount = resolvedPromises[1];
+          var leadingOutputs = resolvedPromises[2];
 
           angular.forEach(leadingOutputs, function (output) {
             var eventsLinkedToDifferentInput = output.totalCount - output.count;
@@ -135,7 +124,8 @@ angular.module('egtGsaProto')
             inputEventCount: inputEventCount,
             totalEventCount: totalEventCount,
             leadingOutputs: leadingOutputs,
-            genderCount: array[3]
+            genderCount: resolvedPromises[3],
+            ageCount: resolvedPromises[4]
           };
         });
 
