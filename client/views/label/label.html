@@ -190,17 +190,8 @@
       </div>
     </div>
 
-    <hr>
-
-    <button class="btn btn-default" ng-click="jsonHidden = !jsonHidden">Show raw JSON</button>
-    <div collapse="!jsonHidden">
-      <pre>{{vm.label | toJson}}</pre>
-    </div>
 
     <hr>
-
-    <h2>Full Label Text</h2>
-
 
     <div ng-repeat="group in vm.textFields">
 
@@ -227,6 +218,13 @@
           </div>
         </accordion-group>
       </accordion>
+    </div>
+
+    <hr>
+
+    <button class="btn btn-default" ng-click="jsonHidden = !jsonHidden">Show raw JSON</button>
+    <div collapse="!jsonHidden">
+      <pre>{{vm.label | toJson}}</pre>
     </div>
 
 

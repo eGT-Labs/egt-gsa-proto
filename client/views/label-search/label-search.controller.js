@@ -5,7 +5,10 @@ angular.module('egtGsaProto')
 
     var vm = this;
     angular.extend(vm, {
-      search: {},
+      search: {
+        fulltext: '',
+        useAllFields: 'false'
+      },
       query: {
         pageSize: 10,
         pageNum: 1

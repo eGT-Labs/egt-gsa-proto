@@ -9,6 +9,39 @@ angular.module('egtGsaProto')
 
     vm.textFields = [
       {
+        groupLabel: 'Indications, usage, and dosage',
+        children: [
+          {
+            key: 'indications_and_usage',
+            label: 'indications_and_usage',
+            isOpen: true
+          }, {
+            key: 'contraindications',
+            label: 'contraindications'
+          }, {
+            key: 'dosage_and_administration',
+            label: 'dosage_and_administration'
+          }, {
+            key: 'dosage_forms_and_strengths',
+            label: 'dosage_forms_and_strengths'
+          }, {
+            key: 'purpose',
+            label: 'purpose'
+          }, {
+            key: 'description',
+            label: 'description'
+          }, {
+            key: 'active_ingredient',
+            label: 'active_ingredient'
+          }, {
+            key: 'inactive_ingredient',
+            label: 'inactive_ingredient'
+          }, {
+            key: 'spl_product_data_elements',
+            label: 'spl_product_data_elements'
+          }
+        ]
+      }, {
         groupLabel: 'Abuse and Overdose',
         children: [
           {
@@ -63,38 +96,6 @@ angular.module('egtGsaProto')
             label: 'pharmacokinetics'
           }
 
-        ]
-      }, {
-        groupLabel: 'Indications, usage, and dosage',
-        children: [
-          {
-            key: 'indications_and_usage',
-            label: 'indications_and_usage'
-          }, {
-            key: 'contraindications',
-            label: 'contraindications'
-          }, {
-            key: 'dosage_and_administration',
-            label: 'dosage_and_administration'
-          }, {
-            key: 'dosage_forms_and_strengths',
-            label: 'dosage_forms_and_strengths'
-          }, {
-            key: 'purpose',
-            label: 'purpose'
-          }, {
-            key: 'description',
-            label: 'description'
-          }, {
-            key: 'active_ingredient',
-            label: 'active_ingredient'
-          }, {
-            key: 'inactive_ingredient',
-            label: 'inactive_ingredient'
-          }, {
-            key: 'spl_product_data_elements',
-            label: 'spl_product_data_elements'
-          }
         ]
       }, {
         groupLabel: 'Patient information',
