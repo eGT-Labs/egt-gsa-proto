@@ -10,7 +10,7 @@ describe('event-substance route', function () {
     browser.get('/event/substance/NITROGLYCERIN');
 
 
-    var firstResult = element.all(by.css('tbody tr')).first().getText()
+    var firstResult = element.all(by.css('body > div.container.ng-scope > div > div.col-md-6.ng-scope > table > tbody > tr:nth-child(1)')).first().getText()
 
     expect(firstResult).toContain('RENAL INJURY');
     expect(firstResult).toContain('86.617');
