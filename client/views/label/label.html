@@ -217,11 +217,11 @@
 
           </accordion-heading>
           <div ng-if="field.html">
-            <span ng-repeat="table in field.html" ng-bind-html="table | to_trusted"> </span>
+            <span ng-repeat="table in field.html track by $index" ng-bind-html="table | to_trusted"> </span>
             <hr/>
           </div>
           <div ng-if="field.plainText">
-            <p ng-repeat="paragraph in field.plainText">
+            <p ng-repeat="paragraph in field.plainText track by $index">
               {{paragraph}}
             </p>
           </div>
