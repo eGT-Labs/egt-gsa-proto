@@ -5,6 +5,7 @@
 
     <h1>{{vm.label.openfda.brand_name[0]}}</h1>
 
+    <related-recalls id="vm.label.openfda.spl_id"></related-recalls>
 
     <h2>OpenFDA fields</h2>
 
@@ -193,9 +194,7 @@
 
     <button class="btn btn-default" ng-click="jsonHidden = !jsonHidden">Show raw JSON</button>
     <div collapse="!jsonHidden">
-      <pre>
-{{vm.rawString()}}
-      </pre>
+      <pre>{{vm.label | toJson}}</pre>
     </div>
 
     <hr>

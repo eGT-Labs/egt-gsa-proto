@@ -131,9 +131,7 @@
 
 <button class="btn btn-default" ng-click="jsonHidden = !jsonHidden">Show raw JSON</button>
 <div collapse="!jsonHidden">
-      <pre>
-  {{vm.respText}}
-      </pre>
+      <pre>{{vm.resp | toJson}}</pre>
 </div>
 
 

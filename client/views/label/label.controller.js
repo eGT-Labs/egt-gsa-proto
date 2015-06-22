@@ -298,11 +298,6 @@ angular.module('egtGsaProto')
     }
 
 
-    vm.rawString = function () {
-      return angular.toJson(vm.label, true);
-    };
-
-
   })
   .filter('to_trusted', ['$sce', function ($sce) {
     return function (text) {

@@ -23,8 +23,7 @@ angular.module('egtGsaProto')
         pharm_class_moa: {label: "Mechanism of action", data: null},
         pharm_class_epc: {label: "Established pharmacologic class", data: null},
         pharm_class_pe: {label: "Physiologic effect", data: null}
-      },
-      respText: ''
+      }
     });
 
     angular.extend(vm.search, $location.search());
@@ -104,7 +103,6 @@ angular.module('egtGsaProto')
         function (resp) {
           if (latestQuery === thisQuery) {
             vm.resp = resp;
-            vm.respText = angular.toJson(resp, true);
 
             if (resetPageNum) { //we only need to recalcuate the facets when the page resets
 
