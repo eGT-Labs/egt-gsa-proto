@@ -8,7 +8,11 @@
 
 
 <div class="row">
-  <div class="col-md-6 col-md-push-3" ng-if="vm.adverseEvents">
+  <div class="col-md-6">
+    <h3>Chart</h3>
+    <reporting-ratio-chart reporting-ratio="vm.adverseEvents"/>
+  </div>
+  <div class="col-md-6 " ng-if="vm.adverseEvents">
     <h3>
       {{vm.adverseEvents.inputEventCount | number}} Adverse Events
     </h3>
