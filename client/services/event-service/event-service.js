@@ -46,6 +46,28 @@ angular.module('egtGsaProto')
       )
     }
 
+    function genderCount(inputType, outputType, inputValue) {
+      return runQuery({
+        search: '_exists_:(' + outputType + ') AND ' + inputType + ':("' + inputValue + '")',
+        count: 'patient.patientsex'
+      }).then(function (resp) {
+
+        var result = {
+          male: 0,
+          female: 0
+        };
+        angular.forEach(resp.data.results, function (row) {
+          if (row.term == 1) {
+            result.male = row.count;
+          } else if (row.term == 2) {
+            result.female = row.count;
+          }
+        });
+
+        return result;
+      })
+    }
+
 
     function leadingOutputs(inputType, outputType, inputValue) {
       return runQuery({
@@ -73,6 +95,7 @@ angular.module('egtGsaProto')
 
       var inputEventCountPromise = eventCountForInput(inputType, outputType, inputValue);
       var totalEventCountPromise = totalEvents(inputType, outputType);
+      var genderCountPromise = genderCount(inputType, outputType, inputValue);
 
       var leadingOutputsPromise = leadingOutputs(inputType, outputType, inputValue)
         .then(function (leadingSideEffects) {
@@ -85,31 +108,36 @@ angular.module('egtGsaProto')
               };
             })
           });
-          return $q.all(promises).then(function(list) {
+          return $q.all(promises).then(function (list) {
             return _.reject(list, {totalCount: ERROR_SENTINEL});
           });
         });
 
-      var result = $q.all([inputEventCountPromise, totalEventCountPromise, leadingOutputsPromise]).then(function (array) {
-        var inputEventCount = array[0], totalEventCount = array[1], leadingOutputs = array[2];
+      var result = $q.all(
+        [inputEventCountPromise, totalEventCountPromise, leadingOutputsPromise, genderCountPromise]
+      ).then(function (array) {
+          var inputEventCount = array[0];
+          var totalEventCount = array[1];
+          var leadingOutputs = array[2];
 
-        angular.forEach(leadingOutputs, function (output) {
-          var eventsLinkedToDifferentInput = output.totalCount - output.count;
-          var countOtherInputs = totalEventCount - inputEventCount;
-          var freqOfOutputForDifferentInput = (eventsLinkedToDifferentInput / countOtherInputs);
+          angular.forEach(leadingOutputs, function (output) {
+            var eventsLinkedToDifferentInput = output.totalCount - output.count;
+            var countOtherInputs = totalEventCount - inputEventCount;
+            var freqOfOutputForDifferentInput = (eventsLinkedToDifferentInput / countOtherInputs);
 
 
-          output.frequency = (output.count / inputEventCount);
+            output.frequency = (output.count / inputEventCount);
 
-          output.reportingRatio = output.frequency / freqOfOutputForDifferentInput;
+            output.reportingRatio = output.frequency / freqOfOutputForDifferentInput;
+          });
+
+          return {
+            inputEventCount: inputEventCount,
+            totalEventCount: totalEventCount,
+            leadingOutputs: leadingOutputs,
+            genderCount: array[3]
+          };
         });
-
-        return {
-          inputEventCount: inputEventCount,
-          totalEventCount: totalEventCount,
-          leadingOutputs: leadingOutputs
-        };
-      });
 
       return result;
     }

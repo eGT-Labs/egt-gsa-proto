@@ -13,8 +13,7 @@ angular.module('egtGsaProto')
         scope.$watch('reportingRatio', function(data) {
 
           if (data) {
-
-            var chartRows = _.map(data.leadingOutputs, function(row) {
+            var reportingRatioRows = _.map(data.leadingOutputs, function(row) {
               return {
                 "c": [
                   {
@@ -33,8 +32,7 @@ angular.module('egtGsaProto')
 
             console.log(data);
 
-
-            scope.chartObject = {
+            scope.reportingRatioChart = {
               "type": "ScatterChart",
               "displayed": true,
               "data": {
@@ -54,7 +52,7 @@ angular.module('egtGsaProto')
 
 
                 ],
-                "rows": chartRows
+                "rows": reportingRatioRows
               },
               "options": {
                 "isStacked": "true",
@@ -81,6 +79,76 @@ angular.module('egtGsaProto')
               "formatters": {}
             }
 
+
+
+            console.log(data);
+
+            scope.genderChart = {
+              "type": "PieChart",
+              "displayed": true,
+              "data": {
+                "cols": [
+                  {
+                    "id": "gender",
+                    "label": "Gender",
+                    "type": "string",
+                    "p": {}
+                  },
+                  {
+                    "id": "count",
+                    "label": "Count",
+                    "type": "number",
+                    "p": {}
+                  }
+
+
+                ],
+                "rows": [
+                  {
+                    "c": [
+                      {
+                        "v": "Male"
+                      },
+                      {
+                        "v": data.genderCount.male
+                      }
+                    ]
+                  }, {
+                    "c": [
+                      {
+                        "v": "Female"
+                      },
+                      {
+                        "v": data.genderCount.female
+                      }
+                    ]
+                  }
+                ]
+              },
+              "options": {
+                "isStacked": "true",
+                "fill": 20,
+                "displayExactValues": true,
+                legend: {
+                  position: 'none'
+                },
+                theme: 'maximized',
+                "vAxis": {
+                  "title": "Reporting Ratio",
+                  "gridlines": {
+                    "count": 10
+                  },
+                  logScale: true
+
+                },
+                "hAxis": {
+                  "title": "Frequency",
+                  logScale: true,
+                  format: 'percent'
+                }
+              },
+              "formatters": {}
+            }
 
           }
         });
