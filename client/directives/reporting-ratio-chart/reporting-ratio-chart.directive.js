@@ -23,7 +23,7 @@ angular.module('egtGsaProto')
                   },
                   {
                     "v": row.reportingRatio,
-                    'f': numberFilter(row.reportingRatio, 3) + 'x'
+                    'f': '(' + numberFilter(row.reportingRatio, 3) + 'x more common than usual)'
                   }, {
                     "f": row.term
                   }
