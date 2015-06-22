@@ -2,7 +2,9 @@
 
 angular.module('egtGsaProto', [
   'ngRoute',
-  'ui.bootstrap'
+  'ngAnimate',
+  'ui.bootstrap',
+  'googlechart'
 ])
   .config(function ($routeProvider, $locationProvider) {
 
