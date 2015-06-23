@@ -1,0 +1,78 @@
+<div ng-if="recallData">
+  <!-- Only display anything if recall data exits-->
+  <h1>This product is related to {{recallData.results.length}} Recalls</h1>
+
+
+  <div ng-repeat="recall in recallData.results" class="container">
+
+
+    <h3>
+      <strong>{{recall.classification}}</strong>
+      Recall Initiated on
+      <strong>
+        <!-- Slice the date field into a nicer format-->
+        {{recall.recall_initiation_date.slice(0,4)}}-{{recall.recall_initiation_date.slice(4,6)}}-{{recall.recall_initiation_date.slice(6,8)}}
+      </strong>
+    </h3>
+
+    <form class="form-horizontal ">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Recall #</label>
+
+          <div class="col-sm-8">
+            <p class="form-control-static">{{recall.recall_number}}</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label">voluntary_mandated</label>
+
+          <div class="col-sm-8">
+            <p class="form-control-static">{{recall.voluntary_mandated}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Reason</label>
+
+          <div class="col-sm-8">
+            <p class="form-control-static">{{recall.reason_for_recall}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Status</label>
+
+          <div class="col-sm-8">
+            <p class="form-control-static">{{recall.status}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">distribution_pattern</label>
+
+          <div class="col-sm-8">
+            <p class="form-control-static">{{recall.distribution_pattern}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">product_quantity</label>
+
+          <div class="col-sm-8">
+            <p class="form-control-static">{{recall.product_quantity}}</p>
+          </div>
+        </div>
+      </div>
+    </form>
+    <hr/>
+ </div>
+
+
+  <button class="btn btn-default" ng-click="jsonHidden = !jsonHidden">Raw Recall JSON</button>
+  <div collapse="!jsonHidden">
+    <pre>{{recallData | toJson}}</pre>
+  </div>
+</div>
+
+
