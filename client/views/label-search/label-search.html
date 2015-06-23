@@ -56,7 +56,7 @@
         </accordion-heading>
         <!--<ul class="list-group" >-->
         <div style="max-height: 400px; overflow-y: auto">
-          <div  ng-repeat="facetInstance in facet.data | orderBy : (isAlpha ? 'term' : 'count') : !isAlpha" style="padding-bottom: 2px;">
+          <div  ng-repeat="facetInstance in facet.data | orderBy : (isAlpha ? 'term' : 'count') : !isAlpha" style="padding-bottom: 2px;"> 
             <a ng-click="vm.setFacet(facetKey, facetInstance.term)" >
               <span class="badge pull-right">{{facetInstance.count | number}}</span>
               {{facetInstance.term}}
@@ -68,9 +68,6 @@
       </accordion-group>
       </div>
     </accordion>
-
-
-
   </div>
 
 
@@ -95,34 +92,87 @@
         ng-change="vm.executeQuery()">
       </pagination>
 
+		<div class="container" style="width: 970px;" href="/label/{{row.openfda.spl_id[0]}}">
+			<div class="row">
+				<div data-ng-repeat="row in vm.resp.data.results" class="thumbnail col-md-12">
+					<div class="col-md-5">
+						<p  ng-repeat="brand_name in row.openfda.brand_name track by $index"> 
+								BrandName: 
+							<a style="cursor: pointer" ng-click="vm.setFacet('brand_name', brand_name)">
+								{{brand_name}}
+						    </a>
+						</p>
+						Generic Name: 
+						<p ng-repeat="generic_name in row.openfda.generic_name track by $index">
+							<a style="cursor: pointer" ng-click="vm.setFacet('generic_name', generic_name)">
+								{{generic_name}}
+							</a>
+						</p>
+						<p ng-if=row.openfda.pharm_class_cs>
+							Chemical Structure:
+						<span ng-repeat="pharm_class_cs in row.openfda.pharm_class_cs track by $index">
+							<a style="cursor: pointer" ng-click="vm.setFacet('pharm_class_cs', pharm_class_cs">
+								{{pharm_class_cs}} <span ng-show='$index < row.openfda.pharm_class_cs.length-1'>,</span>
+							</a>
+						</span>
+						</p>
+					</div>
+					<div class="col-md-5">
+						<p ng-repeat="manufacturer_name in row.openfda.manufacturer_name track by $index">
+						 		Manufacturer Name:
+						 	<a style="cursor: pointer" ng-click="vm.setFacet('manufacturer_name', manufacturer_name)">
+						 		 {{manufacturer_name}}
+						 	</a>
+						</p>
+						<p  ng-if=row.openfda.substance_name>
+							Ingredients:
+							<span ng-repeat="substance in row.openfda.substance_name track by $index">
+								<a style="cursor: pointer" ng-click="vm.setFacet('substance', substance)">
+									 {{substance}} <span ng-show='$index < row.openfda.substance_name.length-1'>,</span>
+								</a>	
+							</span>
+						</p>
+						<p ng-if=row.openfda.pharm_class_moa>
+							Method of Action:
+						<span ng-repeat="pharm_class_moa in row.openfda.pharm_class_moa track by $index">
+							<a style="cursor: pointer" ng-click="vm.setFacet('pharm_class_moa', pharm_class_moa">
+								{{pharm_class_moa}} <span ng-show='$index < row.openfda.pharm_class_moa.length-1'>,</span>
+							</a>
+						</span>
+						</p>
+						<p ng-if=row.openfda.pharm_class_epc>
+							Established Pharmacologic Class:
+						<span ng-repeat="pharm_class_epc in row.openfda.pharm_class_epc track by $index">
+							<a style="cursor: pointer" ng-click="vm.setFacet('pharm_class_epc', pharm_class_epc">
+								{{pharm_class_epc}} <span ng-show='$index < row.openfda.pharm_class_moa.length-1'>,</span>
+							</a>
+						</span>
+						</p>
+					</div>
+					<div class="col-md-2">
+						<span ng-if="row.openfda.product_type[0].includes('PRESCRIPTION')" style="cursor: pointer; font-size: 15px;" class="badge alert-info"
+								tooltip={{row.openfda.product_type[0]}}>&#x211E
+						</span>
+						<span ng-if="row.openfda.product_type[0].includes('OTC')" style="cursor: pointer; font-size: 15px;" class="badge alert-info"
+								tooltip={{row.openfda.product_type[0]}}>OTC
+						</span>
+						<span ng-if=row.boxed_warning style="cursor: pointer; font-size: 15px;" class="badge alert-danger pull-right" popover-placement="left"
+								popover={{row.boxed_warning[0]}}>Warning!
+						</span>
+						<a class="pull-down" href="/label/{{row.openfda.spl_id[0]}}">
+							<h5><strong>Show details</strong></h5>
+						</a>						
+					</div>
+				</div>										
+			</div>
+		</div>
 
-      <ul class="list-group">
-        <a class="list-group-item" href="/label/{{row.openfda.spl_id[0]}}" class="list-group-item"
-           ng-repeat="row in vm.resp.data.results">
-          <p>
-            Brand Name: {{row.openfda.brand_name[0]}} ({{row.openfda.manufacturer_name[0]}})
-          </p>
 
-          <p>
-            Generic Name: {{row.openfda.generic_name[0]}}
-          </p>
-
-          <p>
-            Ingredients:
-            <span class="label label-default" ng-repeat="i in row.openfda.substance_name">
-              {{i}}
-            </span>
-          </p>
-        </a>
-      </ul>
-
-      <pagination
-        boundary-links="true" class="pagination-sm" max-size="10"
-        total-items="vm.resp.data.meta.results.total" items-per-age="vm.query.pageSize" ng-model="vm.query.pageNum"
-        ng-change="vm.executeQuery()">
-
-      </pagination>
-    </section>
+		<pagination boundary-links="true" class="pagination-sm"
+			max-size="10" total-items="vm.resp.data.meta.results.total"
+			items-per-age="vm.query.pageSize" ng-model="vm.query.pageNum"
+			ng-change="vm.executeQuery()"> </pagination>
+		</section>
   </div>
 
 
