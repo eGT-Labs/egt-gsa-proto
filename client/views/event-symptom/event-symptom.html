@@ -1,4 +1,10 @@
-<h2>
+<section id="error" ng-if="vm.error">
+  {{vm.error}}
+  <strong> {{vm.name}} ! </strong>
+</section>
+
+<section id="mainResults" ng-if="vm.adverseEvents" >
+  <h2>
   {{vm.adverseEvents.inputEventCount | number}}
   <small>adverse events for symptom</small>
   {{vm.name}}
@@ -59,4 +65,4 @@
 
   </div>
 </div>
-
+</section>
