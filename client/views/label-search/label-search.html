@@ -127,7 +127,7 @@
 						<p  ng-if=row.openfda.substance_name>
 							Ingredients:
 							<span ng-repeat="substance in row.openfda.substance_name track by $index">
-								<a style="cursor: pointer" ng-click="vm.setFacet('substance', substance)">
+								<a style="cursor: pointer" ng-click="vm.setFacet('substance_name', substance)">
 									 {{substance}} <span ng-show='$index < row.openfda.substance_name.length-1'>,</span>
 								</a>	
 							</span>
@@ -150,11 +150,11 @@
 						</p>
 					</div>
 					<div class="col-md-2">
-						<span ng-if="row.openfda.product_type[0].includes('PRESCRIPTION')" style="cursor: pointer; font-size: 15px;" class="badge alert-info"
-								tooltip={{row.openfda.product_type[0]}}>&#x211E
-						</span>
-						<span ng-if="row.openfda.product_type[0].includes('OTC')" style="cursor: pointer; font-size: 15px;" class="badge alert-info"
-								tooltip={{row.openfda.product_type[0]}}>OTC
+						<!-- <span ng-show="row.openfda.product_type[0].includes('PRESCRIPTION')" style="cursor: pointer; font-size: 15px;" class="badge alert-info"
+								popover={{row.openfda.product_type[0]}}>&#x211E
+						</span> -->
+						<span ng-show="row.openfda.product_type[0].includes('OTC')" style="cursor: pointer; font-size: 15px;" class="badge alert-info"
+								popover={{row.openfda.product_type[0]}}>OTC
 						</span>
 						<span ng-if=row.boxed_warning style="cursor: pointer; font-size: 15px;" class="badge alert-danger pull-right" popover-placement="left"
 								popover={{row.boxed_warning[0]}}>Warning!
