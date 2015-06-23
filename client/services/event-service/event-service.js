@@ -85,6 +85,9 @@ angular.module('egtGsaProto')
       var totalEventCountPromise = totalEvents(inputType, outputType);
       var genderCountPromise = termFrequencyCount(inputType, outputType, inputValue, 'patient.patientsex');
       var ageCountPromise = termFrequencyCount(inputType, outputType, inputValue, 'patient.patientonsetage');
+      var outcomeCountPromise = termFrequencyCount(inputType, outputType, inputValue, 'patient.reaction.reactionoutcome');
+      var weightCountPromise = termFrequencyCount(inputType, outputType, inputValue, 'patient.patientweight');
+
 
       var leadingOutputsPromise = leadingOutputs(inputType, outputType, inputValue)
         .then(function (leadingSideEffects) {
@@ -103,7 +106,7 @@ angular.module('egtGsaProto')
         });
 
       var result = $q.all(
-        [inputEventCountPromise, totalEventCountPromise, leadingOutputsPromise, genderCountPromise, ageCountPromise]
+        [inputEventCountPromise, totalEventCountPromise, leadingOutputsPromise, genderCountPromise, ageCountPromise, outcomeCountPromise, weightCountPromise]
       ).then(function (resolvedPromises) {
           var inputEventCount = resolvedPromises[0];
           var totalEventCount = resolvedPromises[1];
@@ -125,7 +128,9 @@ angular.module('egtGsaProto')
             totalEventCount: totalEventCount,
             leadingOutputs: leadingOutputs,
             genderCount: resolvedPromises[3],
-            ageCount: resolvedPromises[4]
+            ageCount: resolvedPromises[4],
+            outcomeCount: resolvedPromises[5],
+            weightCount: resolvedPromises[6]
           };
         });
 

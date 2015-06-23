@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('egtGsaProto')
-  .controller('EventSubstanceCtrl', function ($routeParams, EventService) {
+  .controller('EventSubstanceCtrl', function ($routeParams, EventService, $location) {
 
     var vm = this;
 
@@ -12,6 +12,11 @@ angular.module('egtGsaProto')
       sortBy: 'reportingRatio'
       //name: 'EventSubstanceCtrl'
     });
+
+    vm.clickSymptom = function(substance) {
+      $location.url('/event/symptom/' + substance);
+    };
+
 
     EventService.computeReportingRatio('patient.drug.openfda.substance_name.exact', 'patient.reaction.reactionmeddrapt.exact', vm.name).then(function(result) {
       vm.adverseEvents = result;

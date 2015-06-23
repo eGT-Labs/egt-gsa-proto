@@ -1,10 +1,18 @@
 
-<h4>Event Frequency & Proportional Reporting Ratio</h4>
-<div google-chart chart="reportingRatioChart" style="height: 300px"></div>
+<h4>Proportional Reporting Ratio <small>(Chart is clickable!)</small></h4>
+<div google-chart chart="reportingRatioChart" on-select="selectRR(selectedItem)" style="height: 300px"></div>
 
 
 
-<h4>Incidence of Adverse Events by Gender</h4>
+<h4>Incidence by Patient Gender</h4>
 <div google-chart chart="genderChart" style="height: 200px"></div>
 
+<h4>Incidence by Outcome</h4>
+<div google-chart chart="outcomeChart" style="height: 200px"></div>
 
+
+<h4>Incidence by Patient Age</h4>
+<div google-chart chart="ageChart" style="height: 200px"></div>
+
+<h4>Incidence by Patient Weight <small>(kilograms)</small></h4>
+<div google-chart chart="weightChart" style="height: 200px"></div>
