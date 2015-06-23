@@ -1,12 +1,35 @@
-<form class="form">
-  <input autofocus class="form-control input-lg col-md-6" ng-model="vm.search.fulltext"
-         placeholder="Search fulltext drug labels...">
+<form class="form-inline">
+  <div class="form-group form-group-lg">
+    <label for="searchText">Search Drug Labels: </label>
+
+    <select class="form-control inpug-lg" id="useAllFields" ng-model="vm.search.useAllFields" tooltip-placement="bottom"
+            tooltip="Core Fields: brand_name, generic_name, substance_name, indications_and_usage, description">
+      <option value="false" selected>Core Fields</option>
+      <option value="true">All fields</option>
+    </select>
+
+    <!--<div class="btn-group" id="useAllFields">-->
+      <!--<label class="btn btn-default btn-sm" ng-model="vm.search.useAllFields" btn-radio="false" tooltip-placement="bottom"-->
+             <!--tooltip="Only Searches: brand_name, generic_name, substance_name, indications_and_usage, description" >-->
+        <!--Core Fields-->
+      <!--</label>-->
+      <!--<label class="btn btn-default btn-sm" ng-model="vm.search.useAllFields" btn-radio="true" tooltip-placement="bottom"-->
+             <!--tooltip="Searchs the complete text of all fields in the drug label data set.">-->
+        <!--All Fields-->
+      <!--</label>-->
+    <!--</div>-->
+  </div>
+  </div>
+  <div class="form-group" >
+    <input id="searchText" autofocus class="form-control input-lg " ng-model="vm.search.fulltext"
+           placeholder="Search drug labels...">
+  </div>
   <button id="searchButton" class="btn btn-primary btn-lg" ng-click="vm.newSearch()">
-    Search
+    Go
   </button>
 </form>
 
-
+<hr>
 
 
 <div class="row">
@@ -131,9 +154,7 @@
 
 <button class="btn btn-default" ng-click="jsonHidden = !jsonHidden">Show raw JSON</button>
 <div collapse="!jsonHidden">
-      <pre>
-  {{vm.respText}}
-      </pre>
+      <pre>{{vm.resp | toJson}}</pre>
 </div>
 
 

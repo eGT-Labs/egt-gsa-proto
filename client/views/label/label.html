@@ -5,6 +5,7 @@
 
     <h1>{{vm.label.openfda.brand_name[0]}}</h1>
 
+    <related-recalls id="vm.label.openfda.spl_id"></related-recalls>
 
     <h2>OpenFDA fields</h2>
 
@@ -189,19 +190,8 @@
       </div>
     </div>
 
-    <hr>
-
-    <button class="btn btn-default" ng-click="jsonHidden = !jsonHidden">Show raw JSON</button>
-    <div collapse="!jsonHidden">
-      <pre>
-{{vm.rawString()}}
-      </pre>
-    </div>
 
     <hr>
-
-    <h2>Full Label Text</h2>
-
 
     <div ng-repeat="group in vm.textFields">
 
@@ -212,20 +202,29 @@
           <accordion-heading>
             <div>
               {{field.label}}
+              <small ng-if="field.html">(Table included)</small>
               <span class="pull-right badge">{{::field.plainText[0].split(' ').length | number}} Words</span>
             </div>
 
           </accordion-heading>
+          <div ng-if="field.html">
+            <span ng-repeat="table in field.html track by $index" ng-bind-html="table | to_trusted"> </span>
+            <hr/>
+          </div>
           <div ng-if="field.plainText">
-            <p ng-repeat="paragraph in field.plainText">
+            <p ng-repeat="paragraph in field.plainText track by $index">
               {{paragraph}}
             </p>
           </div>
-          <div ng-if="field.html">
-            <span ng-repeat="table in field.html" ng-bind-html="table | to_trusted"> </span>
-          </div>
         </accordion-group>
       </accordion>
+    </div>
+
+    <hr>
+
+    <button class="btn btn-default" ng-click="jsonHidden = !jsonHidden">Show raw JSON</button>
+    <div collapse="!jsonHidden">
+      <pre>{{vm.label | toJson}}</pre>
     </div>
 
 
