@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('egtGsaProto')
-  .directive('reportingRatioChart', function (numberFilter) {
+  .directive('eventCharts', function (numberFilter) {
 
     function buildReportingRatio(leadingOutputs) {
       //Documentation of options: https://developers.google.com/chart/interactive/docs/gallery/scatterchart
@@ -284,7 +284,7 @@ angular.module('egtGsaProto')
 
     return {
       restrict: 'EA',
-      templateUrl: 'directives/reporting-ratio-chart/reporting-ratio-chart.html',
+      templateUrl: 'directives/event-charts/event-charts.html',
       scope: {
         eventData: '=',
         reportingRatioClick: '='

@@ -5,10 +5,17 @@
 
 <section id="mainResults" ng-if="vm.adverseEvents" >
   <h2>
-  {{vm.adverseEvents.inputEventCount | number}}
-  <small>adverse events for symptom</small>
-  {{vm.name}}
-</h2>
+    Symptom:
+    <strong>{{vm.name}}</strong>
+  </h2>
+  <h3>
+    Occured in
+    <strong>
+      {{vm.adverseEvents.inputEventCount | number}}
+    </strong>
+    adverse events
+
+  </h3>
 
 
 <a href="https://duckduckgo.com/?q=%22{{vm.name}}%22" target="_blank">
@@ -20,7 +27,7 @@
 <div class="row">
   <div class="col-md-6">
     <h3>Chart</h3>
-    <reporting-ratio-chart event-data="vm.adverseEvents" reporting-ratio-click="vm.clickSubstance"/>
+    <event-charts event-data="vm.adverseEvents" reporting-ratio-click="vm.clickSubstance"/>
   </div>
   <div class="col-md-6 " ng-if="vm.adverseEvents">
 
@@ -29,7 +36,7 @@
       <tr>
         <th>
           <a ng-click="vm.sortBy = 'term'; vm.sort()">
-            Chemical Substance Involved
+            Drug Involved
           </a>
         </th>
         <th>
