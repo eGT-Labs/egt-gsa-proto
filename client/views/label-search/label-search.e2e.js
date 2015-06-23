@@ -16,7 +16,7 @@ describe('label-search route', function () {
     search_box.sendKeys(search);
     search_box.submit();
 
-    expect(element.all(by.css('#mainResults')).getText()).toContain('ACETAMINOPHEN');
+    expect(element.all(by.css('#mainResults > ul.list-group > a:nth-child(1) > p:nth-child(2)')).first().getText()).toContain('Generic Name: ACETAMINOPHEN');
   });
 
   it('should display an error with no results', function () {
