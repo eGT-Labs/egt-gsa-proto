@@ -16,7 +16,6 @@ module.exports = function (app) {
         delete pathObj.search;
         pathObj.query['api_key'] = config.openFdaApiKey;
         req.path = url.format(pathObj);
-        console.log('added API key: ' + url.format(pathObj));
       }
       return req
     },
