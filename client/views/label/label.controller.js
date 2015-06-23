@@ -254,7 +254,7 @@ angular.module('egtGsaProto')
             label: 'Microbiology'
           }, {
             key: 'package_label_principal_display_panel',
-            label: 'Package Label Principal Pisplay Panel'
+            label: 'Package Label Principal Display Panel'
           }, {
             key: 'spl_unclassified_section',
             label: 'Spl Unclassified Section'
