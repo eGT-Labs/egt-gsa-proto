@@ -22,6 +22,12 @@ server.listen(config.port, config.ip, function () {
     app.get('env')
   );
 
+  if (config.openFdaApiKey) {
+    console.log(chalk.green('OPEN_FDA_API_KEY environment variable is set'));
+  } else {
+    console.log(chalk.red('OPEN_FDA_API_KEY environment variable NOT provided'));
+  }
+
   if (config.env === 'development') {
     require('ripe').ready();
   }
