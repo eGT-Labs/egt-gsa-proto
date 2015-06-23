@@ -173,16 +173,16 @@
 						</p>
 					</div>
 					<div class="col-md-2">
-						<!-- <span ng-show="row.openfda.product_type[0].includes('PRESCRIPTION')" style="cursor: pointer; font-size: 15px;" class="badge alert-info"
+						 <span ng-show="row.openfda.product_type[0].indexOf('PRESCRIPTION')>-1" style="cursor: pointer; font-size: 15px;" class="badge alert-info"
 								popover={{row.openfda.product_type[0]}}>&#x211E
-						</span> -->
-						<span ng-show="row.openfda.product_type[0].includes('OTC')" style="cursor: pointer; font-size: 15px;" class="badge alert-info"
+						</span>
+						<span ng-show="row.openfda.product_type[0].indexOf('OTC')>-1" style="cursor: pointer; font-size: 15px;" class="badge alert-info"
 								popover={{row.openfda.product_type[0]}}>OTC
 						</span>
 						<span ng-if=row.boxed_warning style="cursor: pointer; font-size: 15px;" class="badge alert-danger pull-right" popover-placement="left"
 								popover={{row.boxed_warning[0]}}>Warning!
 						</span>
-						<a class="pull-down" href="/label/{{row.openfda.spl_id[0]}}">
+						<a href="/label/{{row.openfda.spl_id[0]}}">
 							<h5><strong>Show details</strong></h5>
 						</a>						
 					</div>
