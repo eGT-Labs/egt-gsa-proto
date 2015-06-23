@@ -10,9 +10,24 @@ angular.module('egtGsaProto')
 
       queryStringParts.push('_exists_:openfda.spl_id'); //We only want to use the records that have openfda sections
 
+
+      var coreFields = ['openfda.brand_name', 'openfda.generic_name', 'openfda.substance_name', 'indications_and_usage', 'description'];
+
+
+
+
       //add the raw fulltext if it exists
       if (search.fulltext) {
-        queryStringParts.push(search.fulltext);
+        if (!search.useAllFields || search.useAllFields === 'false') {
+          var fulltextParts = _.map(coreFields, function(field) {
+            return field + ':(' + search.fulltext + ')'
+          });
+
+          queryStringParts.push('(' + fulltextParts.join(' OR ') + ')');
+
+        } else {
+          queryStringParts.push(search.fulltext);
+        }
       }
 
       //find the keys that start with 'facet.'
