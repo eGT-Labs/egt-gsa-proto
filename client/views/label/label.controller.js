@@ -13,32 +13,32 @@ angular.module('egtGsaProto')
         children: [
           {
             key: 'indications_and_usage',
-            label: 'indications_and_usage',
+            label: 'Indications and Usage',
             isOpen: true
           }, {
             key: 'contraindications',
-            label: 'contraindications'
+            label: 'Contraindications'
           }, {
             key: 'dosage_and_administration',
-            label: 'dosage_and_administration'
+            label: 'Dosage and Administration'
           }, {
             key: 'dosage_forms_and_strengths',
-            label: 'dosage_forms_and_strengths'
+            label: 'Dosage Forms and Strengths'
           }, {
             key: 'purpose',
-            label: 'purpose'
+            label: 'Purpose'
           }, {
             key: 'description',
-            label: 'description'
+            label: 'Description'
           }, {
             key: 'active_ingredient',
-            label: 'active_ingredient'
+            label: 'Active Ingredient'
           }, {
             key: 'inactive_ingredient',
-            label: 'inactive_ingredient'
+            label: 'Inactive Ingredient'
           }, {
             key: 'spl_product_data_elements',
-            label: 'spl_product_data_elements'
+            label: 'Spl Product Data Elements'
           }
         ]
       }, {
@@ -84,16 +84,16 @@ angular.module('egtGsaProto')
         children: [
           {
             key: 'clinical_pharmacology',
-            label: 'clinical_pharmacology'
+            label: 'Clinical Pharmacology'
           }, {
             key: 'mechanism_of_action',
-            label: 'mechanism_of_action'
+            label: 'Mechanism of Action'
           }, {
             key: 'pharmacodynamics',
-            label: 'pharmacodynamics'
+            label: 'Pharmacodynamics'
           }, {
             key: 'pharmacokinetics',
-            label: 'pharmacokinetics'
+            label: 'Pharmacokinetics'
           }
 
         ]
@@ -102,46 +102,46 @@ angular.module('egtGsaProto')
         children: [
           {
             key: 'spl_patient_package_insert',
-            label: 'spl_patient_package_insert'
+            label: 'Spl Patient Package Insert'
           }, {
             key: 'information_for_patients',
-            label: 'information_for_patients'
+            label: 'Information for Patients'
           }, {
             key: 'information_for_owners_or_caregivers',
-            label: 'information_for_owners_or_caregivers'
+            label: 'Information for Owners or Caregivers'
           }, {
             key: 'instructions_for_use',
-            label: 'instructions_for_use'
+            label: 'Instructions for Use'
           }, {
             key: 'ask_doctor',
-            label: 'ask_doctor'
+            label: 'Ask Doctor'
           }, {
             key: 'ask_doctor_or_pharmacist',
-            label: 'ask_doctor_or_pharmacist'
+            label: 'Ask Doctor or Pharmacist'
           }, {
             key: 'do_not_use',
             label: 'do_not_use'
           }, {
             key: 'keep_out_of_reach_of_children',
-            label: 'keep_out_of_reach_of_children'
+            label: 'Keep Out of Reach of Children'
           }, {
             key: 'other_safety_information',
-            label: 'other_safety_information'
+            label: 'Other Safety Information'
           }, {
             key: 'questions',
-            label: 'questions'
+            label: 'Questions'
           }, {
             key: 'stop_use',
-            label: 'stop_use'
+            label: 'Stop Use'
           }, {
             key: 'when_using',
-            label: 'when_using'
+            label: 'When Using'
           }, {
             key: 'patient_medication_information',
-            label: 'patient_medication_information'
+            label: 'Patient Medication Information'
           }, {
             key: 'spl_medguide',
-            label: 'spl_medguide'
+            label: 'Spl Medguide'
           }
         ]
       }, {
@@ -149,31 +149,31 @@ angular.module('egtGsaProto')
         children: [
           {
             key: 'use_in_specific_populations',
-            label: 'use_in_specific_populations'
+            label: 'Use in Specific Populations'
           }, {
             key: 'pregnancy',
-            label: 'pregnancy'
+            label: 'Pregnancy'
           }, {
             key: 'teratogenic_effects',
-            label: 'teratogenic_effects'
+            label: 'Teratogenic Effects'
           }, {
             key: 'nonteratogenic_effects',
-            label: 'nonteratogenic_effects'
+            label: 'Nonteratogenic Effects'
           }, {
             key: 'labor_and_delivery',
-            label: 'labor_and_delivery'
+            label: 'Labor and Delivery'
           }, {
             key: 'nursing_mothers',
-            label: 'nursing_mothers'
+            label: 'Nursing Mothers'
           }, {
             key: 'pregnancy_or_breast_feeding',
-            label: 'pregnancy_or_breast_feeding'
+            label: 'Pregnancy or Breast Feeding'
           }, {
             key: 'pediatric_use',
-            label: 'pediatric_use'
+            label: 'Pediatric Use'
           }, {
             key: 'geriatric_use',
-            label: 'geriatric_use'
+            label: 'Geriatric Use'
           }
         ]
       }, {
@@ -181,13 +181,13 @@ angular.module('egtGsaProto')
         children: [
           {
             key: 'nonclinical_toxicology',
-            label: 'nonclinical_toxicology'
+            label: 'Nonclinical Toxicology'
           }, {
             key: 'carcinogenesis_and_mutagenesis_and_impairment_of_fertility',
-            label: 'carcinogenesis_and_mutagenesis_and_impairment_of_fertility'
+            label: 'Carcinogenesis and Mutagenesis and Impairment of Fertility'
           }, {
             key: 'animal_pharmacology_and_or_toxicology',
-            label: 'animal_pharmacology_and_or_toxicology'
+            label: 'Animal Pharmacology and/or Toxicology'
           }
         ]
       }, {
@@ -195,11 +195,11 @@ angular.module('egtGsaProto')
         children: [
           {
             key: 'clinical_studies',
-            label: 'clinical_studies'
+            label: 'Clinical Studies'
 
           }, {
             key: 'references',
-            label: 'references'
+            label: 'References'
 
           }
         ]
@@ -208,13 +208,13 @@ angular.module('egtGsaProto')
         children: [
           {
             key: 'how_supplied',
-            label: 'how_supplied'
+            label: 'How Supplied'
           }, {
             key: 'storage_and_handling',
-            label: 'storage_and_handling'
+            label: 'Storage and Handling'
           }, {
             key: 'safe_handling_warning',
-            label: 'safe_handling_warning'
+            label: 'Safe Handling Warning'
           }
         ]
       }, {
@@ -222,22 +222,22 @@ angular.module('egtGsaProto')
         children: [
           {
             key: 'boxed_warning',
-            label: 'boxed_warning'
+            label: 'Boxed Warning'
           }, {
             key: 'warnings_and_precautions',
-            label: 'warnings_and_precautions'
+            label: 'Warnings and Precautions'
           }, {
             key: 'user_safety_warnings',
-            label: 'user_safety_warnings'
+            label: 'User Safety Warnings'
           }, {
             key: 'precautions',
-            label: 'precautions'
+            label: 'Precautions'
           }, {
             key: 'warnings',
-            label: 'warnings'
+            label: 'Warnings'
           }, {
             key: 'general_precautions',
-            label: 'general_precautions'
+            label: 'General Precautions'
           }
         ]
       }, {
@@ -245,19 +245,19 @@ angular.module('egtGsaProto')
         children: [
           {
             key: 'laboratory_tests',
-            label: 'laboratory_tests'
+            label: 'Laboratory Tests'
           }, {
             key: 'recent_major_changes',
-            label: 'recent_major_changes'
+            label: 'Recent Major Changes'
           }, {
             key: 'microbiology',
-            label: 'microbiology'
+            label: 'Microbiology'
           }, {
             key: 'package_label_principal_display_panel',
-            label: 'package_label_principal_display_panel'
+            label: 'Package Label Principal Pisplay Panel'
           }, {
             key: 'spl_unclassified_section',
-            label: 'spl_unclassified_section'
+            label: 'Spl Unclassified Section'
           }
         ]
       }
