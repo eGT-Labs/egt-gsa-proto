@@ -134,7 +134,7 @@
 						<p ng-if=row.openfda.pharm_class_cs>
 							Chemical Structure:
 						<span ng-repeat="pharm_class_cs in row.openfda.pharm_class_cs track by $index">
-							<a style="cursor: pointer" ng-click="vm.setFacet('pharm_class_cs', pharm_class_cs">
+							<a style="cursor: pointer" ng-click="vm.setFacet('pharm_class_cs', pharm_class_cs)">
 								{{pharm_class_cs}} <span ng-show='$index < row.openfda.pharm_class_cs.length-1'>,</span>
 							</a>
 						</span>
@@ -158,7 +158,7 @@
 						<p ng-if=row.openfda.pharm_class_moa>
 							Method of Action:
 						<span ng-repeat="pharm_class_moa in row.openfda.pharm_class_moa track by $index">
-							<a style="cursor: pointer" ng-click="vm.setFacet('pharm_class_moa', pharm_class_moa">
+							<a style="cursor: pointer" ng-click="vm.setFacet('pharm_class_moa', pharm_class_moa)">
 								{{pharm_class_moa}} <span ng-show='$index < row.openfda.pharm_class_moa.length-1'>,</span>
 							</a>
 						</span>
@@ -166,7 +166,7 @@
 						<p ng-if=row.openfda.pharm_class_epc>
 							Established Pharmacologic Class:
 						<span ng-repeat="pharm_class_epc in row.openfda.pharm_class_epc track by $index">
-							<a style="cursor: pointer" ng-click="vm.setFacet('pharm_class_epc', pharm_class_epc">
+							<a style="cursor: pointer" ng-click="vm.setFacet('pharm_class_epc', pharm_class_epc)">
 								{{pharm_class_epc}} <span ng-show='$index < row.openfda.pharm_class_moa.length-1'>,</span>
 							</a>
 						</span>
