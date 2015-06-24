@@ -1,0 +1,30 @@
+<VirtualHost *:80>
+	RewriteEngine On
+	ServerName gsa-fda-proto-jenkins.egt-labs.com
+	ServerAlias <%= node.fqdn %> <%= node.hostname %>
+	RewriteRule ^(.*)$ https://%{HTTP_HOST}$1 [R=301,L]
+	CustomLog <%= node['apache']['log_dir'] %>/jenkins-access.log combined
+	ErrorLog <%= node['apache']['log_dir'] %>/jenkins-error.log
+</VirtualHost>
+
+<Proxy *>
+	Order allow,deny
+	Allow from all
+</Proxy>
+
+<VirtualHost *:443>
+	ServerAdmin john.stange@eglobaltech.com
+	ServerName gsa-fda-proto-jenkins.egt-labs.com
+	ServerAlias <%= node.fqdn %> <%= node.hostname %>
+	ProxyPass / http://localhost:8080/
+	ProxyPassReverse / http://localhost:8080/
+	SSLEngine On
+	SSLCertificateFile /etc/httpd/ssl/egt-labs-wildcard.crt
+	SSLCertificateKeyFile /etc/httpd/ssl/egt-labs-wildcard.key
+#	SSLCertificateChainFile /etc/httpd/ssl/gd_bundle.cer
+	SSLProxyEngine on
+
+	CustomLog <%= node['apache']['log_dir'] %>/jenkins-ssl-access.log combined
+	ErrorLog <%= node['apache']['log_dir'] %>/jenkins-error.log
+
+</VirtualHost>
