@@ -3,6 +3,22 @@
 angular.module('egtGsaProto')
   .directive('eventCharts', function (numberFilter) {
 
+    function buildRRTooltipHtml(dataPoint) {
+
+      var percent = numberFilter(100 * dataPoint.frequency, 2) + '%';
+      var reportingRatio = numberFilter(dataPoint.reportingRatio, 2);
+
+      var verb = (dataPoint.reportingRatio > 1) ? 'more' : 'as';
+
+      return [
+        '<span class="h4"><strong>' + dataPoint.term + '</strong></span>',
+        'Frequency of correlation: <strong><em></em>' + percent + '</em></strong>',
+        'This correlation occurs <strong><em>' + reportingRatio + '</em></strong> times ' + verb  + ' common than random chance predicts.',
+        '<span class="small" style="color:purple">(Click the dot to view all events)</span>'
+      ].join('<br>');
+      //return dataPoint.term + '<strong> info </strong>'
+    }
+
     function buildReportingRatio(leadingOutputs) {
       //Documentation of options: https://developers.google.com/chart/interactive/docs/gallery/scatterchart
       return {
@@ -21,7 +37,12 @@ angular.module('egtGsaProto')
               "label": "Proportional Reporting Ratio",
               "type": "number",
               "p": {}
-            }
+            },
+            {
+              'id': 'info',
+              'type': 'string',
+              'role': 'tooltip',
+              'p': {'html': true}}
           ],
           "rows": _.map(leadingOutputs, function (row) {
             return {
@@ -32,9 +53,9 @@ angular.module('egtGsaProto')
                 },
                 {
                   "v": row.reportingRatio,
-                  'f': '(' + numberFilter(row.reportingRatio, 3) + ' × more frequent)'
+                  'f': '(' + numberFilter(row.reportingRatio, 3) + ' × <strong>more</strong> frequent)'
                 }, {
-                  "f": row.term
+                  "f": buildRRTooltipHtml(row)
                 }
               ]
             };
@@ -52,7 +73,11 @@ angular.module('egtGsaProto')
           colors: ['purple'],
           titlePosition: 'none',
           theme: 'maximized',
+          tooltip: {
+            isHtml: true
+          },
           "vAxis": {
+            format: '#,###.## x',
             //"title": "Reporting Ratio",
             "gridlines": {
               //"count": 10
