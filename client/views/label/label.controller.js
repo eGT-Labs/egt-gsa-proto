@@ -120,7 +120,7 @@ angular.module('egtGsaProto')
             label: 'Ask Doctor or Pharmacist'
           }, {
             key: 'do_not_use',
-            label: 'do_not_use'
+            label: 'Do not Use'
           }, {
             key: 'keep_out_of_reach_of_children',
             label: 'Keep Out of Reach of Children'
