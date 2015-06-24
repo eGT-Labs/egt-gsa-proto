@@ -4,18 +4,22 @@
  */
 angular.module('egtGsaProto')
   .factory('ApiService', function ($http, $q, $timeout) {
-    function doWithRetries(service, params, retries) {
+
+
+    var MAX_TRIES = 4;
+
+    function doWithRetries(service, params, timesTried) {
       return $http.get(service, {params: params})
         .catch(function (err) {
           console.log('failure');
           console.log(err);
 
-          if (retries > 0 && err.status === 429) { //hit rate limiting... slow down and try again
+          if (timesTried <= MAX_TRIES && err.status === 429) { //hit rate limiting... slow down and try again
             return $q(function (resolve, reject) {
               $timeout(function () {
-                console.log('retrying ' + retries + ' more times');
-                doWithRetries(service, params, retries - 1).then(resolve, reject);
-              }, 5000 * Math.random());
+                console.log('tried loading ' + timesTried);
+                doWithRetries(service, params, timesTried + 1).then(resolve, reject);
+              }, timesTried * 2000 * Math.random());
             });
           } else {
             return err;
@@ -25,7 +29,7 @@ angular.module('egtGsaProto')
 
 
     return function (service, params) {
-      return doWithRetries(service, params, 3);
+      return doWithRetries(service, params, 1);
     }
 
   });
