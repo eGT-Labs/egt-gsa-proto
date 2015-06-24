@@ -134,6 +134,11 @@ angular.module('egtGsaProto')
               ]
             }
           })
+        },
+        options: {
+          legend: {
+            position: 'labeled'
+          }
         }
       };
     }
