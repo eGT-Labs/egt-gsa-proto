@@ -20,7 +20,7 @@ angular.module('egtGsaProto')
       vm.adverseEvents = result;
       vm.sort();
     }, function (errorResponse) {
-      vm.error = errorResponse.statusText;
+      vm.error = errorResponse.statusText || 'Not Found';
     });
 
 
