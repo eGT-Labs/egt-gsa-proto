@@ -15,7 +15,7 @@ angular.module('egtGsaProto')
               $timeout(function () {
                 console.log('retrying ' + retries + ' more times');
                 doWithRetries(service, params, retries - 1).then(resolve, reject);
-              }, 4000 * Math.random());
+              }, 5000 * Math.random());
             });
           } else {
             return err;
@@ -25,7 +25,7 @@ angular.module('egtGsaProto')
 
 
     return function (service, params) {
-      return doWithRetries(service, params, 5);
+      return doWithRetries(service, params, 3);
     }
 
   });
