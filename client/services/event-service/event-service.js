@@ -111,7 +111,7 @@ angular.module('egtGsaProto')
 
       var leadingOutputsPromise = leadingOutputs(inputType, outputType, inputValue)
         .then(function (leadingSideEffects) {
-          var promises = leadingSideEffects.slice(0, 50).map(function (output) {
+          var promises = leadingSideEffects.slice(0, 30).map(function (output) {
             return totalEventsForOutput(inputType, outputType, output.term).then(function (totalCount) {
               return {
                 term: output.term,
