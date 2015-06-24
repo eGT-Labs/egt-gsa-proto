@@ -198,7 +198,7 @@
 	<h3>{{ group.groupLabel }}</h3>
 	
 
-	<select  class="form-control"
+	<select
          ng-init="field=group.children[0]" ng-options="field.label for field in group.children"  ng-model="field">
           <option value="">--Select an option --</option>
     </select>
