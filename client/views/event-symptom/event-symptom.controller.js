@@ -19,6 +19,10 @@ angular.module('egtGsaProto')
     EventService.computeReportingRatio('patient.reaction.reactionmeddrapt.exact', 'patient.drug.openfda.substance_name.exact', vm.name).then(function(result) {
       vm.adverseEvents = result;
       vm.sort();
+    }, function (errorResponse) {
+      console.log("error!");
+      console.log(errorResponse);
+      vm.error = 'There are no events involving substance';
     });
 
 

@@ -1,29 +1,46 @@
-<h2>
-  {{vm.adverseEvents.inputEventCount | number}}
-  <small>adverse events for symptom</small>
-  {{vm.name}}
-</h2>
+<section id="error" ng-if="vm.error">
+  {{vm.error}}
+  <strong> {{vm.name}} ! </strong>
+</section>
 
+<section id="mainResults" ng-if="vm.adverseEvents" >
+  <h2>
+    Symptom:
+    <strong>{{vm.name}}</strong>
+    <small>
+    <a href="https://duckduckgo.com/?q=%22{{vm.name}}%22" target="_blank">
+      <span class="glyphicon glyphicon-info-sign"></span>
+    </a>
+    </small>
 
-<a href="https://duckduckgo.com/?q=%22{{vm.name}}%22" target="_blank">
- Lookup Definition
-</a>
+  </h2>
+  <h3>
+    Occured in
+    <strong>
+      {{vm.adverseEvents.inputEventCount | number}}
+    </strong>
+    adverse events
+
+  </h3>
 
 
 
 <div class="row">
   <div class="col-md-6">
-    <h3>Chart</h3>
-    <reporting-ratio-chart event-data="vm.adverseEvents" reporting-ratio-click="vm.clickSubstance"/>
+    <h4>Proportional Reporting Ratio
+      <small>(Chart is clickable!)</small>
+    </h4>
+    <event-charts event-data="vm.adverseEvents" reporting-ratio-click="vm.clickSubstance"/>
   </div>
   <div class="col-md-6 " ng-if="vm.adverseEvents">
+    <h3> Linked Drugs </h3>
 
     <table class="table table-condensed">
       <thead>
       <tr>
         <th>
           <a ng-click="vm.sortBy = 'term'; vm.sort()">
-            Chemical Substance Involved
+            Drug Involved
           </a>
         </th>
         <th>
@@ -59,4 +76,4 @@
 
   </div>
 </div>
-
+</section>

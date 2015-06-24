@@ -20,7 +20,10 @@ module.exports = function (app) {
       return req
     },
     intercept: function (responseIn, data, req, responseOut, callback) {
-      responseOut.set('cache-control', 'max-age=86400');
+      if (responseIn.statusCode !== 429) { //Don't tell the client to cache the "TOO MANY REQUESTS" error
+        console.log(responseIn.statusCode)
+        responseOut.set('cache-control', 'max-age=86400');
+      }
       callback(null, data);
     }
   }));

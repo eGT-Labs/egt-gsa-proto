@@ -4,23 +4,30 @@
 </section>
 
 <section id="mainResults" ng-if="vm.adverseEvents" >
-<h2>
-  {{vm.adverseEvents.inputEventCount | number}}
-  <small>events involving substance</small>
-  {{vm.name}}
-</h2>
+  <h2>
+    Drug:
+    <a href="/label-search?facet.substance_name={{vm.name}}"><strong>{{vm.name}}</strong></a>
+  </h2>
+  <h3>
+    Reported in
+    <strong>
+      {{vm.adverseEvents.inputEventCount | number}}
+    </strong>
+    adverse events
 
-<a href="/label-search?facet.substance_name={{vm.name}}">Drugs Containing {{vm.name}}</a>
+  </h3>
 
-<hr/>
+
 
 <div class="row">
   <div class="col-md-6">
-    <reporting-ratio-chart event-data="vm.adverseEvents" reporting-ratio-click="vm.clickSymptom"/>
+    <h4>Proportional Reporting Ratio
+      <small>(Chart is clickable!)</small>
+    </h4>
+    <event-charts event-data="vm.adverseEvents" reporting-ratio-click="vm.clickSymptom"/>
   </div>
   <div class="col-md-6" ng-if="vm.adverseEvents">
-    <h3> Adverse Events
-    </h3>
+    <h3> Associated Symptoms </h3>
 
     <table class="table table-condensed">
       <thead>
