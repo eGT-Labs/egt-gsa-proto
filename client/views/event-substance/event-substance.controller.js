@@ -23,7 +23,7 @@ angular.module('egtGsaProto')
       vm.sort();
     },
     function (errorResponse) {
-        vm.error = errorResponse.statusText;
+        vm.error = errorResponse.statusText || 'Not Found';
       });
 
 
