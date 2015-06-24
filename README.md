@@ -1,60 +1,36 @@
 # Egt gsa proto [![Generated with](https://img.shields.io/badge/generated%20with-bangular-blue.svg?style=flat-square)](https://github.com/42Zavattas/generator-bangular)
 
+### URL 
+https://gsa-fda-proto.egt-labs.com/
 
+### Approach 
+Shortly after RFQ drop, eGT assembled a DevOps team of experienced engineers and architects, with members chosen for their experience designing web applications using automated testing frameworks, continuous integration and continuous deployment to build and deliver a prototype. Our lead, Jennifer Hinton facilitated a kick-off meeting to gain alignment on tech stack and creation of environment with necessary permissions, collaboration tools, sprint schedules and ceremonies, and determined the MVP challenge based on suggestions from SMEs and the team. We also established our definition of done.
 
+### Team
+[Landrew - TBD] 
+- overview of skills & insert a photo of the team 
 
-##Setting up the development environment
+### Process & Tools
+ The team followed the daily ceremony schedule with a DSU to coordinate efforts and remove blockers, a grooming session to slice and prioritize new functionality and to discuss mock-up designs created by the PO, and a sprint review/demos to view and provide suggestions to improve new functionality, provide updates about the infrastructure and testing roadmap, and to close out completed stories in GitHub.In addition to using GitHub for source control we put together a set of collaboration tools namely Google Drive, Slack, etc. (link to export from slack)
+ 
+### Tech Stack 
+We decided to adopt Node.js , Angular.js, etc as they offer maximum productivity in a prototyping effort of this nature. In addition we implemented continuous integration automating the entire build, test and deployment process further enhancing our productivity and accelerating our solution’s maturity. 
 
+Supporting Links
+- system architecture
+- configuration management
+- continuous monitoring
+- testing
+- deploy & install instructions 
 
-###One time setup
+### MVP 
+Our challenge was to prove a simple app using OpenFDA datasets to search, explore, & interact with data on medication recalls and adverse events. Our Product Owner developed this challenge after facilitating a design studio with our key SMEs to produce a key user persona for the app. After we identified our user persona, we developed a high level feature map illustrating our MVP concept with core functionality around search faceting and analytics around either adverse events or recalls. 
+Win theme: MVP definition – clear priorities drive towards iteration, small chunks, delivering small batches of valuable product; reference issues that indicate how we would address constraints....
 
-* Install node and npm
-* Install bower `npm install -g bower`
-* Install gulp `npm install -g gulp`
-
-###Each time project dependencies may have been changed
-
-Always run this on build server, becasue we don't know which commit might have changed package.json or bower.json
-
-* Update npm dependencies `npm install`
-* Update bower dependenceis `bower install`
-
-### Build tasks
-
-* Run application locally `gulp`
-* Build the production artifacts `gulp build` (Build artifacts located in `dist` folder)
-    * The artifacts in the `dist` folder can either be run in place or copied to the production machine. The contents 
-      of the folder can be run using the `npm start` command
-* Launch client and server tests, using Karma and Mocha, both by default. `gulp test [--client || --server]`
-
-
-
-# Development resources
-
-
-Angular JS: https://angularjs.org/
-
-Bootstrap: http://getbootstrap.com/
-
-UI Bootstrap (directives to ease integration of angular and bootstrap): https://angular-ui.github.io/bootstrap/
-
-
-1. Item 1
-  1. A corollary to the above item.
-  2. Yet another point to consider.
-2. Item 2
-  * A corollary that does not need to be ordered.
-    * This is indented four spaces, because it's two spaces further than the item above.
-    * You might want to consider making a new list.
-3. Item 3
-
-
-## Testing
-
-We're using Protractor for integration tests.
-
-https://angular.github.io/protractor/#/tutorial
-
-*One time* setup: `gulp e2e:update`
-
-Once webdriver is installed, the end-to-end tests can be run with `gulp e2e`
+### Our Agile Journey
+Photos of each day with a text caption. 
+-	Day 0 (Thursday) 
+-	Day 1 (Friday)
+-	Day 2-6 (Saturday – Wednesday)
+-	Day 7 (Thursday)
+-	Day 8 (Friday)
