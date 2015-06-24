@@ -5,7 +5,8 @@ describe('label-search route', function () {
   it('should have facets', function () {
     browser.get('/label-search');
 
-    expect(element.all(by.css('body > div.container.ng-scope > div.row.ng-scope > div.col-sm-4 > accordion > div > div:nth-child(1) > div > div.panel-heading > h4 > a > div')).first().getText()).toBe('Brand Name (100)');
+    var result = element.all(by.css('body > div.container.ng-scope > div.row.ng-scope > div.col-sm-4 > accordion > div > div:nth-child(1) > div > div.panel-heading > h4 > a > div')).first().getText();
+    expect(result).toBe('Brand Name (100)');
   });
 
   it('should show search results', function () {
@@ -16,7 +17,8 @@ describe('label-search route', function () {
     search_box.sendKeys(search);
     search_box.submit();
 
-    expect(element.all(by.css('#mainResults > ul.list-group > a:nth-child(1) > p:nth-child(2)')).first().getText()).toContain('Generic Name: ACETAMINOPHEN');
+    var result = element.all(by.repeater('row in vm.resp.data.results')).get(0).getText();
+    expect(result).toContain('ACETAMINOPHEN');
   });
 
   it('should display an error with no results', function () {
