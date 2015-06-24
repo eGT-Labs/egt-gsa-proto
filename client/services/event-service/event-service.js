@@ -56,10 +56,29 @@ angular.module('egtGsaProto')
       })
     }
 
+    function overallFrequencyCount(inputType, outputType, countType) {
+      return runQuery({
+        search: '_exists_:(' + outputType + ') AND _exists_:(' + inputType + ')',
+        count: countType
+      }).then(function (resp) {
+
+        return resp.data.results;
+      })
+    }
+
 
     function leadingOutputs(inputType, outputType, inputValue) {
       return runQuery({
         search: '_exists_:(' + outputType + ') AND ' + inputType + ':("' + inputValue + '")',
+        count: outputType
+      }).then(function (resp) {
+        return resp.data.results;
+      })
+    }
+
+    function leadingCounts(inputType, outputType) {
+      return runQuery({
+        search: '_exists_:(' + outputType + ') AND _exists_:(' + inputType + ')',
         count: outputType
       }).then(function (resp) {
         return resp.data.results;
@@ -88,6 +107,9 @@ angular.module('egtGsaProto')
       var outcomeCountPromise = termFrequencyCount(inputType, outputType, inputValue, 'patient.reaction.reactionoutcome');
       var weightCountPromise = termFrequencyCount(inputType, outputType, inputValue, 'patient.patientweight');
 
+      var normalAgeCountPromise = overallFrequencyCount(inputType, outputType, 'patient.patientonsetage');
+      var normalWeightCountPromise = overallFrequencyCount(inputType, outputType, 'patient.patientweight');
+
 
       var leadingOutputsPromise = leadingOutputs(inputType, outputType, inputValue)
         .then(function (leadingSideEffects) {
@@ -106,7 +128,8 @@ angular.module('egtGsaProto')
         });
 
       var result = $q.all(
-        [inputEventCountPromise, totalEventCountPromise, leadingOutputsPromise, genderCountPromise, ageCountPromise, outcomeCountPromise, weightCountPromise]
+        [inputEventCountPromise, totalEventCountPromise, leadingOutputsPromise, genderCountPromise, ageCountPromise,
+          outcomeCountPromise, weightCountPromise, normalAgeCountPromise, normalWeightCountPromise]
       ).then(function (resolvedPromises) {
           var inputEventCount = resolvedPromises[0];
           var totalEventCount = resolvedPromises[1];
@@ -130,7 +153,9 @@ angular.module('egtGsaProto')
             genderCount: resolvedPromises[3],
             ageCount: resolvedPromises[4],
             outcomeCount: resolvedPromises[5],
-            weightCount: resolvedPromises[6]
+            weightCount: resolvedPromises[6],
+            normalAgeCount: resolvedPromises[7],
+            normalWeightCount: resolvedPromises[8]
           };
         });
 

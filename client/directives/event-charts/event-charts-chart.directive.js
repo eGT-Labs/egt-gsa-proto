@@ -66,6 +66,10 @@ angular.module('egtGsaProto')
       }
     }
 
+    function formatPercent(number) {
+      return (Math.round(number * 1000) / 10) + '%';
+    }
+
 
     function buildPieChart(rawData, termMappings) {
 
@@ -118,31 +122,16 @@ angular.module('egtGsaProto')
 
 
 
-    function buildAgeChart(ageCount) {
+    function buildAgeChart(ageCount, normalAgeCount) {
 
-      //there are some outliers with outrageously old individuals.
-      ageCount = _.filter(ageCount, function (term) {
-        return term.term < 100;
-      });
+      var bucketSize = 5;
 
-
-      var processed = {};
-
-      //the data has some fractional ages. Round all ages down to integers and combine them.
-      angular.forEach(ageCount, function (term) {
-        var ageStr = '' + (5 * Math.floor(term.term / 5));
-        var count = term.count;
-        if (processed[ageStr]) {
-          processed[ageStr] += count;
-        } else {
-          processed[ageStr] = count;
-        }
-      });
+      var data = normalizeData(ageCount, normalAgeCount, 100, bucketSize);
 
 
       //Documentation of options: https://developers.google.com/chart/interactive/docs/gallery/scatterchart
       return {
-        "type": "ColumnChart",
+        "type": "ComboChart",
         "displayed": true,
         "data": {
           "cols": [
@@ -154,36 +143,52 @@ angular.module('egtGsaProto')
             },
             {
               "id": "count",
-              "label": "Count",
+              "label": "Frequency",
+              "type": "number",
+              "p": {}
+            },
+            {
+              "id": "normal",
+              "label": "Normal",
               "type": "number",
               "p": {}
             }
           ],
-          "rows": _.map(processed, function (count, age) {
+          "rows": _.map(data, function (row) {
+            var age = row.term;
+
             return {
               "c": [
                 {
-                  "v": age,
-                  'f': 'Age: ' + age + '-' + (parseInt(age) + 5)
+                  "v": age + (bucketSize / 2),
+                  'f': age + '-' + (age + 5) + ' years old'
                 },
                 {
-                  "v": count,
-                  'f': 'Count: ' + count
+                  "v": row.count,
+                  'f': formatPercent(row.count)
+                } ,
+                {
+                  "v": row.normal,
+                  'f': formatPercent(row.normal)
                 }
               ]
             };
           })
         },
         "options": {
+          focusTarget: 'category',
           "isStacked": "true",
           "fill": 20,
           "displayExactValues": true,
           legend: {
             position: 'none'
           },
+          seriesType: 'bars',
+          series: {1: {type: "line"}},
           titlePosition: 'none',
           theme: 'maximized',
           "vAxis": {
+            format: 'percent',
             "gridlines": {
               //"count": 10
             }
@@ -193,34 +198,52 @@ angular.module('egtGsaProto')
       }
     }
 
+    function normalizeData(dataCount, normalCount, max, bucketSize) {
 
-    function buildWeightChart(weightCount) {
+      function buildDistribution(input) {
+        var dist = _(input).filter(function(x) {
+          return x.term < max;
+        }).groupBy(function(x) {
+          return '' + (bucketSize * Math.floor(x.term / bucketSize))
+        }).mapValues(function(x) {
+          return _(x).pluck('count').sum();
+        }).value();
 
-      //there are some outliers with unbelievably heavy individuals.
-      weightCount = _.filter(weightCount, function (term) {
-        return term.term < 300;
-      });
+        var count = _(dist).values().sum();
+
+        return _(dist).mapValues(function(x) {
+          return x / count;
+        }).value();
+
+      }
 
 
-      var processed = {};
+      var dataDist = buildDistribution(dataCount);
+      var normalDist = buildDistribution(normalCount);
 
-      //the data has some fractional ages. Round all ages down to integers and combine them.
-      angular.forEach(weightCount, function (term) {
-        var weightStr = '' + (5 * Math.floor(term.term / 5));
-        var count = term.count;
-        if (processed[weightStr]) {
-          processed[weightStr] += count;
-        } else {
-          processed[weightStr] = count;
+      var terms = _.union(_.keys(dataDist), _.keys(normalDist));
+
+      var result = _.map(terms, function(term) {
+        return {
+          term: parseInt(term),
+          count: dataDist[term] || 0,
+          normal: normalDist[term] || 0
         }
       });
 
-      console.log(processed);
+      return _.sortBy(result, 'term');
+    }
+
+
+    function buildWeightChart(weightCount, normalWeightCount) {
+
+      var bucketSize = 5;
+      var data = normalizeData(weightCount, normalWeightCount, 200, bucketSize);
 
 
       //Documentation of options: https://developers.google.com/chart/interactive/docs/gallery/scatterchart
       return {
-        "type": "ColumnChart",
+        "type": "ComboChart",
         "displayed": true,
         "data": {
           "cols": [
@@ -232,14 +255,20 @@ angular.module('egtGsaProto')
             },
             {
               "id": "count",
-              "label": "Count",
+              "label": "Frequency",
+              "type": "number",
+              "p": {}
+            },
+            {
+              "id": "normal",
+              "label": "Normal",
               "type": "number",
               "p": {}
             }
           ],
-          "rows": _.map(processed, function (count, weight) {
+          "rows": _.map(data, function (row) {
 
-            var minKg = parseInt(weight);
+            var minKg = row.term;
             var maxKg = minKg + 5;
 
             var minLb = Math.round(2.20462 * minKg);
@@ -250,27 +279,34 @@ angular.module('egtGsaProto')
             return {
               "c": [
                 {
-                  "v": weight,
+                  "v": minKg + (bucketSize / 2),
                   'f': weightStr
                 },
                 {
-                  "v": count,
-                  //'f': 'Count: ' + count
+                  "v": row.count,
+                  'f': formatPercent(row.count)
+                }, {
+                  "v": row.normal,
+                  'f': formatPercent(row.normal)
                 }
               ]
             };
           })
         },
         "options": {
+          focusTarget: 'category',
           "isStacked": "true",
           "fill": 20,
           "displayExactValues": true,
           legend: {
             position: 'none'
           },
+          seriesType: 'bars',
+          series: {1: {type: "line"}},
           titlePosition: 'none',
           theme: 'maximized',
           "vAxis": {
+            format: 'percent',
             "gridlines": {
               //"count": 10
             }
@@ -309,7 +345,7 @@ angular.module('egtGsaProto')
               {output: "Unknown", input: 0},
             ]);
 
-            scope.ageChart = buildAgeChart(data.ageCount);
+            scope.ageChart = buildAgeChart(data.ageCount, data.normalAgeCount);
 
             scope.outcomeChart = buildPieChart(data.outcomeCount, [
               {output: 'Recovered/resolved', input: 1},
@@ -320,7 +356,7 @@ angular.module('egtGsaProto')
               {output: 'Unknown', input: 6}
             ]);
 
-            scope.weightChart = buildWeightChart(data.weightCount);
+            scope.weightChart = buildWeightChart(data.weightCount, data.normalWeightCount);
           }
         });
 
