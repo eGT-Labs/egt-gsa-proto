@@ -14,7 +14,7 @@ Shortly after RFQ drop, eGT assembled a DevOps team of experienced engineers and
 - overview of skills & insert a photo of the team 
 
 ### Process & Tools
- The team followed the daily ceremony schedule with a DSU to coordinate efforts and remove blockers, a grooming session to slice and prioritize new functionality and to discuss mock-up designs created by the PO, and a sprint review/demos to view and provide suggestions to improve new functionality, provide updates about the infrastructure and testing roadmap, and to close out completed stories in GitHub.In addition to using GitHub for source control we put together a set of collaboration tools namely Google Drive, Slack, etc. (link to export from slack)
+ The team followed the daily ceremony schedule with a DSU to coordinate efforts and remove blockers, a grooming session to slice and prioritize new functionality and to discuss [mock-up designs] (https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docs/MVP/20150620_123456.jpg) created by the PO, and a sprint review/demos to view and provide suggestions to improve new functionality, provide updates about the infrastructure and testing roadmap, and to close out completed stories in GitHub.In addition to using GitHub for source control we put together a set of collaboration tools namely Google Drive, Slack, etc. (link to export from slack)
  
 ### Tech Stack 
 We decided to adopt Node.js , Angular.js, etc as they offer maximum productivity in a prototyping effort of this nature. In addition we implemented continuous integration automating the entire build, test and deployment process further enhancing our productivity and accelerating our solution’s maturity. 
