@@ -126,7 +126,8 @@
 						  <span ng-show="row.openfda.product_type[0].indexOf('OTC')>-1" style="cursor: pointer; font-size: 15px;" class="badge alert-info" tooltip="{{row.openfda.product_type[0]}}">
                 OTC
 						  </span>
-              <span ng-if=row.boxed_warning style="cursor: pointer; font-size: 15px;" class="badge alert-danger pull-right" popover-placement="top" popover={{row.boxed_warning[0]}}>
+              <span ng-if=row.boxed_warning style="cursor: pointer; font-size: 15px;" class="badge alert-danger pull-right" popover-placement="bottom"
+                    popover="{{row.boxed_warning[0] | cut:true:300:' ...'}}">
                 Boxed Warning
 						  </span>
             </h4>

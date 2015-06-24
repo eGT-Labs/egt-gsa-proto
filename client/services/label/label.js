@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('egtGsaProto')
-  .factory('LabelFactory', function ($http) {
+  .factory('LabelFactory', function (ApiService) {
 
 
     function buildQuery(search) {
@@ -14,12 +14,10 @@ angular.module('egtGsaProto')
       var coreFields = ['openfda.brand_name', 'openfda.generic_name', 'openfda.substance_name', 'indications_and_usage', 'description'];
 
 
-
-
       //add the raw fulltext if it exists
       if (search.fulltext) {
         if (!search.useAllFields || search.useAllFields === 'false') {
-          var fulltextParts = _.map(coreFields, function(field) {
+          var fulltextParts = _.map(coreFields, function (field) {
             return field + ':(' + search.fulltext + ')'
           });
 
@@ -85,17 +83,15 @@ angular.module('egtGsaProto')
        */
       load: function (id) {
 
-        var query = 'search=openfda.spl_id:"' + id + '"';
-
-
-        return $http.get('/api/proxy/drug/label.json?' + query)
-          .then(function (resp) {
-            return resp.data.results[0];
-          });
+        return ApiService('/api/proxy/drug/label.json', {
+          search: 'openfda.spl_id:"' + id + '"'
+        }).then(function (resp) {
+          return resp.data.results[0];
+        });
       },
 
       runQuery: function (params) {
-        return $http.get('/api/proxy/drug/label.json', {params: params})
+        return ApiService('/api/proxy/drug/label.json', params);
       }
 
     };

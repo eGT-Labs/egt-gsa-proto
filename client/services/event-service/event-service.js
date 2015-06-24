@@ -1,15 +1,13 @@
 'use strict';
 
 angular.module('egtGsaProto')
-  .factory('EventService', function ($http, $q) {
+  .factory('EventService', function ($q, ApiService) {
 
 
     var ERROR_SENTINEL = "ERROR";
 
     function runQuery(params) {
-
-      return $http.get('/api/proxy/drug/event.json', {params: params});
-
+      return ApiService('/api/proxy/drug/event.json', params);
     }
 
 
@@ -113,7 +111,7 @@ angular.module('egtGsaProto')
 
       var leadingOutputsPromise = leadingOutputs(inputType, outputType, inputValue)
         .then(function (leadingSideEffects) {
-          var promises = leadingSideEffects.slice(0, 20).map(function (output) {
+          var promises = leadingSideEffects.slice(0, 50).map(function (output) {
             return totalEventsForOutput(inputType, outputType, output.term).then(function (totalCount) {
               return {
                 term: output.term,

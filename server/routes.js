@@ -12,16 +12,18 @@ module.exports = function (app) {
     decorateRequest: function (req) {
       //IF the server has been configured with an OpenFDA API key, attach the key to each proxied request.
       if (config.openFdaApiKey) {
+        var keys = config.openFdaApiKey.split(',');
+        var key = keys[Math.floor(keys.length * Math.random())]; //randomly choose a key from the keyset
         var pathObj = url.parse(req.path, true);
         delete pathObj.search;
-        pathObj.query['api_key'] = config.openFdaApiKey;
+        pathObj.query['api_key'] = key;
         req.path = url.format(pathObj);
       }
       return req
     },
     intercept: function (responseIn, data, req, responseOut, callback) {
       if (responseIn.statusCode !== 429) { //Don't tell the client to cache the "TOO MANY REQUESTS" error
-        console.log(responseIn.statusCode)
+        console.log('exceeded API limit')
         responseOut.set('cache-control', 'max-age=86400');
       }
       callback(null, data);
