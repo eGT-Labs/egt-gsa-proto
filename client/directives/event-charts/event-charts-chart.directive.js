@@ -47,6 +47,9 @@ angular.module('egtGsaProto')
           legend: {
             position: 'none'
           },
+          pointShape: 'circle',
+          pointSize: 10,
+          colors: ['purple'],
           titlePosition: 'none',
           theme: 'maximized',
           "vAxis": {
