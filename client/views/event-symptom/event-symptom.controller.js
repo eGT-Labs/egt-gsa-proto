@@ -20,9 +20,7 @@ angular.module('egtGsaProto')
       vm.adverseEvents = result;
       vm.sort();
     }, function (errorResponse) {
-      console.log("error!");
-      console.log(errorResponse);
-      vm.error = 'There are no events involving substance';
+      vm.error = errorResponse.statusText;
     });
 
 

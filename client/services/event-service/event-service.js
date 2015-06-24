@@ -30,13 +30,16 @@ angular.module('egtGsaProto')
     }
 
     function totalEventsForOutput(inputType, outputType, outputValue) {
-
-
       return runQuery({
         search: outputType + ':"' + outputValue + '" AND _exists_:(' + inputType + ')',
         limit: 1
       }).then(function (resp) {
-          return resp.data.meta.results.total;
+          try {
+            return resp.data.meta.results.total;
+          } catch (e) {
+            console.log('error: '+  e);
+            return ERROR_SENTINEL;
+          }
         }, function (err) {
           console.log('Could not process PRR request for value: ' + outputValue + '. (Most likely due to special characters');
           return ERROR_SENTINEL;

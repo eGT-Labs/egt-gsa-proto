@@ -1,3 +1,7 @@
+<section id="loading" ng-if="!vm.error && !vm.adverseEvents">
+  Loading...
+</section>
+
 <section id="error" ng-if="vm.error">
  	{{vm.error}}
   <strong> {{vm.name}} ! </strong>
@@ -6,7 +10,7 @@
 <section id="mainResults" ng-if="vm.adverseEvents" >
   <h2>
     Drug:
-    <a href="/label-search?facet.substance_name={{vm.name}}"><strong>{{vm.name}}</strong></a>
+    <a href="/label-search?facet.substance_name={{vm.name}}" tooltip="List Drug labels containing {{vm.name}}"><strong>{{vm.name}}</strong></a>
   </h2>
   <h3>
     Reported in
