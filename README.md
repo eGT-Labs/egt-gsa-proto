@@ -3,6 +3,9 @@
 ### URL 
 https://gsa-fda-proto.egt-labs.com/
 
+### Instructions to run locally
+< todo>
+
 ### Approach 
 Shortly after RFQ drop, eGT assembled a DevOps team of experienced engineers and architects, with members chosen for their experience designing web applications using automated testing frameworks, continuous integration and continuous deployment to build and deliver a prototype. Our lead, Jennifer Hinton facilitated a kick-off meeting to gain alignment on tech stack and creation of environment with necessary permissions, collaboration tools, sprint schedules and ceremonies, and determined the MVP challenge based on suggestions from SMEs and the team. We also established our definition of done.
 
