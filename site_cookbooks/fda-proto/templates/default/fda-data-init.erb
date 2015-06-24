@@ -1,0 +1,40 @@
+#!/bin/sh
+# chkconfig: 35 85 15
+# description: FDAData API
+
+
+. /etc/rc.d/init.d/functions
+
+WORKING_DIR="<%= @details[:dir] %>"
+SERVICE_NAME="<%= @details[:service] %> API"
+
+do_start()
+{
+  echo -n $"Starting $SERVICE_NAME: "
+	cd $WORKING_DIR
+
+	export OPEN_FDA_API_KEY=<%= node.app.apikey %> ; export PORT=<%= node.app.port %>; forever start /apps/egt-gsa-proto/dist/server/server.js
+
+}
+do_stop()
+{
+  echo -n $"Stopping $SERVICE_NAME: "
+	cd $WORKING_DIR
+	forever stopall
+}
+
+case "$1" in
+        start)
+                do_start
+                ;;
+        stop)
+                do_stop
+                ;;
+        restart)
+                do_stop
+                do_start
+                ;;
+        *)
+                echo "Usage: $0 {start|stop|restart|clean}"
+                return 0
+esac
