@@ -6,7 +6,7 @@ angular.module('egtGsaProto')
   .factory('ApiService', function ($http, $q, $timeout) {
 
 
-    var MAX_TRIES = 4;
+    var MAX_TRIES = 5;
 
     function doWithRetries(service, params, timesTried) {
       return $http.get(service, {params: params})
@@ -19,7 +19,7 @@ angular.module('egtGsaProto')
               $timeout(function () {
                 console.log('tried loading ' + timesTried);
                 doWithRetries(service, params, timesTried + 1).then(resolve, reject);
-              }, timesTried * 2000 * Math.random());
+              }, (500 * timesTried) +  1000 * Math.random());
             });
           } else {
             return err;

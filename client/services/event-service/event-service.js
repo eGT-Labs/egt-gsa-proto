@@ -30,21 +30,13 @@ angular.module('egtGsaProto')
     }
 
     function totalEventsForOutput(inputType, outputType, outputValue) {
-      return runQuery({
-        search: outputType + ':"' + outputValue + '" AND _exists_:(' + inputType + ')',
-        limit: 1
-      }).then(function (resp) {
-          try {
-            return resp.data.meta.results.total;
-          } catch (e) {
-            console.log('error: '+  e);
-            return ERROR_SENTINEL;
-          }
-        }, function (err) {
-          console.log('Could not process PRR request for value: ' + outputValue + '. (Most likely due to special characters');
-          return ERROR_SENTINEL;
-        }
-      )
+      return ApiService('/api/countEvents', {
+        type: outputType,
+        value: outputValue,
+        otherType: inputType
+      }).then(function(resp) {
+        return resp.data.count;
+      });
     }
 
     function termFrequencyCount(inputType, outputType, inputValue, countType) {
@@ -114,7 +106,7 @@ angular.module('egtGsaProto')
 
       var leadingOutputsPromise = leadingOutputs(inputType, outputType, inputValue)
         .then(function (leadingSideEffects) {
-          var promises = leadingSideEffects.slice(0, 30).map(function (output) {
+          var promises = leadingSideEffects.slice(0, 50).map(function (output) {
             return totalEventsForOutput(inputType, outputType, output.term).then(function (totalCount) {
               return {
                 term: output.term,
@@ -124,7 +116,7 @@ angular.module('egtGsaProto')
             })
           });
           return $q.all(promises).then(function (list) {
-            return _.reject(list, {totalCount: ERROR_SENTINEL});
+            return _.reject(list, {totalCount: 0});
           });
         });
 

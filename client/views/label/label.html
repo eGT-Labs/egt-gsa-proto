@@ -6,7 +6,7 @@
 	<h1>
 		{{vm.label.openfda.brand_name[0]}} <span ng-if=vm.label.boxed_warning
 			style="cursor: pointer; font-size: 15px;" class="badge alert-danger"
-			popover-placement="top" popover={{vm.label.boxed_warning[0]}}>
+			popover-placement="bottom" popover="{{vm.label.boxed_warning[0] | cut:true:300:' ...'}}">
 			Boxed Warning </span>
 	</h1>
 	<related-recalls id="vm.label.openfda.spl_id"></related-recalls>
