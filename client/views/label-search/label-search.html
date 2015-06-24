@@ -117,7 +117,7 @@
 				<div data-ng-repeat="row in vm.resp.data.results" class="thumbnail row">
 					<div class="col-md-8">
 						<h4  ng-repeat="brand_name in row.openfda.brand_name track by $index">
-							<a style="cursor: pointer" href="/label/{{row.openfda.spl_id[0]}}">
+							<a style="cursor: pointer" href="/label/{{row.openfda.spl_id[0]}}" tooltip="View Label Details">
 								<strong>{{brand_name}}</strong>
               </a>
               <span ng-show="row.openfda.product_type[0].indexOf('PRESCRIPTION')>-1" style="cursor: pointer; font-size: 15px;" class="badge alert-info" tooltip="{{row.openfda.product_type[0]}}">
@@ -141,8 +141,10 @@
               Ingredients:
 							<span ng-repeat="substance in row.openfda.substance_name track by $index">
 								<a style="cursor: pointer" href="/label-search?facet.substance_name={{substance}}">
-                  {{substance}} <span ng-show='$index < row.openfda.substance_name.length-1'>,</span>
+                  {{substance}}
                 </a>
+                <a href="/event/substance/{{substance}}" class="h3" tooltip="Show adverse events" style="color: red">☤</a>
+                <span ng-show='$index < row.openfda.substance_name.length-1'>,</span>
 							</span>
             </p>
             <p ng-repeat="manufacturer_name in row.openfda.manufacturer_name track by $index">
