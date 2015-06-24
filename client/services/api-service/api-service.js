@@ -1,6 +1,6 @@
 /**
  * This service retries the OpenFDA service invocation after a delay if the response is a 429 "too many requests error.
- * It waits a random amount of time (on average 2 seconds) before retrying the request again.
+ * It waits a random amount of time (on average 4 seconds) before retrying the request again.
  */
 angular.module('egtGsaProto')
   .factory('ApiService', function ($http, $q, $timeout) {
@@ -15,7 +15,7 @@ angular.module('egtGsaProto')
               $timeout(function () {
                 console.log('retrying ' + retries + ' more times');
                 doWithRetries(service, params, retries - 1).then(resolve, reject);
-              }, 2000 * Math.random());
+              }, 4000 * Math.random());
             });
           } else {
             return err;
@@ -25,7 +25,7 @@ angular.module('egtGsaProto')
 
 
     return function (service, params) {
-      return doWithRetries(service, params, 3);
+      return doWithRetries(service, params, 5);
     }
 
   });

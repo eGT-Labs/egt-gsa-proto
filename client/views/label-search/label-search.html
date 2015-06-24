@@ -72,7 +72,7 @@
         <accordion-heading>
           <div>
             {{facet.label}}
-            <small ng-if="!facet.isOpen">({{facet.data.length}})</small>
+            <small ng-if="!facet.isOpen">({{facet.data.length + (facet.data.length >= 100 ? '+' : '')}})</small>
             <span class="glyphicon pull-right"
                   ng-class="{'glyphicon-resize-full': !facet.isOpen, 'glyphicon-resize-small': facet.isOpen}"></span>
           </div>
