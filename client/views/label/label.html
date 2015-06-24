@@ -3,8 +3,11 @@
   <div ng-switch-when="error">Not found!</div>
   <div ng-switch-default>
 
-    <h1>{{vm.label.openfda.brand_name[0]}}</h1>
-
+    <h1>{{vm.label.openfda.brand_name[0]}}
+	  <span ng-if=vm.label.boxed_warning style="cursor: pointer; font-size: 15px;" class="badge alert-danger" popover-placement="top" popover={{vm.label.boxed_warning[0]}}>
+             Boxed Warning 
+       </span>
+     </h1>   
     <related-recalls id="vm.label.openfda.spl_id"></related-recalls>
 
     <h2>OpenFDA fields</h2>
