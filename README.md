@@ -4,7 +4,27 @@
 https://gsa-fda-proto.egt-labs.com/
 
 ### Instructions to run locally
-< todo - Eric will handle>
+###One time setup
+
+* Install node and npm
+* Install bower `npm install -g bower`
+* Install gulp `npm install -g gulp`
+
+###Each time project dependencies may have been changed
+
+Always run this on build server, becasue we don't know which commit might have changed package.json or bower.json
+
+* Update npm dependencies `npm install`
+* Update bower dependenceis `bower install`
+
+### Build tasks
+
+* Run application locally `gulp`
+* Build the production artifacts `gulp build` (Build artifacts located in `dist` folder)
+    * The artifacts in the `dist` folder can either be run in place or copied to the production machine. The contents 
+      of the folder can be run using the `npm start` command
+* Launch client and server tests, using Karma and Mocha, both by default. `gulp test [--client || --server]`
+
 
 ### [Minimal Viable Product (MVP) Challenge] (https://github.com/eGT-Labs/egt-gsa-proto/wiki/%234---MVP) 
 Our challenge was to develop and deploy a simple app using OpenFDA datasets to search, explore, & interact with data on drug labeling and adverse events. Core functionality was focused on faceted search and analytics on adverse events. Team eGT was developed the application using Scrum, enhancing the application over a number of iterations.
