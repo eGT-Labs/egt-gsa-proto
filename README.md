@@ -58,14 +58,12 @@ Below is a  re-cap to evidence on how we met the requirements for Attachment E:
 - [Amazon Web Services](https://cloud.githubusercontent.com/assets/4334183/8358734/f2cc0d02-1b2f-11e5-9c30-134fc1b4db96.png) as our Infrastructure as a Service Provider
 - [Jenkins](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#continuous-integration) for Continuous Integration
 - [Nagios](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#continuous-monitoring) for Continuous Monitoring
-- [Protractor](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#testing) for Unit Testing (Open Source - #8) 
+- [Protractor](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#testing) for Unit Testing 
 - [API]()
-
-
 
 For more information, see [Tech Stack](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack).
 
-### (Process & Tools](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%232---Processes-&-Tools)
+### [Process & Tools](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%232---Processes-&-Tools)
  Our lead, Jennifer Hinton, facilitated a kick-off meeting to gain alignment on the tech stack and creation of the environment with necessary permissions, collaboration tools, sprint schedules and ceremonies, and determined the MVP challenge based on suggestions from SMEs and the team. We also established our definition of done. 
  
 The team followed a daily ceremony schedule, including a Daily Stand Up to coordinate efforts and remove blockers, a grooming session to slice and prioritize new functionality and to discuss mock-up designs created by the Product Owner, and a sprint review/demo to view and provide suggestions to improve new functionality, provide updates about the infrastructure and testing roadmap, and to close out completed stories in GitHub. In addition to using GitHub for source control and our backlog, we utilized a set of collaboration tools, such as Google Drive, Slack, and JoinMe.
