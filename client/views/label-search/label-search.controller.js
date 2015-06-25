@@ -22,10 +22,10 @@ angular.module('egtGsaProto')
         product_type: {label: "Product Type", data: null},
         route: {label: "Route", data: null},
         substance_name: {label: "Substance", data: null},
-        pharm_class_cs: {label: "Chemical structure", data: null},
-        pharm_class_moa: {label: "Mechanism of action", data: null},
-        pharm_class_epc: {label: "Established pharmacologic class", data: null},
-        pharm_class_pe: {label: "Physiologic effect", data: null}
+        pharm_class_cs: {label: "Chemical Structure", data: null},
+        pharm_class_moa: {label: "Mechanism of Action", data: null},
+        pharm_class_epc: {label: "Established Pharmacologic Class", data: null},
+        pharm_class_pe: {label: "Physiologic Effects", data: null}
       }
     });
 
