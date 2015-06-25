@@ -3,6 +3,27 @@
 angular.module('egtGsaProto')
   .directive('eventCharts', function (numberFilter) {
 
+    function buildRRTooltipHtml(dataPoint) {
+      console.log(dataPoint);
+
+      var percent = numberFilter(100 * dataPoint.frequency, 2) + '%';
+      var otherPercent = numberFilter(100 * dataPoint.frequencyOfOther, 2) + '%';
+
+      var reportingRatio = numberFilter(dataPoint.reportingRatio, 2);
+
+      var verb = (dataPoint.reportingRatio > 1) ? 'more' : 'as';
+
+      return [
+        '<span class="h4"><strong>' + dataPoint.term + '</strong></span>',
+        '',
+        'Present in <strong>' + percent + '</strong> of ' + dataPoint.inputTerm + ' events',
+        '<small>Present in ' + otherPercent + ' of all other events</small>',
+        'The Proportional Reporting Ratio is: <strong>' + reportingRatio + '</strong>',
+        '<span class="small" style="color:purple">(Click the dot to view ' + dataPoint.term + ' adverse events)</span>'
+      ].join('<br>');
+      //return dataPoint.term + '<strong> info </strong>'
+    }
+
     function buildReportingRatio(leadingOutputs) {
       //Documentation of options: https://developers.google.com/chart/interactive/docs/gallery/scatterchart
       return {
@@ -21,7 +42,12 @@ angular.module('egtGsaProto')
               "label": "Proportional Reporting Ratio",
               "type": "number",
               "p": {}
-            }
+            },
+            {
+              'id': 'info',
+              'type': 'string',
+              'role': 'tooltip',
+              'p': {'html': true}}
           ],
           "rows": _.map(leadingOutputs, function (row) {
             return {
@@ -32,9 +58,9 @@ angular.module('egtGsaProto')
                 },
                 {
                   "v": row.reportingRatio,
-                  'f': '(' + numberFilter(row.reportingRatio, 3) + ' × more frequent)'
+                  'f': '(' + numberFilter(row.reportingRatio, 3) + ' × <strong>more</strong> frequent)'
                 }, {
-                  "f": row.term
+                  "f": buildRRTooltipHtml(row)
                 }
               ]
             };
@@ -52,7 +78,11 @@ angular.module('egtGsaProto')
           colors: ['purple'],
           titlePosition: 'none',
           theme: 'maximized',
+          tooltip: {
+            isHtml: true
+          },
           "vAxis": {
+            format: '#,###.## x',
             //"title": "Reporting Ratio",
             "gridlines": {
               //"count": 10
@@ -109,6 +139,11 @@ angular.module('egtGsaProto')
               ]
             }
           })
+        },
+        options: {
+          legend: {
+            position: 'labeled'
+          }
         }
       };
     }

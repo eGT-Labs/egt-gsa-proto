@@ -36,7 +36,6 @@ angular.module('egtGsaProto')
       var field = ['facet', facetName].join('.');
 
       if (vm.search[field]) {
-        console.log(facetName + ' is selected');
         return false; //Don't show the facet as available if it's selected.
       }
 
@@ -74,7 +73,6 @@ angular.module('egtGsaProto')
 
     vm.removeFacet = function(facetName) {
       var field = ['facet', facetName].join('.');
-      console.log('deleting ' + field);
       delete vm.search[field];
       vm.newSearch();
     };
@@ -131,7 +129,6 @@ angular.module('egtGsaProto')
             }
           }
         }, function (errorResponse) {
-          console.log("error!");
           console.log(errorResponse);
           vm.error = errorResponse.data;
         }

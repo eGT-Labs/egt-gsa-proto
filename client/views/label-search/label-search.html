@@ -105,7 +105,7 @@
     </section>
 
     <section id="mainResults" ng-if="vm.resp" >
-      <h4><strong>{{vm.resp.data.meta.results.total | number}}</strong> drug labels match your search</h4>
+      <h4><strong>{{(vm.resp.data.meta.results.total || 0) | number}}</strong> drug labels match your search</h4>
 
       <pagination
         boundary-links="true" class="pagination-sm" max-size="10"
