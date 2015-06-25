@@ -22,6 +22,8 @@
       item: egt-labs-wildcard-cert
     - vault: ssl
       item: egt-labs-wildcard-key
+    - vault: catalyst
+      item: api
     ingress_rules:
     - port: 80
       lbs:
@@ -53,6 +55,13 @@
     dependencies:
     - name: app
       type: server_pool
+    ingress_rules:
+    - port: 80
+      hosts:
+      - 23.30.31.61/32
+    - port: 443
+      hosts:
+      - 23.30.31.61/32
     vault_access:
     - vault: gsa_ssh_keys
       item: egt-gsa-proto-github
@@ -62,13 +71,10 @@
       item: egt-labs-wildcard-cert
     - vault: ssl
       item: egt-labs-wildcard-key
-    ingress_rules:
-    - port: 80
-      hosts:
-      - 0.0.0.0/0
-    - port: 443
-      hosts:
-      - 0.0.0.0/0
+    - vault: catalyst
+      item: api
+    - vault: catalyst
+      item: jenkins
   loadbalancers:
   - name: app
     dns_records:

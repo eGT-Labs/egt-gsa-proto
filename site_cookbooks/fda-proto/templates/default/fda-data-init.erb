@@ -26,7 +26,7 @@ do_start()
 
 	/usr/bin/forever stopall
 
-	export OPEN_FDA_API_KEY=<%= node.app.apikey %> ; export PORT=<%= node.app.port %>; /usr/bin/forever start $WORKING_DIR/dist/server/server.js
+	export OPEN_FDA_API_KEY=<%= @details[:apikey] %> ; export PORT=<%= node.app.port %>; /usr/bin/forever start $WORKING_DIR/dist/server/server.js
 
 }
 do_stop()
