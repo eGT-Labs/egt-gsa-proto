@@ -10,7 +10,7 @@ var LRU = require("lru-cache");
 
 var eventCountCache = LRU({
   max: 1000000,
-  maxAge: 1000 * 60 * 60 * 24 //one day
+  maxAge: 1000 * 60 * 60 * 24  * 7 //one week
 });
 
 

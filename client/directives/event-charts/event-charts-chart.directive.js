@@ -4,17 +4,22 @@ angular.module('egtGsaProto')
   .directive('eventCharts', function (numberFilter) {
 
     function buildRRTooltipHtml(dataPoint) {
+      console.log(dataPoint);
 
       var percent = numberFilter(100 * dataPoint.frequency, 2) + '%';
+      var otherPercent = numberFilter(100 * dataPoint.frequencyOfOther, 2) + '%';
+
       var reportingRatio = numberFilter(dataPoint.reportingRatio, 2);
 
       var verb = (dataPoint.reportingRatio > 1) ? 'more' : 'as';
 
       return [
         '<span class="h4"><strong>' + dataPoint.term + '</strong></span>',
-        'Frequency of correlation: <strong><em></em>' + percent + '</em></strong>',
-        'This correlation occurs <strong><em>' + reportingRatio + '</em></strong> times ' + verb  + ' common than random chance predicts.',
-        '<span class="small" style="color:purple">(Click the dot to view all events)</span>'
+        '',
+        'Present in <strong>' + percent + '</strong> of ' + dataPoint.inputTerm + ' events',
+        '<small>Present in ' + otherPercent + ' of all other events</small>',
+        'The Proportional Reporting Ratio is: <strong>' + reportingRatio + '</strong>',
+        '<span class="small" style="color:purple">(Click the dot to view ' + dataPoint.term + ' adverse events)</span>'
       ].join('<br>');
       //return dataPoint.term + '<strong> info </strong>'
     }
@@ -134,6 +139,11 @@ angular.module('egtGsaProto')
               ]
             }
           })
+        },
+        options: {
+          legend: {
+            position: 'labeled'
+          }
         }
       };
     }
