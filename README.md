@@ -39,9 +39,9 @@ Our challenge was to develop and deploy a simple app using OpenFDA datasets to s
 
 ### [Technical Stack] (https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack) 
 Team eGT chose to leverage over five modern, open source tools & frameworks as they offer maximum productivity in a prototyping effort of this nature. We implemented continuous integration automating the entire build, test and deployment process further enhancing our productivity and accelerating our solution’s maturity.  Below is a quick re-cap of how we meet the requirements for Attachment E: 
-- [Node.js](https://nodejs.org)
-- [Angular.js](https://angularjs.org/)
-- [Bootstrap](https://github.com/twbs/bootstrap)front-end framework
+- [Node.js](https://nodejs.org) -  Cross-platform runtime environment
+- [Angular.js](https://angularjs.org/) - Front-end framework
+- [Bootstrap](https://github.com/twbs/bootstrap) - Front-end framework
 - [Amazon Web Services](https://cloud.githubusercontent.com/assets/4334183/8358734/f2cc0d02-1b2f-11e5-9c30-134fc1b4db96.png) as our Infrastructure as a Service Provider
 - [Jenkins](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#continuous-integration) for Continuous Integration
 - [Nagios](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#continuous-monitoring) for Continuous Monitoring
