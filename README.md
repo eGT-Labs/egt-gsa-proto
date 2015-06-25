@@ -38,11 +38,15 @@ Our challenge was to develop and deploy a simple app using OpenFDA datasets to s
 #####DevOps Engineer: John Stange
 
 ### [Technical Stack] (https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack) 
-Team eGT chose to leverage over five modern, open source tools & frameworks including [Node.js](https://nodejs.org) , [Angular.js](https://angularjs.org/), [Cloudamatic](https://github.com/cloudamatic/cloudamatic/blob/master/README.md/), [Chef](https://www.chef.io/chef/), [Protractor](https://angular.github.io/protractor/#/), [Gulp](http://gulpjs.com/), [Docker](https://www.docker.com/) as they offer maximum productivity in a prototyping effort of this nature. We implemented continuous integration automating the entire build, test and deployment process further enhancing our productivity and accelerating our solution’s maturity.  Below is a quick re-cap of how we meet the requirements for Attachment E: 
+Team eGT chose to leverage over five modern, open source tools & frameworks as they offer maximum productivity in a prototyping effort of this nature. We implemented continuous integration automating the entire build, test and deployment process further enhancing our productivity and accelerating our solution’s maturity.  Below is a quick re-cap of how we meet the requirements for Attachment E: 
+- [Node.js](https://nodejs.org)
+- [Angular.js](https://angularjs.org/)
+- [Bootstrap](https://github.com/twbs/bootstrap)front-end framework
 - [Amazon Web Services](https://cloud.githubusercontent.com/assets/4334183/8358734/f2cc0d02-1b2f-11e5-9c30-134fc1b4db96.png) as our Infrastructure as a Service Provider
 - [Jenkins](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#continuous-integration) for Continuous Integration
 - [Nagios](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#continuous-monitoring) for Continuous Monitoring
-- [Cloudamatic](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docs/Tech%20Stack/deploylog) for Configuration Management 
+- [Cloudamatic](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docs/Tech%20Stack/deploylog) for Automated Deployment & Configuration Management
+- [Chef](https://www.chef.io/chef/) for Configuration Management
 - [Docker]() for Operating-system-level virtualization. 
 - [Protractor](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#testing) for Unit Testing
 - [API]()
