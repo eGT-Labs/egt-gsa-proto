@@ -10,11 +10,11 @@ https://gsa-fda-proto.egt-labs.com/
 Shortly after RFQ drop, eGT assembled a DevOps team of experienced engineers and architects, with members chosen for their experience designing web applications using automated testing frameworks, continuous integration and continuous deployment to build and deliver a prototype. Our lead, Jennifer Hinton facilitated a kick-off meeting to gain alignment on tech stack and creation of environment with necessary permissions, collaboration tools, sprint schedules and ceremonies, and determined the MVP challenge based on suggestions from SMEs and the team. We also established our definition of done.
 
 ### Catalyst Team
-Product Owner: Jennifer Hinton
-Front End Web Developer: Mansi
-Back End Web Developer: Eric Hanson
-Application Tester: Zach Rowe
-DevOps Engineer: John Stange
+#######Product Owner: Jennifer Hinton
+#######Front End Web Developer: Mansi
+#######Back End Web Developer: Eric Hanson
+#######Application Tester: Zach Rowe
+#######DevOps Engineer: John Stange
 
 ### Process & Tools
 The team followed the daily ceremony schedule with a DSU to coordinate efforts and remove blockers, a grooming session to slice and prioritize new functionality and to discuss [mock-up designs] (https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docs/MVP/20150620_123456.jpg) created by the PO, and a sprint review/demos to view and provide suggestions to improve new functionality, provide updates about the infrastructure and testing roadmap, and to close out completed stories in GitHub.In addition to using GitHub for source control we put together a set of collaboration tools namely Google Drive, Slack, etc. (link to export from slack)
