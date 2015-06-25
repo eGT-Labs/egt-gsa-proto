@@ -79,7 +79,30 @@ angular.module('egtGsaProto')
             label: 'Drug and/or Laboratory Test Interactions'
           }
         ]
-      }, {
+      },{
+          groupLabel: 'Warnings and precautions',
+          children: [
+            {
+              key: 'boxed_warning',
+              label: 'Boxed Warning'
+            }, {
+              key: 'warnings_and_precautions',
+              label: 'Warnings and Precautions'
+            }, {
+              key: 'user_safety_warnings',
+              label: 'User Safety Warnings'
+            }, {
+              key: 'precautions',
+              label: 'Precautions'
+            }, {
+              key: 'warnings',
+              label: 'Warnings'
+            }, {
+              key: 'general_precautions',
+              label: 'General Precautions'
+            }
+          ]
+        }, {
         groupLabel: 'Clinical pharmacology',
         children: [
           {
@@ -217,30 +240,7 @@ angular.module('egtGsaProto')
             label: 'Safe Handling Warning'
           }
         ]
-      }, {
-        groupLabel: 'Warnings and precautions',
-        children: [
-          {
-            key: 'boxed_warning',
-            label: 'Boxed Warning'
-          }, {
-            key: 'warnings_and_precautions',
-            label: 'Warnings and Precautions'
-          }, {
-            key: 'user_safety_warnings',
-            label: 'User Safety Warnings'
-          }, {
-            key: 'precautions',
-            label: 'Precautions'
-          }, {
-            key: 'warnings',
-            label: 'Warnings'
-          }, {
-            key: 'general_precautions',
-            label: 'General Precautions'
-          }
-        ]
-      }, {
+      },  {
         groupLabel: 'Other fields',
         children: [
           {

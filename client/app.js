@@ -17,8 +17,11 @@ angular.module('egtGsaProto', [
 
   })
   .run(function($rootScope,$location){
-	  console.log($location.path());
-	  $rootScope.isHomePage = function() {
+	  $rootScope.isHomePage = function(){
 		 return $location.path() == '/';
-		 };
+		 }
+		 
+	  $rootScope.isLabelSearchPage = function(){
+		  return $location.path() == '/label-search'; 
+	  }
   });
