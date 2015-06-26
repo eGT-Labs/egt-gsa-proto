@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('egtGsaProto')
-  .factory('LabelFactory', function (ApiService) {
-
+  .factory('LabelFactory', function (apiService) {
 
     function buildQuery(search) {
 
@@ -10,15 +9,13 @@ angular.module('egtGsaProto')
 
       queryStringParts.push('_exists_:openfda.spl_id'); //We only want to use the records that have openfda sections
 
-
       var coreFields = ['openfda.brand_name', 'openfda.generic_name', 'openfda.substance_name', 'indications_and_usage', 'description'];
-
 
       //add the raw fulltext if it exists
       if (search.fulltext) {
         if (!search.useAllFields || search.useAllFields === 'false') {
           var fulltextParts = _.map(coreFields, function (field) {
-            return field + ':(' + search.fulltext + ')'
+            return field + ':(' + search.fulltext + ')';
           });
 
           queryStringParts.push('(' + fulltextParts.join(' OR ') + ')');
@@ -37,12 +34,10 @@ angular.module('egtGsaProto')
         }
       });
 
-
       return queryStringParts.join(' AND ');
     }
 
     var UNSUPPORTED_API_CHARS = new RegExp('[^0-9a-zA-Z\.\_\:\(\)\"\\[\\]\{\}\\-\\+\>\<\= ]+');
-
 
     /**
      * Some of that data we want to facet over contains characters that the API will reject.
@@ -68,13 +63,11 @@ angular.module('egtGsaProto')
           }
         });
 
-        return 'openfda.' + name + ':(' + sections.join(" AND ") + ')';
+        return 'openfda.' + name + ':(' + sections.join(' AND ') + ')';
       }
     }
 
-
     return {
-
       buildQuery: buildQuery,
 
       /**
@@ -83,7 +76,7 @@ angular.module('egtGsaProto')
        */
       load: function (id) {
 
-        return ApiService('/api/proxy/drug/label.json', {
+        return apiService('/api/proxy/drug/label.json', {
           search: 'openfda.spl_id:"' + id + '"'
         }).then(function (resp) {
           return resp.data.results[0];
@@ -91,12 +84,8 @@ angular.module('egtGsaProto')
       },
 
       runQuery: function (params) {
-        return ApiService('/api/proxy/drug/label.json', params);
+        return apiService('/api/proxy/drug/label.json', params);
       }
 
     };
   });
-
-
-
-

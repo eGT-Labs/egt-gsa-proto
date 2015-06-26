@@ -10,7 +10,6 @@ describe('home route', function () {
 
     browser.get('/');
 
-
     //TODO this test works now, but should change
     expect(element.all(by.css('h1')).first().getText()).toBe('The homepage!!!');
   });

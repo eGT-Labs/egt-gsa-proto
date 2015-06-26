@@ -28,7 +28,7 @@ describe('label-search route', function () {
 
     search_box.sendKeys(search);
     search_box.submit();
-    //browser.pause();
+    // browser.pause();
 
     expect(element.all(by.css('#mainResults')).first().getText()).toContain('0 drug labels match your search');
   });

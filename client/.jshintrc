@@ -1,6 +1,7 @@
 {
   "browser": true,
   "globals": {
+    "_": true,
     "angular": true,
     "browser": true,
     "element": true,

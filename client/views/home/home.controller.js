@@ -5,7 +5,6 @@ angular.module('egtGsaProto')
 
     var vm = this;
 
-
     angular.extend(vm, {
       name: 'HomeCtrl'
     });

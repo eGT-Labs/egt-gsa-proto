@@ -1,15 +1,11 @@
 'use strict';
 
 angular.module('egtGsaProto')
-  .factory('EventService', function ($q, ApiService) {
-
-
-    var ERROR_SENTINEL = "ERROR";
+  .factory('EventService', function ($q, apiService) {
 
     function runQuery(params) {
-      return ApiService('/api/proxy/drug/event.json', params);
+      return apiService('/api/proxy/drug/event.json', params);
     }
-
 
     function eventCountForInput(inputType, outputType, inputValue) {
       return runQuery({
@@ -26,15 +22,15 @@ angular.module('egtGsaProto')
         limit: 1
       }).then(function (resp) {
         return resp.data.meta.results.total;
-      })
+      });
     }
 
     function totalEventsForOutput(inputType, outputType, outputValue) {
-      return ApiService('/api/countEvents', {
+      return apiService('/api/countEvents', {
         type: outputType,
         value: outputValue,
         otherType: inputType
-      }).then(function(resp) {
+      }).then(function (resp) {
         return resp.data.count;
       });
     }
@@ -46,7 +42,7 @@ angular.module('egtGsaProto')
       }).then(function (resp) {
 
         return resp.data.results;
-      })
+      });
     }
 
     function overallFrequencyCount(inputType, outputType, countType) {
@@ -56,9 +52,8 @@ angular.module('egtGsaProto')
       }).then(function (resp) {
 
         return resp.data.results;
-      })
+      });
     }
-
 
     function leadingOutputs(inputType, outputType, inputValue) {
       return runQuery({
@@ -66,18 +61,8 @@ angular.module('egtGsaProto')
         count: outputType
       }).then(function (resp) {
         return resp.data.results;
-      })
+      });
     }
-
-    function leadingCounts(inputType, outputType) {
-      return runQuery({
-        search: '_exists_:(' + outputType + ') AND _exists_:(' + inputType + ')',
-        count: outputType
-      }).then(function (resp) {
-        return resp.data.results;
-      })
-    }
-
 
     /**
      * Computes the Proportional Reporting Ratio for a given set of fields using the adverse event dataset.
@@ -92,7 +77,6 @@ angular.module('egtGsaProto')
      */
     function computeReportingRatio(inputType, outputType, inputValue) {
 
-
       var inputEventCountPromise = eventCountForInput(inputType, outputType, inputValue);
       var totalEventCountPromise = totalEvents(inputType, outputType);
       var genderCountPromise = termFrequencyCount(inputType, outputType, inputValue, 'patient.patientsex');
@@ -102,7 +86,6 @@ angular.module('egtGsaProto')
 
       var normalAgeCountPromise = overallFrequencyCount(inputType, outputType, 'patient.patientonsetage');
       var normalWeightCountPromise = overallFrequencyCount(inputType, outputType, 'patient.patientweight');
-
 
       var leadingOutputsPromise = leadingOutputs(inputType, outputType, inputValue)
         .then(function (leadingSideEffects) {
@@ -114,7 +97,7 @@ angular.module('egtGsaProto')
                 inputTerm: inputValue,
                 totalCount: totalCount
               };
-            })
+            });
           });
           return $q.all(promises).then(function (list) {
             return _.reject(list, {totalCount: 0});
@@ -129,6 +112,8 @@ angular.module('egtGsaProto')
           var totalEventCount = resolvedPromises[1];
           var leadingOutputs = resolvedPromises[2];
 
+          // Computes the reporting ratio for each correlation
+          // See wikipedia for formula: https://en.wikipedia.org/wiki/Proportional_reporting_ratio
           angular.forEach(leadingOutputs, function (output) {
             var eventsLinkedToDifferentInput = output.totalCount - output.count;
             var countOtherInputs = totalEventCount - inputEventCount;
@@ -155,7 +140,6 @@ angular.module('egtGsaProto')
 
       return result;
     }
-
 
     return {
       computeReportingRatio: computeReportingRatio

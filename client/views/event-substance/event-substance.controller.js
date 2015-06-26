@@ -10,28 +10,25 @@ angular.module('egtGsaProto')
     angular.extend(vm, {
       adverseEvents: null,
       sortBy: 'reportingRatio'
-      //name: 'EventSubstanceCtrl'
     });
 
-    vm.clickSymptom = function(substance) {
+    vm.clickSymptom = function (substance) {
       $location.url('/event/symptom/' + substance);
     };
 
-
-    EventService.computeReportingRatio('patient.drug.openfda.substance_name.exact', 'patient.reaction.reactionmeddrapt.exact', vm.name).then(function(result) {
-      vm.adverseEvents = result;
-      vm.sort();
-    },
-    function (errorResponse) {
+    EventService.computeReportingRatio('patient.drug.openfda.substance_name.exact', 'patient.reaction.reactionmeddrapt.exact', vm.name).then(function (result) {
+        vm.adverseEvents = result;
+        vm.sort();
+      },
+      function (errorResponse) {
         vm.error = errorResponse.statusText || 'Not Found';
       });
 
-
-    vm.sort = function() {
+    vm.sort = function () {
       if (vm.adverseEvents) {
         var isAscending = (vm.sortBy === 'term');
         vm.adverseEvents.leadingOutputs = _.sortByOrder(vm.adverseEvents.leadingOutputs, vm.sortBy, isAscending);
       }
-    }
+    };
 
   });

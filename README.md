@@ -12,15 +12,17 @@ https://egt-gsa-catalyst.egt-labs.com/
   *  `bower install`
 * Run development application locally: `gulp`
 * Test code
-  *  protractor end-to-end test setup: `gulp e2e:update`
+  *  check code formatting with JSHint and JSCS  `gulp control` 
+  *  protractor end-to-end one-time setup: `gulp e2e:update`
   *  protractor end-to-end tests: `gulp e2e`
 * Deploy Application
   * build package: `gulp deploy`
   * contents will be located in the `dist` folder
-  * Set environment variables:
+  * Optionally set enviornment variables:
     * `NODE_ENV=production`
     * `PORT=12345`
     * `OPEN_FDA_API_KEY=YOUR_API_KEY`
+      * This app is powerd by the [Open FDA API](https://open.fda.gov/). While you can run without a key, it is recommended for production use to [acquire one](https://open.fda.gov/api/reference/#authentication).
   * run production package: `node dist/server/server.js`
 
 ### [Minimal Viable Product (MVP) Challenge](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%234---Minimum-Viable-Product)
