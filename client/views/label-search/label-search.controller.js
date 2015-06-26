@@ -118,7 +118,6 @@ angular.module('egtGsaProto')
             }
           }
         }, function (errorResponse) {
-          console.log(errorResponse);
           vm.error = errorResponse.data;
         }
       );

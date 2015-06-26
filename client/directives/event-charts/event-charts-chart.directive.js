@@ -4,8 +4,6 @@ angular.module('egtGsaProto')
   .directive('eventCharts', function (numberFilter) {
 
     function buildRRTooltipHtml(dataPoint) {
-      console.log(dataPoint);
-
       var percent = numberFilter(100 * dataPoint.frequency, 2) + '%';
       var otherPercent = numberFilter(100 * dataPoint.frequencyOfOther, 2) + '%';
 
@@ -359,7 +357,6 @@ angular.module('egtGsaProto')
           if (selectedItem) {
             var item = scope.eventData.leadingOutputs[selectedItem.row].term;
             scope.reportingRatioClick(item);
-            console.log(item);
           }
         };
 

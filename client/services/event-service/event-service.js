@@ -112,6 +112,8 @@ angular.module('egtGsaProto')
           var totalEventCount = resolvedPromises[1];
           var leadingOutputs = resolvedPromises[2];
 
+          // Computes the reporting ratio for each correlation
+          // See wikipedia for formula: https://en.wikipedia.org/wiki/Proportional_reporting_ratio
           angular.forEach(leadingOutputs, function (output) {
             var eventsLinkedToDifferentInput = output.totalCount - output.count;
             var countOtherInputs = totalEventCount - inputEventCount;

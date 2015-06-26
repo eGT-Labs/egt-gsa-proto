@@ -12,9 +12,6 @@ angular.module('egtGsaProto')
     function doWithRetries(service, params, timesTried) {
       return $http.get(service, {params: params})
         .catch(function (err) {
-          console.log('failure');
-          console.log(err);
-
           if (timesTried <= MAX_TRIES && err.status === 429) { //hit rate limiting... slow down and try again
             return $q(function (resolve, reject) {
               $timeout(function () {
