@@ -100,7 +100,7 @@ gulp build
 
 forever stopall
 
-export OPEN_FDA_API_KEY=<%= node.app.apikey %> ; export PORT=<%= node.app.port %>; forever start /apps/egt-gsa-proto/dist/server/server.js
+export OPEN_FDA_API_KEY=<%= @apikey %> ; export PORT=<%= node.app.port %>; forever start /apps/egt-gsa-proto/dist/server/server.js
 
 forever list
 

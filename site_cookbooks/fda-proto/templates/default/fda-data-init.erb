@@ -11,9 +11,22 @@ SERVICE_NAME="<%= @details[:service] %> API"
 do_start()
 {
   echo -n $"Starting $SERVICE_NAME: "
-	cd $WORKING_DIR
+	mkdir -p /apps && cd /apps
 
-	export OPEN_FDA_API_KEY=<%= node.app.apikey %> ; export PORT=<%= node.app.port %>; forever start /apps/egt-gsa-proto/dist/server/server.js
+	if [ ! -d "$WORKING_DIR" ]; then
+
+		/usr/bin/git clone git@github.com:eGT-Labs/egt-gsa-proto.git
+
+	fi
+	cd $WORKING_DIR
+	/usr/bin/npm install
+	/usr/bin/bower install --allow-root
+
+	/usr/bin/gulp build
+
+	/usr/bin/forever stopall
+
+	export OPEN_FDA_API_KEY=<%= @details[:apikey] %> ; export PORT=<%= node.app.port %>; /usr/bin/forever start $WORKING_DIR/dist/server/server.js
 
 }
 do_stop()

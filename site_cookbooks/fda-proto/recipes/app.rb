@@ -8,9 +8,11 @@
 
 include_recipe "chef-vault"
 build_keys = chef_vault_item("gsa_ssh_keys", "egt-gsa-proto-jenkins")
+apikey = (chef_vault_item("catalyst", "api")['key'])
 execute "append build key to root's authorized_keys" do
 	command "echo '#{build_keys['public']}' >> /root/.ssh/authorized_keys"
 	not_if "grep '^#{build_keys['public']}' /root/.ssh/authorized_keys"
+	sensitive
 end
 
 ['nodejs', 'nodejs-devel', 'npm', 'git'].each do |pkg|
@@ -29,7 +31,7 @@ end
 
 include_recipe "chef-vault"
 
-$app_dir = "/home/fda-data"
+$app_dir = "/app/fda-data"
 execute "git clone git@github.com:eGT-Labs/egt-gsa-proto.git #{$app_dir}" do
 	not_if { File.exists?($app_dir) }
 end
@@ -39,9 +41,20 @@ template "/etc/rc.d/init.d/egt-fda-catalyst" do
 	mode '0755'
 	owner 'root'
 	group 'root'
-	variables(:details => { :dir => "/apps/egt-gsa-proto", :service => "eGT FDA Catalyst Engine" })
+	variables(:details => { :dir => "/apps/egt-gsa-proto", :service => "eGT FDA Catalyst Engine", :apikey => apikey })
+	sensitive
 	notifies :restart, "service[egt-fda-catalyst]", :delayed
 end
+[80, 443].each { |port|
+	bash "Allow #{port} through iptables" do
+		user "root"
+		not_if "/sbin/iptables -nL | egrep '^ACCEPT.*dpt:#{port}($| )'"
+		code <<-EOH
+			iptables -I INPUT -p tcp --dport #{port} -j ACCEPT
+			service iptables save
+		EOH
+	end
+}
 
 service "egt-fda-catalyst" do
 	action [:start, :enable]

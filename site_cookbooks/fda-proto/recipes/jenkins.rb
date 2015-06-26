@@ -7,6 +7,18 @@
 # All rights reserved - Do Not Redistribute
 #
 include_recipe "chef-vault"
+node.allow_admins.each { |ip|
+	[80, 443].each { |port|
+		bash "Allow #{port} through iptables from #{ip}" do
+			user "root"
+			not_if "/sbin/iptables -nL | egrep '^ACCEPT.*#{ip}.*dpt:#{port}($| )'"
+			code <<-EOH
+				iptables -I INPUT -p tcp -s #{ip} --dport #{port} -j ACCEPT
+				service iptables save
+			EOH
+		end
+	}
+}
 
 web_app "jenkins" do
   server_name "gsa-fda-proto-jenkins.egt-labs.com"
@@ -25,6 +37,7 @@ end
 rpm_package "jenkins" do
 	source "#{Chef::Config[:file_cache_path]}/jenkins.rpm"
 end
+
 
 ["credentials", "scm-api", "github", "github-api", "git", "git-client", "elastic-axis", "slack"].each { |plugin|
 	jenkins_plugin plugin do
@@ -49,23 +62,37 @@ end
 
 github_keys = chef_vault_item("gsa_ssh_keys", "egt-gsa-proto-github")
 build_keys = chef_vault_item("gsa_ssh_keys", "egt-gsa-proto-jenkins")
+apikey = (chef_vault_item("catalyst", "api")['key'])
+admin_user = chef_vault_item("catalyst", "jenkins")
 
 jenkins_private_key_credentials "github" do
 	description "GSA FDA Dataset Prototype Github credentials"
 	id "7a15c36f-24a0-4967-bb90-0e220ac0f4b6"
 	private_key github_keys['private']
+	sensitive
 end
 jenkins_private_key_credentials "root" do
 	description "GSA FDA Dataset Prototype build job credentials"
 	id "0836e2b3-7f83-4580-95d8-ad2a983e49c8"
 	private_key build_keys['private']
+	sensitive
 end
 
 jenkins_user 'root' do
 	full_name "Build Job"
 	email "john.stange@eglobaltech.com"
 	public_keys [build_keys['public'], github_keys['public']]
+	sensitive
 end
+jenkins_user admin_user['user'] do
+	full_name "Administrator"
+	email "john.stange@eglobaltech.com"
+	password admin_user['password']
+	sensitive
+end
+
+node.run_state[:jenkins_private_key] = build_keys['private']
+node.save
 
 node.deployment.servers.app.each_pair { |node, data|
 	execute "ssh-keyscan #{data.private_ip_address} >> ~/.ssh/known_hosts" do
@@ -81,8 +108,15 @@ node.deployment.servers.app.each_pair { |node, data|
 	end
 } rescue NoMethodError
 
+template "/var/lib/jenkins/config.xml" do
+	source "jenkins-config.xml.erb"
+	sensitive
+	notifies :restart, 'service[jenkins]', :delayed
+end
 template "#{Chef::Config[:file_cache_path]}/egt-gsa-proto-build.xml" do
 	source "jenkins-job.xml.erb"
+	variables(:apikey => apikey )
+	sensitive
 end
 
 jenkins_job "egt-gsa-proto-build" do

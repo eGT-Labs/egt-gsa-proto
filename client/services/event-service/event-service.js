@@ -111,6 +111,7 @@ angular.module('egtGsaProto')
               return {
                 term: output.term,
                 count: output.count,
+                inputTerm: inputValue,
                 totalCount: totalCount
               };
             })
@@ -133,7 +134,7 @@ angular.module('egtGsaProto')
             var countOtherInputs = totalEventCount - inputEventCount;
             var freqOfOutputForDifferentInput = (eventsLinkedToDifferentInput / countOtherInputs);
 
-
+            output.frequencyOfOther = freqOfOutputForDifferentInput;
             output.frequency = (output.count / inputEventCount);
 
             output.reportingRatio = output.frequency / freqOfOutputForDifferentInput;
