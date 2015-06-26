@@ -7,7 +7,7 @@
   	 </div>
 </nav>
 <div ng-hide="isHomePage()">
-<div class="navbar navbar-default" id="bs-example-navbar-collapse-1" role="navigation" style="background-color:#153E56" >
+<div class="navbar navbar-default navbar-collapse collapse" id="navbar" role="navigation" style="background-color:#153E56" >
 
 	<div class="navbar-header">
       <a href="/" class="navbar-brand"><img style="max-width:110px;"src="assets/images/logo.png" alt="GSA PROTO LOGO"></a>
@@ -15,7 +15,7 @@
 	<ul class="nav navbar-nav navbar-left" id="nav">
 	<!-- 	<li><a href="/" class="navbar-brand"><img style="max-width:110px;"src="assets/images/logo.png" alt="GSA PROTO LOGO"></a></li> -->
 		<li><a href="/label-search" style="color:white">Explore</a></li>
-		<li><a href="/about" style="color:white">About</a></li>
+		<li><a  href="/about" style="color:white">About</a></li>
 	</ul>
 	<div ng-hide="isLabelSearchPage()">
 	<div class="collapse navbar-collapse">
@@ -33,3 +33,9 @@
 </div>
 </div>
 </div>
+<script>
+$(".nav a").on("click", function(){
+	   $(".nav").find(".active").removeClass("active");
+	   $(this).parent().addClass("active");
+	});
+</script>
