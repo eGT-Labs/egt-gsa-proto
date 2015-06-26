@@ -79,7 +79,7 @@
         </accordion-heading>
         <!--<ul class="list-group" >-->
         <div style="max-height: 400px; overflow-y: auto">
-          <div  ng-repeat="facetInstance in facet.data | orderBy : (isAlpha ? 'term' : 'count') : !isAlpha" style="padding-bottom: 2px;">
+          <div  ng-repeat="facetInstance in facet.data | orderBy : (isAlpha ? 'term' : 'count') : !isAlpha" style="padding-bottom: 2px;cursor:pointer;">
             <a ng-click="vm.setFacet(facetKey, facetInstance.term)" >
               <span class="badge pull-right">{{facetInstance.count | number}}</span>
               {{facetInstance.term}}
