@@ -3,33 +3,23 @@
 This is the README for the Operating System Containerization component of the GSA 18F challenge.
 
 ## Capabilities and Futures ##
-eGlobaltech is using docker for containerization.  Currently we support basic containerization using a Dockerfile.  Future sprints may extend the docker functionality to full container integration with production operations on AWS, e.g. deploy the Docker versions of the service on EC2 instances using Cloudamatic with the full capabilities of monitoring, orchestration, etc.
+eGlobaltech is using [Docker](http://www.docker.com) for containerization.  Currently we support basic containerization using a Dockerfile.  Future sprints may extend the docker functionality to the proprietary [AWS Elastic Container Service](http://aws.amazon.com/ecs/), or Cloudamatic full container integration with production operations on AWS, e.g. deploy the Dockerized versions of the Catalyst service on EC2 instances using [Cloudamatic](http://www.cloudamatic.com) with the full capabilities of monitoring, orchestration, etc.
 
-## Operations ##
-1. Place the Dockerfile in an empty directory of your choosing
-2. **IMPORTANT** - if in development mode edit the Dockerfile to include your Github credentials in place of *someuser:somepass* in the line:
-```git clone https://someuser:somepass@github.com/eGT-Labs/egt-gsa-proto.git```
-2. Place the file supervisord.conf in the same directory.  Case is important.
-3. Build your container image with the command:
+## Basic Operations ##
+Basic operations are covered in the root [README.md](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/README.md) file in the Docker Containerization section
 
-	```docker build --tag catalyst/supervisord .```
+## More Options ##
+### Mapping Ports and Detached Operation ###
+You can run Catalyst as a service in a docker container by:
+  * Running in detached mode with the -d switch
+  * Mapping the internal (9000) catalyst service port to a port on your Docker host
 
-4.	at the end you should see a container ID, like the '60d870c806d4' in the example below:
+For example, the command below will start a container with the repository/tag of catalyst:20150626_1 .  The docker service will be accessible from port 80 of a docker host,  run continuously, and return you to your Docker host command prompt:
 
-	```Step 20 : ADD supervisord.conf /etc/supervisord.conf
- ---> 45b3717cdfa2
-Removing intermediate container e3ed23e94709
-Step 21 : CMD supervisord -n
- ---> Running in 846356ae9111
- ---> 60d870c806d4
-Removing intermediate container 846356ae9111
-Successfully built 60d870c806d4```
+`docker run -d -p 80:9000 catalyst:20150626_1`
 
-
-4. Start the container with the command:
-
-	```docker run -d -p 80:80 <your container ID here>```
-
-5. Ensure that your docker host has port 80 open, and connect with a browser
-
-    
+IMPORTANT NOTE:
+The example assumes that:
+  * You have previously created an image tagged as catalyst:20150626_1, per Basic Operations
+  * Your Docker host will allow you to access the indicated port 80.  For example, if you're on AWS, make sure your security group allows access to port 80.
+  * Nothing else is running on your Docker host port 80
