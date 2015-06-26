@@ -46,7 +46,7 @@ Team eGT chose to leverage over five modern, open source tools & frameworks as t
 Below we highlight evidence on how we met the requirements for Attachment E: 
 -	[Node.js](https://github.com/joyent/node/blob/master/LICENSE) - Cross-platform runtime environment
 -	[Angular.js](https://github.com/angular-app/angular-app/blob/master/LICENSE) - Front-end framework
-[Bootstrap](https://github.com/twbs/bootstrap/blob/master/LICENSE) - Front-end framework
+-	[Bootstrap](https://github.com/twbs/bootstrap/blob/master/LICENSE) - Front-end framework
 -	[Chef](https://github.com/chef/chef/blob/master/LICENSE) for Configuration Management
 -	[Cloudamatic](https://github.com/cloudamatic/cloudamatic/blob/master/LICENSE.md) for Automated Deployment & Configuration Management
 -	[Docker](https://github.com/docker/docker/blob/master/LICENSE) for Operating-system-level virtualization
