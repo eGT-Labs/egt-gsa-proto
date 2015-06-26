@@ -39,7 +39,7 @@ eGT assembled a multi-disciplinary, collaborative DevOps team of experienced eng
 - **Automated Test Engineer:** Zach Rowe - @zr2d2
 - **DevOps Engineer:** John Stange - @jstange
 
-For more information, see [Team](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%231---Team).
+For more information about our team please see our [Team wiki](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%231---Team).
 
 ### [Technical Stack] (https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack) 
 Team eGT chose to leverage over five modern, open source tools & frameworks as they offer maximum productivity in a prototyping effort of this nature. We implemented continuous integration automating the entire build, test and deployment process further enhancing our productivity and accelerating our solution’s maturity. All underlying platforms used to create and run the prototype are openly licensed and free of charge.
@@ -59,12 +59,15 @@ Below we highlight evidence on how we met the requirements for Attachment E:
 -	[Protractor](https://github.com/angular/protractor/blob/master/LICENSE) for Unit Testing
 -	[API]
 
-For more information, see [Tech Stack](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack).
+For more information, see [Tech Stack wiki](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack).
 
 ### [Process & Tools](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%232---Processes-&-Tools)
- Our lead, Jennifer Hinton, facilitated a kick-off meeting to gain alignment on the tech stack and creation of the environment with necessary permissions, collaboration tools, sprint schedules and ceremonies, and determined the MVP challenge based on suggestions from SMEs and the team. We also established our definition of done. 
+Our lead, Jennifer Hinton, facilitated a kick-off meeting to gain alignment on the tech stack and creation of the environment with necessary permissions, collaboration tools, sprint schedules and ceremonies, and determined the MVP challenge based on suggestions from SMEs and the team. We also established our definition of done. 
  
-The team followed a daily ceremony schedule, including a Daily Stand Up to coordinate efforts and remove blockers, a grooming session to slice and prioritize new functionality and to discuss mock-up designs created by the Product Owner, and a sprint review/demo to view and provide suggestions to improve new functionality, provide updates about the infrastructure and testing roadmap, and to close out completed stories in GitHub. 
+The team followed a daily ceremony schedule, including the following:
+-	Daily Stand Up - to coordinate efforts and remove blockers), a 
+-	Daily Grooming Session - to slice and prioritize new functionality and to discuss mock-up designs created by the Product Owner and value team
+-	Sprint review & demo to view and provide suggestions to improve new functionality, provide updates about the infrastructure and testing roadmap, and to close out completed stories in GitHub. 
 
 Below we highlight our sprints to demonstrate evidence for Attachment E on our Iterative, Agile Approach:
 -	Thursday June 18th, 2015 - [Sprint 0](https://github.com/eGT-Labs/egt-gsa-proto/wiki/Agile-Journey#sprint-0)
