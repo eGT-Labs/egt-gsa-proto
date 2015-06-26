@@ -25,6 +25,22 @@ https://egt-gsa-catalyst.egt-labs.com/
       * This app is powerd by the [Open FDA API](https://open.fda.gov/). While you can run without a key, it is recommended for production use to [acquire one](https://open.fda.gov/api/reference/#authentication).
   * run production package: `node dist/server/server.js`
 
+### Docker Containerization
+  *  Use git to pull [our repository](https://github.com/eGT-Labs/egt-gsa-proto) onto Docker host
+  *  Path to repository root, e.g. egt-gsa-proto
+  *  Build and run:
+  	*  `docker build -t catalyst:YOUR_TAG_GOES_HERE .`
+  	*  `docker run -P catalyst:YOUR_TAG_GOES_HERE`
+  * `docker ps` to find the docker host port you're mapped to, e.g.:
+
+    `0.0.0.0:49157->9000/tcp`
+
+You can also map the internal (9000) port at will, for example to run the application so it can be accessed on host port 80 you'd run:
+
+```docker run -p 80:9000 catalyst:YOUR_TAG_GOES_HERE```
+
+More options and details are available in the [README.md](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docker/README.md) in the docker folder.
+
 ### [Minimal Viable Product (MVP) Challenge](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%234---Minimum-Viable-Product)
 Our challenge was to develop and deploy a simple app using OpenFDA datasets to search, explore, & interact with data on drug labeling and adverse events. Core functionality was focused on faceted search and analytics on adverse events. Team eGT  developed the application using Scrum, enhancing the application over a number of iterations.
 
