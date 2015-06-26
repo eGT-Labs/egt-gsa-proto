@@ -63,11 +63,15 @@ For more information about our team and to view our evidence please see our [Tea
 Team eGT chose to leverage over five modern, open source tools & frameworks as they offer maximum productivity in a prototyping effort of this nature. We implemented continuous integration automating the entire build, test and deployment process further enhancing our productivity and accelerating our solution’s maturity. All underlying platforms used to create and run the prototype are openly licensed and free of charge.
 
 Below we highlight our tech stack on how we met the requirements for Attachment E: 
+
+**Modern, Open Source Technologies**
 -	[Node.js](https://github.com/joyent/node/blob/master/LICENSE) - Cross-platform runtime environment
 -	[Angular.js](https://github.com/angular-app/angular-app/blob/master/LICENSE) - Front-end framework
 -	[Bootstrap](https://github.com/twbs/bootstrap/blob/master/LICENSE) - Front-end framework
 -	[Chef](https://github.com/chef/chef/blob/master/LICENSE) and [Cloudamatic](https://github.com/cloudamatic/cloudamatic/blob/master/LICENSE.md) for [Continuous Deployment & Configuration Management](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#continuous-deployment)
 -	[Docker](https://github.com/docker/docker/blob/master/LICENSE) for [Operating-system-level virtualization](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docker/README.md)
+
+**Other Technologies**
 -	[Github](http://www.github.com) for [Source Control Repository](https://github.com/eGT-Labs/egt-gsa-proto/)
 -	[Amazon Web Services](http://aws.amazon.com/) as our [Infrastructure as a Service Provider](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#infrastructure-as-a-service-provider)
 -	[Jenkins](https://github.com/kohsuke/hudson/blob/master/LICENSE.txt) for [Continuous Integration  ](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#continuous-integration) with 	[Protractor](https://github.com/angular/protractor/blob/master/LICENSE) to enable [Automation of Unit Tests](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#testing) 
