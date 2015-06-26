@@ -28,7 +28,7 @@ https://egt-gsa-catalyst.egt-labs.com/
 ### Docker Containerization
   *  Use git to pull [our repository](https://github.com/eGT-Labs/egt-gsa-proto) onto Docker host
   *  Path to repository root, e.g. egt-gsa-proto
-  *  Build and run:
+  *  Build and run (don't forget the hard-to-see dot at the end of the docker build line below):
   	*  `docker build -t catalyst:YOUR_TAG_GOES_HERE .`
   	*  `docker run -P catalyst:YOUR_TAG_GOES_HERE`
   * `docker ps` to find the docker host port you're mapped to, e.g.:
