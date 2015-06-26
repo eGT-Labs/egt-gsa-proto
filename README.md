@@ -17,10 +17,11 @@ https://egt-gsa-catalyst.egt-labs.com/
 * Deploy Application
   * build package: `gulp deploy`
   * contents will be located in the `dist` folder
-  * Set environment variables:
+  * Optionally set enviornment variables:
     * `NODE_ENV=production`
     * `PORT=12345`
     * `OPEN_FDA_API_KEY=YOUR_API_KEY`
+      * This app is powerd by the [Open FDA API](https://open.fda.gov/). While you can run without a key, it is recommended for production use to [acquire one](https://open.fda.gov/api/reference/#authentication).
   * run production package: `node dist/server/server.js`
 
 ### [Minimal Viable Product (MVP) Challenge](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%234---Minimum-Viable-Product)
