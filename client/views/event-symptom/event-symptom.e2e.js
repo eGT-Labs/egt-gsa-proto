@@ -10,7 +10,7 @@ describe('event-symptom route', function () {
 
     browser.get('/event/symptom/FEELING%20JITTERY');
 
-    expect(element.all(by.repeater('row in vm.adverseEvents.leadingOutputs')).get(0).getText()).toBe('Symptom: FEELING JITTERY');
+    expect(element.all(by.repeater('row in vm.adverseEvents.leadingOutputs')).get(0).getText()).toContain('EXENATIDE');
   });
 
 });

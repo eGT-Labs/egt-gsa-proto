@@ -6,7 +6,7 @@ describe('label-search route', function () {
     browser.get('/label-search');
 
     var result = element.all(by.css('body > div.container.ng-scope > div.row.ng-scope > div.col-sm-4 > accordion > div > div:nth-child(1) > div > div.panel-heading > h4 > a > div')).first().getText();
-    expect(result).toBe('Brand Name (100)');
+    expect(result).toContain('Brand Name');
   });
 
   it('should show search results', function () {
@@ -28,8 +28,9 @@ describe('label-search route', function () {
 
     search_box.sendKeys(search);
     search_box.submit();
+    //browser.pause();
 
-    expect(element.all(by.css('#error')).first().getText()).toContain('No matches found!');
+    expect(element.all(by.css('#mainResults')).first().getText()).toContain('0 drug labels match your search');
   });
 
 });
