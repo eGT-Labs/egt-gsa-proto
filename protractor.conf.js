@@ -7,10 +7,7 @@ exports.config = { // jshint ignore:line
   baseUrl: 'https://egt-gsa-catalyst.egt-labs.com/',
 
   capabilities: {
-    browserName: 'chrome'
-    // chromeOptions: {
-    //    binary: '/usr/bin/google-chrome-stable'
-    // }
+    browserName: 'firefox'
   },
 
   framework: 'jasmine',
