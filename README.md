@@ -1,29 +1,26 @@
-# Egt gsa proto [![Generated with](https://img.shields.io/badge/generated%20with-bangular-blue.svg?style=flat-square)](https://github.com/42Zavattas/generator-bangular)
-
 ### URL 
-https://gsa-fda-proto.egt-labs.com/
+https://egt-gsa-catalyst.egt-labs.com/
 
-### Instructions to run locally
-###One time setup
+### Local Development
 
-* Install node and npm
-* Install bower `npm install -g bower`
-* Install gulp `npm install -g gulp`
-
-###Each time project dependencies may have been changed
-
-Always run this on build server, becasue we don't know which commit might have changed package.json or bower.json
-
-* Update npm dependencies `npm install`
-* Update bower dependenceis `bower install`
-
-### Build tasks
-
-* Run application locally `gulp`
-* Build the production artifacts `gulp build` (Build artifacts located in `dist` folder)
-    * The artifacts in the `dist` folder can either be run in place or copied to the production machine. The contents 
-      of the folder can be run using the `npm start` command
-* Launch client and server tests, using Karma and Mocha, both by default. `gulp test [--client || --server]`
+* Install command line tools:
+  *  Node and npm
+  *  bower: `npm install -g bower`
+  *  gulp: `npm install -g gulp`
+* Update depenencies
+  *  `npm install`
+  *  `bower install`
+* Run development application locally: `gulp`
+* Test code
+  *  protrator end-to-end tests: `gulp e2e`
+* Deploy Application
+  * build package: `gulp deploy`
+  * contents will be located in the `dist` folder
+  * Set environment variables:
+    * `NODE_ENV=production`
+    * `PORT=12345`
+    * `OPEN_FDA_API_KEY=YOUR_API_KEY`
+  * run production package: `node dist/server/server.js`
 
 
 ### [Minimal Viable Product (MVP) Challenge](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%234---Minimum-Viable-Product)
