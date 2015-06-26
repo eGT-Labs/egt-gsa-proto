@@ -69,7 +69,7 @@ Below we highlight our tech stack on how we met the requirements for Attachment 
 -	[Chef](https://github.com/chef/chef/blob/master/LICENSE) and [Cloudamatic](https://github.com/cloudamatic/cloudamatic/blob/master/LICENSE.md) for [Continuous Deployment & Configuration Management](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#continuous-deployment)
 -	[Docker](https://github.com/docker/docker/blob/master/LICENSE) for [Operating-system-level virtualization](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docker/README.md)
 -	[Github](http://www.github.com) for [Source Control Repository](https://github.com/eGT-Labs/egt-gsa-proto/)
--	[Amazon Web Services](http://aws.amazon.com/) Web Services as our [Infrastructure as a Service Provider](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#infrastructure-as-a-service-provider)
+-	[Amazon Web Services](http://aws.amazon.com/) as our [Infrastructure as a Service Provider](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#infrastructure-as-a-service-provider)
 -	[Jenkins](https://github.com/kohsuke/hudson/blob/master/LICENSE.txt) for [Continuous Integration  ](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#continuous-integration) with 	[Protractor](https://github.com/angular/protractor/blob/master/LICENSE) to enable [Automation of Unit Tests](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#testing) 
 -	[Nagios](https://assets.nagios.com/licenses/nagios_open_software_license.txt) for [Continuous Monitoring](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#continuous-monitoring)
 -	[OpenFDA's API](open.fda.gov) to consume APIs for Adverse Events, Recalls, and Drug Labeling
