@@ -45,7 +45,7 @@ For more information, see [Team](https://github.com/eGT-Labs/egt-gsa-proto/wiki/
 Team eGT chose to leverage over five modern, open source tools & frameworks as they offer maximum productivity in a prototyping effort of this nature. We implemented continuous integration automating the entire build, test and deployment process further enhancing our productivity and accelerating our solution’s maturity. All underlying platforms used to create and run the prototype are openly licensed and free of charge.
 
 
-Below is a  re-cap to evidence on how we met the requirements for Attachment E: 
+Below we highlight evidence on how we met the requirements for Attachment E: 
 - [Node.js](https://nodejs.org) -  Cross-platform runtime environment 
 - [Angular.js](https://angularjs.org/) - Front-end framework 
 - [Bootstrap](https://github.com/twbs/bootstrap) - Front-end framework  
@@ -64,17 +64,9 @@ For more information, see [Tech Stack](https://github.com/eGT-Labs/egt-gsa-proto
 ### [Process & Tools](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%232---Processes-&-Tools)
  Our lead, Jennifer Hinton, facilitated a kick-off meeting to gain alignment on the tech stack and creation of the environment with necessary permissions, collaboration tools, sprint schedules and ceremonies, and determined the MVP challenge based on suggestions from SMEs and the team. We also established our definition of done. 
  
-The team followed a daily ceremony schedule, including a Daily Stand Up to coordinate efforts and remove blockers, a grooming session to slice and prioritize new functionality and to discuss mock-up designs created by the Product Owner, and a sprint review/demo to view and provide suggestions to improve new functionality, provide updates about the infrastructure and testing roadmap, and to close out completed stories in GitHub. In addition to using GitHub for source control and our backlog, we utilized a set of collaboration tools, such as Google Drive, Slack, and JoinMe.
+The team followed a daily ceremony schedule, including a Daily Stand Up to coordinate efforts and remove blockers, a grooming session to slice and prioritize new functionality and to discuss mock-up designs created by the Product Owner, and a sprint review/demo to view and provide suggestions to improve new functionality, provide updates about the infrastructure and testing roadmap, and to close out completed stories in GitHub. 
 
- Below is a quick recap to evidence on how we met requirements for Attachment E:
- - [Scrum](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%232---Processes-&-Tools) for our Iterative, Agile Approach
- - [MVP](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%232---Processes-&-Tools) for our Iterative, Agile Approach
-
- 
-
-#### Our Agile Journey
-
-Below we highlight our sprints to demonstrate additional evidence for Attachment E on our Iterative, Agile Approach:
+Below we highlight our sprints to demonstrate evidence for Attachment E on our Iterative, Agile Approach:
 -	Thursday June 18th, 2015 - [Sprint 0](https://github.com/eGT-Labs/egt-gsa-proto/wiki/Agile-Journey#sprint-0)
 -	Friday June 19th, 2015 to Sunday June 21st, 2015 - [Sprint 1](https://github.com/eGT-Labs/egt-gsa-proto/wiki/Agile-Journey#sprint-1)
 -	Monday, June 22th, 2015  - [Sprint 2](https://github.com/eGT-Labs/egt-gsa-proto/wiki/Agile-Journey#sprint-2)
@@ -82,3 +74,7 @@ Below we highlight our sprints to demonstrate additional evidence for Attachment
 -	Wednesday, June 24th, 2015 - [Sprint 4](https://github.com/eGT-Labs/egt-gsa-proto/wiki/Agile-Journey#sprint-4)
 -	Thursday, June 25th, 2015 - [Sprint 5](https://github.com/eGT-Labs/egt-gsa-proto/wiki/Agile-Journey#sprint-5)
 -	Friday, June 26th, 2015 - [Sprint 6](https://github.com/eGT-Labs/egt-gsa-proto/wiki/Agile-Journey#sprint-6)
+
+For more information, see [Processes & Tools](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%232---Processes-&-Tools).
+
+ 
