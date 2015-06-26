@@ -11,28 +11,22 @@ angular.module('egtGsaProto')
       sortBy: 'reportingRatio'
     });
 
-    vm.clickSubstance = function(substance) {
+    vm.clickSubstance = function (substance) {
       $location.url('/event/substance/' + substance);
     };
 
-
-    EventService.computeReportingRatio('patient.reaction.reactionmeddrapt.exact', 'patient.drug.openfda.substance_name.exact', vm.name).then(function(result) {
+    EventService.computeReportingRatio('patient.reaction.reactionmeddrapt.exact', 'patient.drug.openfda.substance_name.exact', vm.name).then(function (result) {
       vm.adverseEvents = result;
       vm.sort();
     }, function (errorResponse) {
       vm.error = errorResponse.statusText || 'Not Found';
     });
 
-
-    vm.sort = function() {
+    vm.sort = function () {
       if (vm.adverseEvents) {
         var isAscending = (vm.sortBy === 'term');
         vm.adverseEvents.leadingOutputs = _.sortByOrder(vm.adverseEvents.leadingOutputs, vm.sortBy, isAscending);
       }
-    }
-
-
-
-
+    };
 
   });

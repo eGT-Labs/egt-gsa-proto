@@ -11,8 +11,6 @@ angular.module('egtGsaProto')
 
       var reportingRatio = numberFilter(dataPoint.reportingRatio, 2);
 
-      var verb = (dataPoint.reportingRatio > 1) ? 'more' : 'as';
-
       return [
         '<span class="h4"><strong>' + dataPoint.term + '</strong></span>',
         '',
@@ -27,49 +25,50 @@ angular.module('egtGsaProto')
     function buildReportingRatio(leadingOutputs) {
       //Documentation of options: https://developers.google.com/chart/interactive/docs/gallery/scatterchart
       return {
-        "type": "ScatterChart",
-        "displayed": true,
-        "data": {
-          "cols": [
+        type: 'ScatterChart',
+        displayed: true,
+        data: {
+          cols: [
             {
-              "id": "frequency",
-              "label": "Frequeny",
-              "type": "number",
-              "p": {}
+              id: 'frequency',
+              label: 'Frequeny',
+              type: 'number',
+              p: {}
             },
             {
-              "id": "prr",
-              "label": "Proportional Reporting Ratio",
-              "type": "number",
-              "p": {}
+              id: 'prr',
+              label: 'Proportional Reporting Ratio',
+              type: 'number',
+              p: {}
             },
             {
-              'id': 'info',
-              'type': 'string',
-              'role': 'tooltip',
-              'p': {'html': true}}
+              id: 'info',
+              type: 'string',
+              role: 'tooltip',
+              p: {html: true}
+            }
           ],
-          "rows": _.map(leadingOutputs, function (row) {
+          rows: _.map(leadingOutputs, function (row) {
             return {
-              "c": [
+              c: [
                 {
-                  "v": row.frequency,
-                  'f': row.term + '  ' + numberFilter(100 * row.frequency, 2) + '%'
+                  v: row.frequency,
+                  f: row.term + '  ' + numberFilter(100 * row.frequency, 2) + '%'
                 },
                 {
-                  "v": row.reportingRatio,
-                  'f': '(' + numberFilter(row.reportingRatio, 3) + ' × <strong>more</strong> frequent)'
+                  v: row.reportingRatio,
+                  f: '(' + numberFilter(row.reportingRatio, 3) + ' × <strong>more</strong> frequent)'
                 }, {
-                  "f": buildRRTooltipHtml(row)
+                  f: buildRRTooltipHtml(row)
                 }
               ]
             };
           })
         },
-        "options": {
-          "isStacked": "true",
-          "fill": 20,
-          "displayExactValues": true,
+        options: {
+          isStacked: 'true',
+          fill: 20,
+          displayExactValues: true,
           legend: {
             position: 'none'
           },
@@ -81,28 +80,27 @@ angular.module('egtGsaProto')
           tooltip: {
             isHtml: true
           },
-          "vAxis": {
+          vAxis: {
             format: '#,###.## x',
-            //"title": "Reporting Ratio",
-            "gridlines": {
-              //"count": 10
+            //title: 'Reporting Ratio',
+            gridlines: {
+              //count: 10
             },
             logScale: true
 
           },
-          "hAxis": {
-            //"title": "Frequency",
+          hAxis: {
+            //title: 'Frequency',
             logScale: true,
             format: 'percent'
           }
         }
-      }
+      };
     }
 
     function formatPercent(number) {
       return (Math.round(number * 1000) / 10) + '%';
     }
-
 
     function buildPieChart(rawData, termMappings) {
 
@@ -110,34 +108,34 @@ angular.module('egtGsaProto')
 
       //documentation of options: https://developers.google.com/chart/interactive/docs/gallery/piechart
       return {
-        "type": "PieChart",
-        "displayed": true,
-        "data": {
-          "cols": [
+        type: 'PieChart',
+        displayed: true,
+        data: {
+          cols: [
             {
-              "id": "term",
-              "label": "Term",
-              "type": "string",
-              "p": {}
+              id: 'term',
+              label: 'Term',
+              type: 'string',
+              p: {}
             },
             {
-              "id": "count",
-              "label": "Count",
-              "type": "number",
-              "p": {}
+              id: 'count',
+              label: 'Count',
+              type: 'number',
+              p: {}
             }
           ],
-          "rows": _.map(terms, function (term) {
+          rows: _.map(terms, function (term) {
             return {
-              "c": [
+              c: [
                 {
-                  "v": term.term
+                  v: term.term
                 },
                 {
-                  "v": term.count
+                  v: term.count
                 }
               ]
-            }
+            };
           })
         },
         options: {
@@ -158,153 +156,147 @@ angular.module('egtGsaProto')
       });
     }
 
-
-
     function buildAgeChart(ageCount, normalAgeCount) {
 
       var bucketSize = 5;
 
       var data = normalizeData(ageCount, normalAgeCount, 100, bucketSize);
 
-
       //Documentation of options: https://developers.google.com/chart/interactive/docs/gallery/scatterchart
       return {
-        "type": "ComboChart",
-        "displayed": true,
-        "data": {
-          "cols": [
+        type: 'ComboChart',
+        displayed: true,
+        data: {
+          cols: [
             {
-              "id": "age",
-              "label": "Age",
-              "type": "number",
-              "p": {}
+              id: 'age',
+              label: 'Age',
+              type: 'number',
+              p: {}
             },
             {
-              "id": "count",
-              "label": "Frequency",
-              "type": "number",
-              "p": {}
+              id: 'count',
+              label: 'Frequency',
+              type: 'number',
+              p: {}
             },
             {
-              "id": "normal",
-              "label": "Normal",
-              "type": "number",
-              "p": {}
+              id: 'normal',
+              label: 'Normal',
+              type: 'number',
+              p: {}
             }
           ],
-          "rows": _.map(data, function (row) {
+          rows: _.map(data, function (row) {
             var age = row.term;
 
             return {
-              "c": [
+              c: [
                 {
-                  "v": age + (bucketSize / 2),
-                  'f': age + '-' + (age + 5) + ' years old'
+                  v: age + (bucketSize / 2),
+                  f: age + '-' + (age + 5) + ' years old'
                 },
                 {
-                  "v": row.count,
-                  'f': formatPercent(row.count)
-                } ,
+                  v: row.count,
+                  f: formatPercent(row.count)
+                },
                 {
-                  "v": row.normal,
-                  'f': formatPercent(row.normal)
+                  v: row.normal,
+                  f: formatPercent(row.normal)
                 }
               ]
             };
           })
         },
-        "options": {
+        options: {
           focusTarget: 'category',
-          "isStacked": "true",
-          "fill": 20,
-          "displayExactValues": true,
+          isStacked: 'true',
+          fill: 20,
+          displayExactValues: true,
           legend: {
             position: 'none'
           },
           seriesType: 'bars',
-          series: {1: {type: "line"}},
+          series: {1: {type: 'line'}},
           titlePosition: 'none',
           theme: 'maximized',
-          "vAxis": {
+          vAxis: {
             format: 'percent',
-            "gridlines": {
-              //"count": 10
+            gridlines: {
+              //count: 10
             }
           },
-          "hAxis": {}
+          hAxis: {}
         }
-      }
+      };
     }
 
     function normalizeData(dataCount, normalCount, max, bucketSize) {
 
       function buildDistribution(input) {
-        var dist = _(input).filter(function(x) {
+        var dist = _(input).filter(function (x) {
           return x.term < max;
-        }).groupBy(function(x) {
-          return '' + (bucketSize * Math.floor(x.term / bucketSize))
-        }).mapValues(function(x) {
+        }).groupBy(function (x) {
+          return '' + (bucketSize * Math.floor(x.term / bucketSize));
+        }).mapValues(function (x) {
           return _(x).pluck('count').sum();
         }).value();
 
         var count = _(dist).values().sum();
 
-        return _(dist).mapValues(function(x) {
+        return _(dist).mapValues(function (x) {
           return x / count;
         }).value();
 
       }
-
 
       var dataDist = buildDistribution(dataCount);
       var normalDist = buildDistribution(normalCount);
 
       var terms = _.union(_.keys(dataDist), _.keys(normalDist));
 
-      var result = _.map(terms, function(term) {
+      var result = _.map(terms, function (term) {
         return {
           term: parseInt(term),
           count: dataDist[term] || 0,
           normal: normalDist[term] || 0
-        }
+        };
       });
 
       return _.sortBy(result, 'term');
     }
-
 
     function buildWeightChart(weightCount, normalWeightCount) {
 
       var bucketSize = 5;
       var data = normalizeData(weightCount, normalWeightCount, 200, bucketSize);
 
-
       //Documentation of options: https://developers.google.com/chart/interactive/docs/gallery/scatterchart
       return {
-        "type": "ComboChart",
-        "displayed": true,
-        "data": {
-          "cols": [
+        type: 'ComboChart',
+        displayed: true,
+        data: {
+          cols: [
             {
-              "id": "weight",
-              "label": "Weight",
-              "type": "number",
-              "p": {}
+              id: 'weight',
+              label: 'Weight',
+              type: 'number',
+              p: {}
             },
             {
-              "id": "count",
-              "label": "Frequency",
-              "type": "number",
-              "p": {}
+              id: 'count',
+              label: 'Frequency',
+              type: 'number',
+              p: {}
             },
             {
-              "id": "normal",
-              "label": "Normal",
-              "type": "number",
-              "p": {}
+              id: 'normal',
+              label: 'Normal',
+              type: 'number',
+              p: {}
             }
           ],
-          "rows": _.map(data, function (row) {
+          rows: _.map(data, function (row) {
 
             var minKg = row.term;
             var maxKg = minKg + 5;
@@ -315,46 +307,44 @@ angular.module('egtGsaProto')
             var weightStr = 'Weight: ' + minKg + '-' + maxKg + ' kg   (' + minLb + '-' + maxLb + ' lbs)';
 
             return {
-              "c": [
+              c: [
                 {
-                  "v": minKg + (bucketSize / 2),
-                  'f': weightStr
+                  v: minKg + (bucketSize / 2),
+                  f: weightStr
                 },
                 {
-                  "v": row.count,
-                  'f': formatPercent(row.count)
+                  v: row.count,
+                  f: formatPercent(row.count)
                 }, {
-                  "v": row.normal,
-                  'f': formatPercent(row.normal)
+                  v: row.normal,
+                  f: formatPercent(row.normal)
                 }
               ]
             };
           })
         },
-        "options": {
+        options: {
           focusTarget: 'category',
-          "isStacked": "true",
-          "fill": 20,
-          "displayExactValues": true,
+          isStacked: 'true',
+          fill: 20,
+          displayExactValues: true,
           legend: {
             position: 'none'
           },
           seriesType: 'bars',
-          series: {1: {type: "line"}},
+          series: {1: {type: 'line'}},
           titlePosition: 'none',
           theme: 'maximized',
-          "vAxis": {
+          vAxis: {
             format: 'percent',
-            "gridlines": {
-              //"count": 10
+            gridlines: {
+              //count: 10
             }
           },
-          "hAxis": {}
+          hAxis: {}
         }
-      }
+      };
     }
-
-
 
     return {
       restrict: 'EA',
@@ -363,9 +353,9 @@ angular.module('egtGsaProto')
         eventData: '=',
         reportingRatioClick: '='
       },
-      link: function (scope, element) {
+      link: function (scope) {
 
-        scope.selectRR = function(selectedItem) {
+        scope.selectRR = function (selectedItem) {
           if (selectedItem) {
             var item = scope.eventData.leadingOutputs[selectedItem.row].term;
             scope.reportingRatioClick(item);
@@ -378,9 +368,9 @@ angular.module('egtGsaProto')
             scope.reportingRatioChart = buildReportingRatio(data.leadingOutputs);
 
             scope.genderChart = buildPieChart(data.genderCount, [
-              {output: "Male", input: 1},
-              {output: "Female", input: 2},
-              {output: "Unknown", input: 0},
+              {output: 'Male', input: 1},
+              {output: 'Female', input: 2},
+              {output: 'Unknown', input: 0}
             ]);
 
             scope.ageChart = buildAgeChart(data.ageCount, data.normalAgeCount);

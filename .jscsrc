@@ -22,7 +22,6 @@
   "requireParenthesesAroundIIFE": true,
   "requireSpaceAfterBinaryOperators": true,
   "requireSpaceAfterKeywords": true,
-  "requireSpaceAfterLineComment": true,
   "requireSpaceBeforeBinaryOperators": true,
   "requireSpaceBeforeBlockStatements": true,
   "requireSpaceBeforeKeywords": [
@@ -39,7 +38,6 @@
   "requireSpacesInConditionalExpression": true,
   "requireSpacesInForStatement": true,
   "requireSpacesInFunctionDeclaration": {
-    "beforeOpeningRoundBrace": true,
     "beforeOpeningCurlyBrace": true
   },
   "requireSpacesInFunctionExpression": {
@@ -47,14 +45,11 @@
     "beforeOpeningCurlyBrace": true
   },
   "requireSpacesInFunction": {
-    "beforeOpeningRoundBrace": true,
     "beforeOpeningCurlyBrace": true
   },
   "requireSpacesInNamedFunctionExpression": {
-    "beforeOpeningRoundBrace": true,
     "beforeOpeningCurlyBrace": true
   },
-  "requireSpacesInsideObjectBrackets": "all",
   "validateIndentation": 2,
   "validateParameterSeparator": ", ",
   "validateQuoteMarks": "'"
