@@ -12,7 +12,7 @@ https://egt-gsa-catalyst.egt-labs.com/
   *  `bower install`
 * Run development application locally: `gulp`
 * Test code
-  *  check code JsHint and JSCS formatting `gulp control` 
+  *  check code formatting with JSHint and JSCS  `gulp control` 
   *  protractor end-to-end one-time setup: `gulp e2e:update`
   *  protractor end-to-end tests: `gulp e2e`
 * Deploy Application
