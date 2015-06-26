@@ -7,7 +7,7 @@ https://egt-gsa-catalyst.egt-labs.com/
   *  Node and npm
   *  bower: `npm install -g bower`
   *  gulp: `npm install -g gulp`
-* Update depenencies
+* Update dependencies
   *  `npm install`
   *  `bower install`
 * Run development application locally: `gulp`
@@ -46,18 +46,18 @@ Team eGT chose to leverage over five modern, open source tools & frameworks as t
 
 
 Below we highlight evidence on how we met the requirements for Attachment E: 
-- [Node.js](https://nodejs.org) -  Cross-platform runtime environment 
-- [Angular.js](https://angularjs.org/) - Front-end framework 
-- [Bootstrap](https://github.com/twbs/bootstrap) - Front-end framework  
-- [Chef](https://www.chef.io/chef/) for Configuration Management 
-- [Cloudamatic](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docs/Tech%20Stack/deploylog) for Automated Deployment & Configuration Management 
-- [Docker]() for Operating-system-level virtualization 
-- [Github](www.github.com) for Source Control Repository
-- [Amazon Web Services](https://cloud.githubusercontent.com/assets/4334183/8358734/f2cc0d02-1b2f-11e5-9c30-134fc1b4db96.png) as our Infrastructure as a Service Provider
-- [Jenkins](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#continuous-integration) for Continuous Integration
-- [Nagios](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#continuous-monitoring) for Continuous Monitoring
-- [Protractor](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#testing) for Unit Testing 
-- [API]()
+-[Node.js](https://github.com/joyent/node/blob/master/LICENSE) - Cross-platform runtime environment
+-[Angular.js](https://github.com/angular-app/angular-app/blob/master/LICENSE) - Front-end framework
+-[Bootstrap](https://github.com/twbs/bootstrap/blob/master/LICENSE) - Front-end framework
+-[Chef](https://github.com/chef/chef/blob/master/LICENSE) for Configuration Management
+-[Cloudamatic](https://github.com/cloudamatic/cloudamatic/blob/master/LICENSE.md) for Automated Deployment & Configuration Management
+-[Docker](https://github.com/docker/docker/blob/master/LICENSE) for Operating-system-level virtualization
+-[Github](http://www.github.com) for Source Control Repository
+-[Amazon](http://aws.amazon.com/) Web Services as our Infrastructure as a Service Provider
+-[Jenkins](https://github.com/kohsuke/hudson/blob/master/LICENSE.txt) for Continuous Integration
+-[Nagios](https://assets.nagios.com/licenses/nagios_open_software_license.txt) for Continuous Monitoring
+-[Protractor](https://github.com/angular/protractor/blob/master/LICENSE) for Unit Testing
+-[API]
 
 For more information, see [Tech Stack](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack).
 
