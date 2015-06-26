@@ -110,7 +110,7 @@ angular.module('egtGsaProto')
                   if (latestQuery === thisQuery) {
                     var results = facetResp.data.results;
                     vm.facets[facetName].data = results;
-                    vm.facets[facetName].isOpen = results.length < 10;
+                    vm.facets[facetName].isOpen = results && results.length < 10;
 
                   }
                 });
