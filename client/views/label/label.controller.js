@@ -79,30 +79,30 @@ angular.module('egtGsaProto')
             label: 'Drug and/or Laboratory Test Interactions'
           }
         ]
-      },{
-          groupLabel: 'Warnings and precautions',
-          children: [
-            {
-              key: 'boxed_warning',
-              label: 'Boxed Warning'
-            }, {
-              key: 'warnings_and_precautions',
-              label: 'Warnings and Precautions'
-            }, {
-              key: 'user_safety_warnings',
-              label: 'User Safety Warnings'
-            }, {
-              key: 'precautions',
-              label: 'Precautions'
-            }, {
-              key: 'warnings',
-              label: 'Warnings'
-            }, {
-              key: 'general_precautions',
-              label: 'General Precautions'
-            }
-          ]
-        }, {
+      }, {
+        groupLabel: 'Warnings and precautions',
+        children: [
+          {
+            key: 'boxed_warning',
+            label: 'Boxed Warning'
+          }, {
+            key: 'warnings_and_precautions',
+            label: 'Warnings and Precautions'
+          }, {
+            key: 'user_safety_warnings',
+            label: 'User Safety Warnings'
+          }, {
+            key: 'precautions',
+            label: 'Precautions'
+          }, {
+            key: 'warnings',
+            label: 'Warnings'
+          }, {
+            key: 'general_precautions',
+            label: 'General Precautions'
+          }
+        ]
+      }, {
         groupLabel: 'Clinical pharmacology',
         children: [
           {
@@ -240,7 +240,7 @@ angular.module('egtGsaProto')
             label: 'Safe Handling Warning'
           }
         ]
-      },  {
+      }, {
         groupLabel: 'Other fields',
         children: [
           {
@@ -263,19 +263,16 @@ angular.module('egtGsaProto')
       }
     ];
 
-
     LabelFactory.load(vm.id).then(
       function (label) {
         vm.status = 'success';
         vm.label = label;
         populateText(label);
-      }, function (err) {
+      }, function () {
         vm.status = 'error';
       });
 
-
     function populateText(label) {
-
       angular.forEach(vm.textFields, function (group) {
         angular.forEach(group.children, function (field) {
           if (label[field.key]) {
@@ -293,12 +290,9 @@ angular.module('egtGsaProto')
       });
 
       _.remove(vm.textFields, function (group) {
-        return group.children.length == 0;
+        return group.children.length === 0;
       });
-
     }
-
-
   })
   .filter('to_trusted', ['$sce', function ($sce) {
     return function (text) {

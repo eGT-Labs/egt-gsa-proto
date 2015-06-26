@@ -8,25 +8,14 @@
       <option value="true">All fields</option>
     </select>
 
-    <!--<div class="btn-group" id="useAllFields">-->
-      <!--<label class="btn btn-default btn-sm" ng-model="vm.search.useAllFields" btn-radio="false" tooltip-placement="bottom"-->
-             <!--tooltip="Only Searches: brand_name, generic_name, substance_name, indications_and_usage, description" >-->
-        <!--Core Fields-->
-      <!--</label>-->
-      <!--<label class="btn btn-default btn-sm" ng-model="vm.search.useAllFields" btn-radio="true" tooltip-placement="bottom"-->
-             <!--tooltip="Searchs the complete text of all fields in the drug label data set.">-->
-        <!--All Fields-->
-      <!--</label>-->
-    <!--</div>-->
   </div>
-  </div>
-  <div class="form-group" >
+  <div class="input-group" >
     <input id="searchText" autofocus class="form-control input-lg " ng-model="vm.search.fulltext"
            placeholder="Search drug labels...">
-  </div>
-  <button id="searchButton" class="btn btn-primary btn-lg" ng-click="vm.newSearch()">
-    Go
-  </button>
+     <div class="input-group-btn">
+		<button class="btn btn-primary btn-lg" type="submit" ng-click="vm.newSearch()"><i class="glyphicon glyphicon-search"></i></button>
+	</div> 
+  </div>				
 </form>
 
 <hr>
@@ -58,7 +47,6 @@
     <form class="form-inline" ng-init="isAlpha=false">
       <div class="form-group">
         <label for="sortToggle">Sort Facets by:</label>
-        <!--<input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">-->
         <div class="btn-group" id="sortToggle">
           <label class="btn btn-default btn-xs" ng-model="isAlpha" btn-radio="false">Count</label>
           <label class="btn btn-default btn-xs" ng-model="isAlpha" btn-radio="true">Alphabetically</label>
@@ -77,16 +65,14 @@
                   ng-class="{'glyphicon-resize-full': !facet.isOpen, 'glyphicon-resize-small': facet.isOpen}"></span>
           </div>
         </accordion-heading>
-        <!--<ul class="list-group" >-->
         <div style="max-height: 400px; overflow-y: auto">
-          <div  ng-repeat="facetInstance in facet.data | orderBy : (isAlpha ? 'term' : 'count') : !isAlpha" style="padding-bottom: 2px;">
+          <div  ng-repeat="facetInstance in facet.data | orderBy : (isAlpha ? 'term' : 'count') : !isAlpha" style="padding-bottom: 2px;cursor:pointer;">
             <a ng-click="vm.setFacet(facetKey, facetInstance.term)" >
               <span class="badge pull-right">{{facetInstance.count | number}}</span>
               {{facetInstance.term}}
             </a>
           </div>
         </div>
-        <!--</ul>-->
 
       </accordion-group>
       </div>
@@ -143,7 +129,7 @@
 								<a style="cursor: pointer" href="/label-search?facet.substance_name={{substance}}">
                   {{substance}}
                 </a>
-                <a href="/event/substance/{{substance}}" class="h3" tooltip="Show adverse events" style="color: red">☤</a>
+                <a href="/event/substance/{{substance}}" class="h3" tooltip="Show adverse events" style="color: red">&#9764</a>
                 <span ng-show='$index < row.openfda.substance_name.length-1'>,</span>
 							</span>
             </p>

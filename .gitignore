@@ -3,3 +3,5 @@ client/bower_components/
 .idea/
 dist/
 .sass-cache/
+.project
+.settings/

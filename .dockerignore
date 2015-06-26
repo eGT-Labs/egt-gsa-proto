@@ -1,0 +1,8 @@
+.git
+client/bower_components
+data_bags
+dist
+docs
+node_modules
+roles
+site_cookbooks
