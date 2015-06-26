@@ -8,17 +8,6 @@
       <option value="true">All fields</option>
     </select>
 
-    <!--<div class="btn-group" id="useAllFields">-->
-      <!--<label class="btn btn-default btn-sm" ng-model="vm.search.useAllFields" btn-radio="false" tooltip-placement="bottom"-->
-             <!--tooltip="Only Searches: brand_name, generic_name, substance_name, indications_and_usage, description" >-->
-        <!--Core Fields-->
-      <!--</label>-->
-      <!--<label class="btn btn-default btn-sm" ng-model="vm.search.useAllFields" btn-radio="true" tooltip-placement="bottom"-->
-             <!--tooltip="Searchs the complete text of all fields in the drug label data set.">-->
-        <!--All Fields-->
-      <!--</label>-->
-    <!--</div>-->
-  </div>
   </div>
   <div class="input-group" >
     <input id="searchText" autofocus class="form-control input-lg " ng-model="vm.search.fulltext"
@@ -58,7 +47,6 @@
     <form class="form-inline" ng-init="isAlpha=false">
       <div class="form-group">
         <label for="sortToggle">Sort Facets by:</label>
-        <!--<input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">-->
         <div class="btn-group" id="sortToggle">
           <label class="btn btn-default btn-xs" ng-model="isAlpha" btn-radio="false">Count</label>
           <label class="btn btn-default btn-xs" ng-model="isAlpha" btn-radio="true">Alphabetically</label>
@@ -77,7 +65,6 @@
                   ng-class="{'glyphicon-resize-full': !facet.isOpen, 'glyphicon-resize-small': facet.isOpen}"></span>
           </div>
         </accordion-heading>
-        <!--<ul class="list-group" >-->
         <div style="max-height: 400px; overflow-y: auto">
           <div  ng-repeat="facetInstance in facet.data | orderBy : (isAlpha ? 'term' : 'count') : !isAlpha" style="padding-bottom: 2px;cursor:pointer;">
             <a ng-click="vm.setFacet(facetKey, facetInstance.term)" >
@@ -86,7 +73,6 @@
             </a>
           </div>
         </div>
-        <!--</ul>-->
 
       </accordion-group>
       </div>
