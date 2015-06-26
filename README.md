@@ -22,7 +22,7 @@ https://egt-gsa-catalyst.egt-labs.com/
     * `NODE_ENV=production`
     * `PORT=12345`
     * `OPEN_FDA_API_KEY=YOUR_API_KEY`
-      * This app is powerd by the [Open FDA API](https://open.fda.gov/). While you can run without a key, it is recommended for production use to [acquire one](https://open.fda.gov/api/reference/#authentication).
+      * This app is powered by the [Open FDA API](https://open.fda.gov/). While you can run without a key, it is recommended for production use to [acquire one](https://open.fda.gov/api/reference/#authentication).
   * run production package: `node dist/server/server.js`
 
 ### Docker Containerization
@@ -42,40 +42,39 @@ You can also map the internal (9000) port at will, for example to run the applic
 More options and details are available in the [README.md](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docker/README.md) in the docker folder.
 
 ### [Minimal Viable Product (MVP) Challenge](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%234---Minimum-Viable-Product)
-Our challenge was to develop and deploy a simple app using OpenFDA datasets to search, explore, & interact with data on drug labeling and adverse events. Core functionality was focused on faceted search and analytics on adverse events. Team eGT  developed the application using Scrum, enhancing the application over a number of iterations.
+Our challenge was to develop and deploy a simple app using OpenFDA datasets to search, explore, & interact with data on drug labeling and adverse events. Core functionality was focused on faceted search and analytics on adverse events. Team eGT  developed the application using Scrum and the [US Digital Services Playbook](), enhancing the application over a number of iterations.
 
-For more information, please see our [MVP Wiki](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%234---Minimum-Viable-Product).
+For more information and to view evidence, please see our [MVP Wiki](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%234---Minimum-Viable-Product).
 
 ### [Team](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%231---Team)
-eGT assembled a multi-disciplinary, collaborative DevOps team of experienced engineers, agilists, testers,  and architects, with members chosen for their experience designing web applications using automated testing frameworks, continuous integration and continuous deployment to build and deliver a prototype.
+eGT assembled a multi-disciplinary, collaborative core DevOps team of experienced engineers, agilists, testers,  and architects, with members chosen for their experience designing web applications using automated testing frameworks, continuous integration and continuous deployment to build and deliver a prototype.
 
-- **Product Owner:** Jennifer Hinton - @jhinton
+- **Product Manager:** Jennifer Hinton - @jhinton
 - **Technical Architect:** Eric Hanson - @jehanson
-- **Back End Web Developer**: Eric Hanson -@jehanson
-- **Front End Web Developer:** Mansi Pandurangi -@mpandurangi 
-- **Automated Test Engineer:** Zach Rowe - @zr2d2
+- **Backend Web Developer**: Eric Hanson -@jehanson
+- **Frontend Web Developer:** Mansi Pandurangi -@mpandurangi 
 - **DevOps Engineer:** John Stange - @jstange
-
-For more information about our team please see our [Team wiki](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%231---Team).
+- **DevOps Engineer:** Jai Bapna - @jaibapna
+- **DevOps Engineer/Automated Test Engineer:** Zach Rowe - @zr2d2
+ 
+For more information about our team and to view our evidence please see our [Team Wiki](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%231---Team).
 
 ### [Technical Stack] (https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack) 
 Team eGT chose to leverage over five modern, open source tools & frameworks as they offer maximum productivity in a prototyping effort of this nature. We implemented continuous integration automating the entire build, test and deployment process further enhancing our productivity and accelerating our solution’s maturity. All underlying platforms used to create and run the prototype are openly licensed and free of charge.
 
-Below we highlight evidence on how we met the requirements for Attachment E: 
+Below we highlight our tech stack on how we met the requirements for Attachment E: 
 -	[Node.js](https://github.com/joyent/node/blob/master/LICENSE) - Cross-platform runtime environment
 -	[Angular.js](https://github.com/angular-app/angular-app/blob/master/LICENSE) - Front-end framework
 -	[Bootstrap](https://github.com/twbs/bootstrap/blob/master/LICENSE) - Front-end framework
--	[Chef](https://github.com/chef/chef/blob/master/LICENSE) for Configuration Management
--	[Cloudamatic](https://github.com/cloudamatic/cloudamatic/blob/master/LICENSE.md) for Automated Deployment & Configuration Management
--	[Docker](https://github.com/docker/docker/blob/master/LICENSE) for Operating-system-level virtualization
--	[Github](http://www.github.com) for Source Control Repository
--	[Amazon](http://aws.amazon.com/) Web Services as our Infrastructure as a Service Provider
--	[Jenkins](https://github.com/kohsuke/hudson/blob/master/LICENSE.txt) for Continuous Integration
--	[Nagios](https://assets.nagios.com/licenses/nagios_open_software_license.txt) for Continuous Monitoring
--	[Protractor](https://github.com/angular/protractor/blob/master/LICENSE) for Unit Testing
--	[API]
+-	[Chef](https://github.com/chef/chef/blob/master/LICENSE) and [Cloudamatic](https://github.com/cloudamatic/cloudamatic/blob/master/LICENSE.md) for [Continuous Deployment & Configuration Management](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#continuous-deployment)
+-	[Docker](https://github.com/docker/docker/blob/master/LICENSE) for [Operating-system-level virtualization](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docker/README.md)
+-	[Github](http://www.github.com) for [Source Control Repository](https://github.com/eGT-Labs/egt-gsa-proto/)
+-	[Amazon Web Services](http://aws.amazon.com/) Web Services as our [Infrastructure as a Service Provider](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#infrastructure-as-a-service-provider)
+-	[Jenkins](https://github.com/kohsuke/hudson/blob/master/LICENSE.txt) for [Continuous Integration  ](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#continuous-integration) with 	[Protractor](https://github.com/angular/protractor/blob/master/LICENSE) to enable [Automation of Unit Tests](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#testing) 
+-	[Nagios](https://assets.nagios.com/licenses/nagios_open_software_license.txt) for [Continuous Monitoring](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#continuous-monitoring)
+-	[OpenFDA's API](open.fda.gov) to consume APIs for Adverse Events, Recalls, and Drug Labeling
 
-For more information, please see our [Tech Stack wiki](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack).
+For more information and to view our evidence, please see our [Tech Stack wiki](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack).
 
 ### [Process & Tools](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%232---Processes-&-Tools)
 Our lead, Jennifer Hinton, facilitated a kick-off meeting to gain alignment on the tech stack and creation of the environment with necessary permissions, collaboration tools, sprint schedules and ceremonies, and determined the MVP challenge based on suggestions from SMEs and the team. We also established our definition of done. 
@@ -85,15 +84,6 @@ The team followed a daily ceremony schedule, including the following:
 -	Daily Grooming Session - to slice and prioritize new functionality and to discuss mock-up designs created by the Product Owner and value team
 -	Sprint review & demo to view and provide suggestions to improve new functionality, provide updates about the infrastructure and testing roadmap, and to close out completed stories in GitHub 
 
-Below we highlight our sprints to demonstrate evidence for Attachment E on our Iterative, Agile Approach:
--	Thursday June 18th, 2015 - [Sprint 0](https://github.com/eGT-Labs/egt-gsa-proto/wiki/Agile-Journey#sprint-0)
--	Friday June 19th, 2015 to Sunday June 21st, 2015 - [Sprint 1](https://github.com/eGT-Labs/egt-gsa-proto/wiki/Agile-Journey#sprint-1)
--	Monday, June 22th, 2015  - [Sprint 2](https://github.com/eGT-Labs/egt-gsa-proto/wiki/Agile-Journey#sprint-2)
--	Tuesday, June 23rd, 2015 - [Sprint 3](https://github.com/eGT-Labs/egt-gsa-proto/wiki/Agile-Journey#sprint-3)
--	Wednesday, June 24th, 2015 - [Sprint 4](https://github.com/eGT-Labs/egt-gsa-proto/wiki/Agile-Journey#sprint-4)
--	Thursday, June 25th, 2015 - [Sprint 5](https://github.com/eGT-Labs/egt-gsa-proto/wiki/Agile-Journey#sprint-5)
--	Friday, June 26th, 2015 - [Sprint 6](https://github.com/eGT-Labs/egt-gsa-proto/wiki/Agile-Journey#sprint-6)
-
-For more information, please see our [Processes & Tools Wiki](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%232---Processes-&-Tools).
+For more information and to view our evidence on our Iterative, Agile Approach, please see our [Processes & Tools Wiki](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%232---Processes-&-Tools).
 
  
