@@ -46,18 +46,18 @@ Team eGT chose to leverage over five modern, open source tools & frameworks as t
 
 
 Below we highlight evidence on how we met the requirements for Attachment E: 
--[Node.js](https://github.com/joyent/node/blob/master/LICENSE) - Cross-platform runtime environment
--[Angular.js](https://github.com/angular-app/angular-app/blob/master/LICENSE) - Front-end framework
--[Bootstrap](https://github.com/twbs/bootstrap/blob/master/LICENSE) - Front-end framework
--[Chef](https://github.com/chef/chef/blob/master/LICENSE) for Configuration Management
--[Cloudamatic](https://github.com/cloudamatic/cloudamatic/blob/master/LICENSE.md) for Automated Deployment & Configuration Management
--[Docker](https://github.com/docker/docker/blob/master/LICENSE) for Operating-system-level virtualization
--[Github](http://www.github.com) for Source Control Repository
--[Amazon](http://aws.amazon.com/) Web Services as our Infrastructure as a Service Provider
--[Jenkins](https://github.com/kohsuke/hudson/blob/master/LICENSE.txt) for Continuous Integration
--[Nagios](https://assets.nagios.com/licenses/nagios_open_software_license.txt) for Continuous Monitoring
--[Protractor](https://github.com/angular/protractor/blob/master/LICENSE) for Unit Testing
--[API]
+-	[Node.js](https://github.com/joyent/node/blob/master/LICENSE) - Cross-platform runtime environment
+-	[Angular.js](https://github.com/angular-app/angular-app/blob/master/LICENSE) - Front-end framework
+[Bootstrap](https://github.com/twbs/bootstrap/blob/master/LICENSE) - Front-end framework
+-	[Chef](https://github.com/chef/chef/blob/master/LICENSE) for Configuration Management
+-	[Cloudamatic](https://github.com/cloudamatic/cloudamatic/blob/master/LICENSE.md) for Automated Deployment & Configuration Management
+-	[Docker](https://github.com/docker/docker/blob/master/LICENSE) for Operating-system-level virtualization
+-	[Github](http://www.github.com) for Source Control Repository
+-	[Amazon](http://aws.amazon.com/) Web Services as our Infrastructure as a Service Provider
+-	[Jenkins](https://github.com/kohsuke/hudson/blob/master/LICENSE.txt) for Continuous Integration
+-	[Nagios](https://assets.nagios.com/licenses/nagios_open_software_license.txt) for Continuous Monitoring
+-	[Protractor](https://github.com/angular/protractor/blob/master/LICENSE) for Unit Testing
+-	[API]
 
 For more information, see [Tech Stack](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack).
 
