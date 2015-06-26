@@ -3,9 +3,10 @@
 FROM centos:6
 
 # Set up our environment
-ENV OPEN_FDA_API_KEY=ByOaFN8UrW7woz15Fpenk7UkmOIZ0UdtfgSMxCYo
-ENV PORT=80
-EXPOSE 80
+ENV OPEN_FDA_API_KEY=
+
+# the Node server runs natively on port 9000. The host OS can map this to whichever port it wants.
+EXPOSE 9000
 
 # Make our apps directory
 RUN mkdir /apps
@@ -45,9 +46,11 @@ RUN cd /usr/local/share && \
         ln  -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs && \
         ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/bin/phantomjs
 
+# Import application source code into the container (.dockerignore file is used to exclude non-source directories)
+ADD . /apps/egt-gsa-proto
+
 # Now let's install and build the application distribution
 RUN cd /apps && \
-        git clone https://someuser:somepass@github.com/eGT-Labs/egt-gsa-proto.git && \
         cd /apps/egt-gsa-proto/ && \
         npm install && \
         bower install --allow-root && \
@@ -55,5 +58,5 @@ RUN cd /apps && \
         gulp build
 
 # Use supervisord to keep things running
-ADD supervisord.conf /etc/supervisord.conf
+ADD docker/supervisord.conf /etc/supervisord.conf
 CMD ["supervisord","-n"]
