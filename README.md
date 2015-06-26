@@ -12,7 +12,7 @@ https://egt-gsa-catalyst.egt-labs.com/
   *  `bower install`
 * Run development application locally: `gulp`
 * Test code
-  *  protrator end-to-end tests: `gulp e2e`
+  *  protractor end-to-end tests: `gulp e2e`
 * Deploy Application
   * build package: `gulp deploy`
   * contents will be located in the `dist` folder
