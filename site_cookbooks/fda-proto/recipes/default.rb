@@ -18,16 +18,6 @@ execute "setsebool -P httpd_can_network_connect on" do
   not_if "getsebool httpd_can_network_connect | grep ' on$'"
   notifies :reload, "service[apache2]", :delayed
 end
-[80, 443].each { |port|
-	bash "Allow #{port} through iptables" do
-		user "root"
-		not_if "/sbin/iptables -nL | egrep '^ACCEPT.*dpt:#{port}($| )'"
-		code <<-EOH
-			iptables -I INPUT -p tcp --dport #{port} -j ACCEPT
-			service iptables save
-		EOH
-	end
-}
 bash "Allow 8080 through iptables" do
 	user "root"
 	not_if "/sbin/iptables -nL | egrep '^ACCEPT.*dpt:8080($| )'"
