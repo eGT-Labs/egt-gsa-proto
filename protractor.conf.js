@@ -7,10 +7,8 @@ exports.config = { // jshint ignore:line
   baseUrl: 'https://egt-gsa-catalyst.egt-labs.com/',
 
   capabilities: {
-    browserName: 'chrome'
-    // chromeOptions: {
-    //    binary: '/usr/bin/google-chrome-stable'
-    // }
+    browserName: 'phantomjs',
+    'phantomjs.binary.path': '/root/phantomjs/bin/phantomjs' //'node_modules/karma-phantomjs-launcher/node_modules/phantomjs/lib/phantom/bin/phantomjs'
   },
 
   framework: 'jasmine',
