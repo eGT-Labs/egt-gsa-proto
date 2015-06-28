@@ -8,7 +8,7 @@ describe('event-substance route', function () {
   it('should display the correct #1 symptom', function () {
 
     browser.get('/event/substance/NITROGLYCERIN');
-    var firstResult = element.all(by.repeater('row in vm.adverseEvents.leadingOutputs')).get(0).getText();
+    var firstResult = element.all(by.css('#mainResults')).first().getText();
 
     expect(firstResult).toContain('RENAL INJURY');
     expect(firstResult).toContain('86.617');
