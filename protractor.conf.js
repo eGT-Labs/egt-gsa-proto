@@ -6,7 +6,7 @@ exports.config = { // jshint ignore:line
   baseUrl: 'https://egt-gsa-catalyst.egt-labs.com/',
 
   capabilities: {
-    browserName: 'phantomjs',
+    browserName: 'firefox',
   },
 
   framework: 'jasmine',
