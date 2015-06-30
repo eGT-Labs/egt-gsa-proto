@@ -42,7 +42,7 @@ You can also map the internal (9000) port at will, for example to run the applic
 More options and details are available in the [README.md](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docker/README.md) in the docker folder.
 
 ### [Minimal Viable Product (MVP) Challenge](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%234---Minimum-Viable-Product)
-Our challenge was to develop and deploy a simple app using OpenFDA datasets to search, explore, & interact with data on drug labeling and adverse events. Core functionality was focused on faceted search and analytics on adverse events. Team eGT  developed the application using Scrum and the [US Digital Services Playbook](), enhancing the application over a number of iterations.
+Our challenge was to develop and deploy a simple app using OpenFDA datasets to search, explore, & interact with data on drug labeling and adverse events. Core functionality was focused on faceted search and analytics on adverse events. Team eGT  developed the application using Scrum and the [US Digital Services Playbook](https://github.com/eGT-Labs/egt-gsa-proto/wiki/18f-GSA-Agile-Delivery-Services-RFQ-Reqs), in alignment with [Attachment E.](https://github.com/eGT-Labs/egt-gsa-proto/wiki/18f-GSA-Agile-Delivery-Services-RFQ-Reqs) enhancing the application over a number of iterations.
 
 For more information and to view evidence, please see our [MVP Wiki](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%234---Minimum-Viable-Product).
 
@@ -62,7 +62,7 @@ For more information about our team and to view our evidence please see our [Tea
 ### [Technical Stack] (https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack) 
 Team eGT chose to leverage over five modern, open source tools & frameworks as they offer maximum productivity in a prototyping effort of this nature. We implemented continuous integration automating the entire build, test and deployment process further enhancing our productivity and accelerating our solution’s maturity. All underlying platforms used to create and run the prototype are openly licensed and free of charge.
 
-Below we highlight our tech stack on how we met the requirements for Attachment E: 
+Below we highlight our tech stack on how we met the requirements for [Attachment E](https://github.com/eGT-Labs/egt-gsa-proto/wiki/18f-GSA-Agile-Delivery-Services-RFQ-Reqs): 
 
 **Modern, Open Source Technologies**
 -	[Node.js](https://github.com/joyent/node/blob/master/LICENSE) - Cross-platform runtime environment
@@ -78,6 +78,7 @@ Below we highlight our tech stack on how we met the requirements for Attachment 
 -	[Nagios](https://assets.nagios.com/licenses/nagios_open_software_license.txt) for [Continuous Monitoring](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack#continuous-monitoring)
 -	[OpenFDA's API](open.fda.gov) to consume APIs for Adverse Events, Recalls, and Drug Labeling
 
+
 For more information and to view our evidence, please see our [Tech Stack wiki](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%233---Tech-Stack).
 
 ### [Process & Tools](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%232---Processes-&-Tools)
@@ -85,7 +86,7 @@ Our lead, Jennifer Hinton, facilitated a kick-off meeting to gain alignment on t
  
 The team followed a daily ceremony schedule, including the following:
 -	Daily Stand Up - to coordinate efforts and remove blockers
--	Daily Grooming Session - to slice and prioritize new functionality and to discuss mock-up designs created by the Product Owner and value team
+-	Daily Grooming Session - to slice and prioritize new functionality and to discuss mock-up designs created by the Product Manager and value team
 -	Sprint review & demo to view and provide suggestions to improve new functionality, provide updates about the infrastructure and testing roadmap, and to close out completed stories in GitHub 
 
 For more information and to view our evidence on our Iterative, Agile Approach, please see our [Processes & Tools Wiki](https://github.com/eGT-Labs/egt-gsa-proto/wiki/%232---Processes-&-Tools).
