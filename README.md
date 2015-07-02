@@ -42,9 +42,9 @@ You can also map the internal (9000) port at will, for example to run the applic
 More options and details are available in the [README.md](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docker/README.md) in the docker folder.
 
 ### [Minimal Viable Product (MVP) Challenge](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docs/MVP/18F-GSA-Agile-eGlobaltech-Minimum-Viable-Product-Wiki.docx)
-Our challenge was to develop and deploy a simple app using OpenFDA datasets to search, explore, & interact with data on drug labeling and adverse events. Core functionality was focused on faceted search and analytics on adverse events. Team eGT  developed the application using Scrum and the US Digital Services Playbook, in alignment with Attachment E enhancing the application over a number of iterations.
+Our challenge was to develop and deploy a simple app using OpenFDA datasets to search, explore, & interact with data on drug labeling and adverse events. Core functionality was focused on faceted search and analytics on adverse events. Team eGT  developed the application using Scrum and the US Digital Services Playbook enhancing the application over a number of iterations.
 
-For more information and to view evidence, please see our [MVP Wiki Document](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docs/MVP/18F-GSA-Agile-eGlobaltech-Minimum-Viable-Product-Wiki.docx).
+For more information on our evidence, please see the [MVP Wiki Document](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docs/MVP/18F-GSA-Agile-eGlobaltech-Minimum-Viable-Product-Wiki.docx).
 
 ### [Team](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docs/18F-GSA-Agile-eGlobaltech-Team-Wiki.docx)
 eGT assembled a multi-disciplinary, collaborative core DevOps team of experienced engineers, agilists, testers,  and architects, with members chosen for their experience designing web applications using automated testing frameworks, continuous integration and continuous deployment to build and deliver a prototype.
@@ -62,7 +62,7 @@ For more information about our team and to view our evidence please see our [Tea
 ### [Technical Stack] (https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docs/Tech%20Stack/18F-GSA-Agile-eGlobaltech-Tech-Stack-Wiki.docx) 
 Team eGT chose to leverage over five modern, open source tools & frameworks as they offer maximum productivity in a prototyping effort of this nature. We implemented continuous integration automating the entire build, test and deployment process further enhancing our productivity and accelerating our solution’s maturity. All underlying platforms used to create and run the prototype are openly licensed and free of charge.
 
-Below we highlight our tech stack on how we met the requirements: 
+Below we highlight our technical stack on how we met the requirements: 
 
 **Modern, Open Source Technologies**
 -	[Node.js](https://github.com/joyent/node/blob/master/LICENSE) - Cross-platform runtime environment
@@ -79,10 +79,10 @@ Below we highlight our tech stack on how we met the requirements:
 -	[OpenFDA's API](open.fda.gov) to consume APIs for Adverse Events, Recalls, and Drug Labeling
 
 
-For more information and to view our evidence, please see our [Technical Stack Wiki Document](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docs/Tech%20Stack/18F-GSA-Agile-eGlobaltech-Tech-Stack-Wiki.docx).
+To view our evidence, please see our [Technical Stack Wiki Document](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docs/Tech%20Stack/18F-GSA-Agile-eGlobaltech-Tech-Stack-Wiki.docx).
 
 ### [Process & Tools](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docs/Process%20and%20Tools/18F-GSA-Agile-eGlobaltech-Process-Tools-Wiki.docx)
-Our lead, Jennifer Hinton, facilitated a kick-off meeting to gain alignment on the tech stack and creation of the environment with necessary permissions, collaboration tools, sprint schedules and ceremonies, and determined the MVP challenge based on suggestions from SMEs and the team. We also established our definition of done. 
+Our lead, Jennifer Hinton, facilitated a kick-off meeting to gain alignment on the tech stack and creation of the environment with necessary permissions, collaboration tools, sprint schedules and ceremonies, and determined the MVP challenge based on suggestions from SMEs and the team.  
  
 The team followed a daily ceremony schedule, including the following:
 -	Daily Stand Up - to coordinate efforts and remove blockers
@@ -91,4 +91,5 @@ The team followed a daily ceremony schedule, including the following:
 
 For more information and to view our evidence on our Iterative, Agile Approach, please see our [Process & Tools Wiki Document](https://github.com/eGT-Labs/egt-gsa-proto/blob/master/docs/Process%20and%20Tools/18F-GSA-Agile-eGlobaltech-Process-Tools-Wiki.docx).
 
- 
+### Attachment E Evidence
+ All attachment E evidence is located in the [docs folder of the repository](https://github.com/eGT-Labs/egt-gsa-proto/tree/master/docs)
