@@ -13,6 +13,7 @@ var url = require('url');
 
 module.exports = proxy('https://api.fda.gov', {
   decorateRequest: function (req) {
+    console.log(req.headers);
 
     // IF the server has been configured with an OpenFDA API key, attach the key to each proxied request.
     if (config.openFdaApiKey) {
