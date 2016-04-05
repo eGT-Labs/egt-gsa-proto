@@ -11,8 +11,9 @@ var url = require('url');
  * 2) Instruct the client to cache all responses for 1 day (except for 429 TOO MANY REQUEST responses)
  */
 
-module.exports = proxy('http://api.fda.gov', {
+module.exports = proxy('https://api.fda.gov', {
   decorateRequest: function (req) {
+    req.headers = {}; // don't forward our headers!
 
     // IF the server has been configured with an OpenFDA API key, attach the key to each proxied request.
     if (config.openFdaApiKey) {

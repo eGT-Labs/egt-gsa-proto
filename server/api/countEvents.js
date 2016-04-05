@@ -35,7 +35,7 @@ module.exports = function (req, res) {
       if (config.openFdaApiKey) {
         queryWithKey += '&api_key=' + config.openFdaApiKey;
       }
-      superagent.get('http://api.fda.gov/drug/event.json?limit=1&search=' + queryWithKey)
+      superagent.get('https://api.fda.gov/drug/event.json?limit=1&search=' + queryWithKey)
         .end(function (err, res) {
           if (err) {
             if (err.status === 404 || err.status === 400) {
